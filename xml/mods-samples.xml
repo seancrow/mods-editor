@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mods-samples last-update="2005-04-12">
+	<intro>
+		<p>This is a prototype of a <a href="http://www.loc.gov/standards/mods/">MODS</a> editor built with <a href="http://cocoon.apache.org/2.1/userdocs/forms/">Cocoon Forms</a>. Not everything works yet. Only a subset of the top-level elements have been implemented, and within those some fields are not yet fully implemented. </p>
+		<p>The sample records below are taken from the MODS site. You can edit them as you wish; when you submit, though, the changed record will not be saved, it will just be displayed back to you in XML.</p>
+		<p>For more information see <a href="http://www.wallandbinkley.com/quaedam/">my blog</a>. Contact: <a href="mailto:peter.binkley@ualberta.ca">Peter Binkley</a>
+		</p>
+	</intro>
+	<item type="Book" file="mods99042030"/>
+	<item type="Book chapter" file="modsbook-chapter"/>
+	<item type="Serial" file="mods86646620"/>
+	<item type="Article in a serial" file="modsjournal"/>
+	<item type="Serial special issue" file="modsspecial-issue"/>
+	<item type="Serial supplement" file="modssupplement"/>
+	<item type="Electronic serial" file="modsejournal"/>
+	<item type="Web document" file="mods98801326"/>
+	<item type="Conference publication" file="mods97129132"/>
+	<item type="Map" file="mods83691515"/>
+	<item type="Motion picture" file="mods80700998"/>
+	<item type="Music" file="mods85753651"/>
+	<item type="Sound recording" file="mods94759273"/>
+	<item type="Mixed material" file="mods83001404"/>
+	<work>
+		<element name="titleInfo" done="yes"/>
+		<element name="name" done="yes"/>
+		<element name="typeOfResource" done="yes"/>
+		<element name="genre" done="yes"/>
+		<element name="originInfo" done="yes"/>
+		<element name="language" done="yes"/>
+		<element name="physicalDescription" done="yes"/>
+		<element name="abstract" done="yes"/>
+		<element name="tableOfContents" done="yes"/>
+		<element name="targetAudience" done="yes"/>
+		<element name="note" done="yes"/>
+		<element name="subject" done="yes"/>
+		<element name="classification" done="no"/>
+		<element name="relatedItem" done="no"/>
+		<element name="identifier" done="no"/>
+		<element name="location" done="no"/>
+		<element name="accessCondition" done="no"/>
+		<element name="extension" done="no"/>
+		<element name="recordinfo" done="no"/>
+	</work>
+</mods-samples>
