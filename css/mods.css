@@ -1,0 +1,50 @@
+body {background: #eee;}
+.header {background: #fff; border: 1px solid black; padding-left: 15px;}
+h3 {margin-bottom: 0px; margin-top: 3px; border-bottom: 1px dotted black;}
+h4 {margin-bottom: 0px; margin-top: 3px; border-bottom: 1px dotted black; font-family: sansserif, arial;}
+h5 {margin-bottom: 0px; margin-top: 3px; font-family: sansserif, arial;}
+h2 {margin-top: 3px; margin-bottom: 3px;}
+p {margin-top: 0px; margin-bottom: 3px;}
+td {vertical-align: top;}
+
+/* MODS elements */
+.toplevel {border: 1px solid black; margin-bottom: 10px; padding: 5px 5px 5px 1.5em;}
+#titleInfos {background: #ffc;}
+#names {background: #fcf;}
+#typeOfResources {background: #cff;}
+#genres {background: #fcc;}
+#originInfos {background: #cfc;}
+#languages {background: #ccf;}
+#physicalDescriptions {background: #ffa;}
+#abstracts {background: #faf;}
+#tableofcontentss {background: #aff;}
+#targetaudiences {background: #fca;}
+#notes {background: #fac;}
+#subjects {background: #afc;}
+#classifications {
+	background: #cfa;
+}
+#xidentifiers {
+	background: #caf;
+}
+#locations {
+	background: #acf;
+}
+#accessConditions {
+	background: #ccf;
+}
+/* top-level elements */
+.titleInfo, .typeOfResource, .genre, .originInfo, .placeterm, .languageterms, .physicalDescription, .date, .namepart, .abstract, .tableofcontents, .targetaudience, .note, .subject, .classification, .identifier, .location, .accessCondition {border: 1px solid black; padding: 5px; margin-bottom: 20px; background: #fff; color: #000;}
+
+/* second-level elements */
+.places, .dates, .nameparts, .topics, .subelements {border: 1px solid black; margin-bottom: 20px; padding: 5px; background: #bbb; color: #000;}
+
+/* third-level elements */
+.placeterms, .name, .topic, .subject-widget-row, .url, .physicalLocation {border: 1px solid black; margin-bottom: 20px; padding: 5px; background: #eee; color: #000;}
+
+/* inputs */
+
+input, select, textarea {background: #ffff66;}
+.common-controls input, .submit input {
+	background: #ccc;
+}
