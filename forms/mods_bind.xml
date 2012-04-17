@@ -1,0 +1,728 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Peter Binkley (University of Alberta Library) -->
+<fb:context xmlns:fb="http://apache.org/cocoon/forms/1.0#binding" xmlns:fd="http://apache.org/cocoon/forms/1.0#definition" xmlns:mods="http://www.loc.gov/mods/v3" xmlns:peel="http://peel.library.ualberta.ca/mods-extensions" xmlns:xlink="http://www.w3.org/1999/xlink" path="/mods_mods">
+	<!-- Note: this binding, using classes and simple-repeaters, doesn't work in Cocoon 2.1.5, since simple-repeaters didn't implement classes in that version. I've copied the cocoon-forms jar file from 2.1.7 into 2.1.5 to make this work. -->
+	<!-- **********************************************************************
+		Classes
+	***********************************************************************-->
+	<fb:class id="common-subject-date-elements-class">
+		<fb:value id="value" path="." lenient="true"/>
+		<fb:value id="encoding" path="@encoding" lenient="true"/>
+		<fb:value id="point" path="@point" lenient="true"/>
+		<fb:value id="keydate" path="@keyDate" lenient="true"/>
+	</fb:class>
+	<fb:class id="common-date-elements-class">
+		<!-- used for all dates in originInfo -->
+		<fb:value id="qualifier" path="@qualifier" lenient="true"/>
+	</fb:class>
+	<fb:class id="common-language-elements-class">
+		<fb:value id="lang" path="@lang" lenient="true"/>
+		<fb:value id="xml:lang" path="@xml:lang" lenient="true"/>
+		<fb:value id="script" path="@script" lenient="true"/>
+		<fb:value id="transliteration" path="@transliteration" lenient="true"/>
+	</fb:class>
+	<fb:class id="common-linking-elements-class">
+		<fb:value id="modsID" path="@ID" lenient="true"/>
+		<fb:value id="xlink" path="@xlink:href" lenient="true"/>
+	</fb:class>
+	<fb:class id="textfield-class">
+		<fb:value id="value" path="."/>
+		<fb:value id="type" path="@type"/>
+		<fb:value id="displaylabel" path="@displayLabel"/>
+		<fb:value id="xlink" path="@xlink:href" lenient="true"/>
+	</fb:class>
+	<fb:class id="titleInfo-class">
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:value id="title" path="mods_title" lenient="true"/>
+		<fb:value id="subtitle" path="mods_subTitle" lenient="true"/>
+		<fb:value id="partnumber" path="mods_partNumber" lenient="true"/>
+		<fb:value id="partname" path="mods_partName" lenient="true"/>
+		<fb:value id="nonsort" path="mods_nonSort" lenient="true"/>
+		<fb:value id="type" path="@type" lenient="true"/>
+	</fb:class>
+	<fb:class id="name-class">
+		<fb:simple-repeater id="nameparts" row-path="mods_namePart" parent-path=".">
+			<!--<fb:identity>
+					<fb:value id="id" path="position()"/>
+				</fb:identity>-->
+			<!--<fb:on-bind>-->
+			<fb:value id="value" path="."/>
+			<fb:value id="type" path="@type"/>
+			<!--</fb:on-bind>-->
+			<!--<fb:on-delete-row>
+					<fb:delete-node/>
+				</fb:on-delete-row>-->
+			<!--<fb:on-insert-row>
+					<fb:insert-node>
+						<mods_namePart/>
+					</fb:insert-node>
+				</fb:on-insert-row>-->
+		</fb:simple-repeater>
+		<fb:value id="role" path="mods_role/mods_roleTerm" lenient="true"/>
+		<fb:value id="description" path="mods_description" lenient="true"/>
+	</fb:class>
+	<!-- **********************************************************************
+		Top-Level Elements
+	***********************************************************************-->
+	<fb:value id="id" path="mods_recordInfo/mods_recordIdentifier" direction="load"/>
+	<!-- **********************************************************************
+		mods:titleInfo
+	***************************************************************************-->
+	<fb:simple-repeater id="titleInfos" row-path="mods_titleInfo" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="@temp_id">
+				<fd:convertor datatype="integer"/>
+			</fb:value>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<!--				<fb:value id="id" path="position()"/>-->
+		<fb:new id="titleInfo-class"/>
+		<fb:new id="common-language-elements-class"/>
+		<fb:new id="common-linking-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_titleinfo/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- **********************************************************************
+		mods:name
+	***************************************************************************-->
+	<fb:simple-repeater id="names" row-path="mods_name" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<!--			<fb:value id="id" path="@temp_id">
+				<fd:convertor datatype="integer"/>
+			</fb:value>-->
+		<fb:new id="name-class"/>
+		<fb:new id="common-language-elements-class"/>
+		<fb:new id="common-linking-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_name/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- **********************************************************************
+		mods_typeOfResource
+	***************************************************************************-->
+	<fb:simple-repeater id="typeOfResources" row-path="mods_typeOfResource" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:value id="collection" path="@collection" lenient="true">
+			<fd:convertor datatype="boolean"/>
+		</fb:value>
+		<fb:value id="manuscript" path="@manuscript" lenient="true">
+			<fd:convertor datatype="boolean"/>
+		</fb:value>
+		<fb:value id="type" path="." lenient="true"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_typeOfResource collection="false" manuscript="false"/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- **********************************************************************
+			genre
+		***************************************************************************-->
+	<fb:simple-repeater id="genres" row-path="mods_genre" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:value id="genre" path="."/>
+		<fb:value id="authority" path="@authority"/>
+		<fb:new id="common-language-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_genre authority=""/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- **********************************************************************
+			originInfo
+		***************************************************************************-->
+	<fb:simple-repeater id="originInfos" row-path="mods_originInfo" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:simple-repeater id="places" row-path="mods_place" parent-path=".">
+			<!--<fb:identity>
+					<fb:value id="id" path="position()"/>
+				</fb:identity>-->
+			<!--<fb:on-bind>-->
+			<fb:simple-repeater id="placeterms" row-path="mods_placeTerm" parent-path=".">
+				<!--<fb:identity>
+							<fb:value id="id" path="position()"/>
+						</fb:identity>-->
+				<!--<fb:on-bind>-->
+				<fb:value id="pubplace" path="."/>
+				<fb:value id="type" path="@type"/>
+				<fb:value id="authority" path="@authority"/>
+				<!--</fb:on-bind>-->
+				<!--<fb:on-delete-row>
+							<fb:delete-node/>
+						</fb:on-delete-row>-->
+				<!--<fb:on-insert-row>
+							<fb:insert-node>
+								<mods_placeTerm/>
+							</fb:insert-node>
+						</fb:on-insert-row>-->
+			</fb:simple-repeater>
+			<!--</fb:on-bind>-->
+			<!--<fb:on-delete-row>
+					<fb:delete-node/>
+				</fb:on-delete-row>-->
+			<!--<fb:on-insert-row>
+					<fb:insert-node>
+						<mods_place/>
+					</fb:insert-node>
+				</fb:on-insert-row>-->
+		</fb:simple-repeater>
+		<fb:value id="publisher" path="mods_publisher"/>
+		<!-- Dates -->
+		<fb:simple-repeater id="dates" row-path="temp_date" parent-path=".">
+			<!--<fb:identity>
+					<fb:value id="id" path="@temp_id">
+						<fd:convertor datatype="integer"/>
+					</fb:value>
+				</fb:identity>-->
+			<!--<fb:on-bind>-->
+			<fb:value id="temp_type" path="@temp_type"/>
+			<fb:new id="common-subject-date-elements-class"/>
+			<fb:new id="common-date-elements-class"/>
+			<!--</fb:on-bind>-->
+			<!--<fb:on-delete-row>
+					<fb:delete-node/>
+				</fb:on-delete-row>-->
+			<!--<fb:on-insert-row>
+					<fb:insert-node>
+						<mods_date/>
+					</fb:insert-node>
+				</fb:on-insert-row>-->
+		</fb:simple-repeater>
+		<!--			<fb:value id="dateissued" path="mods_dateIssued" />-->
+		<!--<fb:value id="datecreated" path="mods_dateCreated" />
+				<fb:value id="datecaptured" path="mods_dateCaptured" />
+				<fb:value id="datevalid" path="mods_dateValid" />
+				<fb:value id="datemodified" path="mods_dateModified" />
+				<fb:value id="copyrightdate" path="mods_copyrightDate" />
+				<fb:value id="dateother" path="mods_dateOther" />-->
+		<!-- end of dates -->
+		<fb:value id="edition" path="mods_edition"/>
+		<fb:value id="issuance" path="mods_issuance"/>
+		<fb:value id="frequency" path="mods_frequency"/>
+		<fb:new id="common-language-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_originInfo>
+					<mods_dateIssued/>
+					<mods_place>
+						<mods_placeTerm/>
+					</mods_place>
+					<mods_publisher/>
+				</mods_originInfo>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- **********************************************************************
+		mods:language
+	***************************************************************************-->
+	<fb:simple-repeater id="languages" row-path="mods_language" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:simple-repeater id="languageterms" row-path="mods_languageTerm" parent-path=".">
+			<!--<fb:identity>
+					<fb:value id="id" path="position()"/>
+				</fb:identity>-->
+			<!--<fb:on-bind>-->
+			<fb:value id="language" path="."/>
+			<fb:value id="type" path="@type"/>
+			<fb:value id="authority" path="@authority"/>
+			<!--</fb:on-bind>-->
+			<!--<fb:on-delete-row>
+					<fb:delete-node/>
+				</fb:on-delete-row>-->
+			<!--<fb:on-insert-row>
+					<fb:insert-node>
+						<mods_languageTerm/>
+					</fb:insert-node>
+				</fb:on-insert-row>-->
+		</fb:simple-repeater>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_language/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- ****************************************************
+			physicalDescription
+		********************************************************-->
+	<fb:simple-repeater id="physicaldescriptions" row-path="mods_physicalDescription" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:context path="mods_form">
+			<fb:value id="form" path="."/>
+			<fb:value id="formauthority" path="@authority"/>
+		</fb:context>
+		<fb:value id="reformattingquality" path="mods_reformattingQuality"/>
+		<fb:value id="internetmediatype" path="mods_internetMediaType"/>
+		<fb:value id="extent" path="mods_extent"/>
+		<fb:value id="digitalorigin" path="mods_digitalOrigin"/>
+		<fb:simple-repeater id="notes" row-path="mods_note" parent-path=".">
+			<!--<fb:identity>
+					<fb:value id="id" path="position()"/>
+				</fb:identity>-->
+			<!--<fb:on-bind>-->
+			<fb:new id="textfield-class"/>
+			<!--</fb:on-bind>-->
+			<!--<fb:on-delete-row>
+					<fb:delete-node/>
+				</fb:on-delete-row>-->
+			<!--<fb:on-insert-row>
+					<fb:insert-node>
+						<mods_note/>
+					</fb:insert-node>
+				</fb:on-insert-row>-->
+		</fb:simple-repeater>
+		<fb:new id="common-language-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_physicalDescription>
+					<mods_form/>
+					<mods_reformattingQuality/>
+					<mods_internetMediaType/>
+					<mods_extent/>
+					<mods_digitalOrigin/>
+					<mods_note/>
+				</mods_physicalDescription>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- ************************************************
+			mods:abstract
+		***************************************************-->
+	<fb:simple-repeater id="abstracts" row-path="mods_abstract" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:new id="textfield-class"/>
+		<fb:new id="common-language-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_abstract/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- ************************************************
+			mods:tableOfContents
+		***************************************************-->
+	<fb:simple-repeater id="tableofcontentss" row-path="mods_tableOfContents" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:new id="textfield-class"/>
+		<fb:new id="common-language-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_tableOfContents/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- ************************************************
+			mods:targetAudience
+		***************************************************-->
+	<fb:simple-repeater id="targetaudiences" row-path="mods_targetAudience" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:value id="value" path="." lenient="true"/>
+		<fb:value id="authority" path="@authority"/>
+		<fb:new id="common-language-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_targetAudience/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- ************************************************
+			mods:note
+		***************************************************-->
+	<fb:simple-repeater id="notes" row-path="mods_note" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:new id="textfield-class"/>
+		<fb:new id="common-language-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_note/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- ************************************************
+			mods:subject
+		***************************************************-->
+	<fb:simple-repeater id="subjects" row-path="mods_subject" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:new id="subject-widgets-class"/>
+		<fb:value id="authority" path="@authority"/>
+		<fb:new id="common-language-elements-class"/>
+		<fb:new id="common-linking-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_subject/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<fb:class id="subject-widgets-class">
+		<fb:temp-repeater id="subject-widgets" parent-path="." row-path="*" row-path-insert="." virtual-rows="true">
+			<fb:on-bind>
+				<fb:new id="subject-widget-row-class"/>
+			</fb:on-bind>
+		</fb:temp-repeater>
+	</fb:class>
+	<fb:class id="subject-widget-row-class">
+		<fb:javascript id="type" path=".">
+			<fb:load-form>
+		        var node = jxpathPointer.getNode().getFirstChild();
+		        widget.setValue(node.getLocalName());
+		      </fb:load-form>
+			<fb:save-form>
+			</fb:save-form>
+		</fb:javascript>
+		<fb:union id="subjects" path=".">
+			<fb:new id="topic-subject-class"/>
+			<fb:new id="geographic-subject-class"/>
+			<fb:new id="temporal-subject-class"/>
+			<fb:new id="titleInfo-subject-class"/>
+			<fb:new id="name-subject-class"/>
+			<fb:new id="hierarchicalGeographic-subject-class"/>
+			<fb:new id="cartographics-subject-class"/>
+			<fb:new id="geographicCode-subject-class"/>
+			<fb:new id="occupation-subject-class"/>
+		</fb:union>
+	</fb:class>
+	<fb:class id="common-subject-date-elements-class">
+		<fb:value id="value" path="." lenient="true"/>
+		<fb:value id="encoding" path="@encoding" lenient="true"/>
+		<fb:value id="point" path="@point" lenient="true"/>
+		<fb:value id="keydate" path="@keyDate" lenient="true"/>
+	</fb:class>
+	<fb:class id="topic-subject-class">
+		<fb:case id="mods_topic" path=".">
+			<fb:insert-node>
+				<mods_topic/>
+			</fb:insert-node>
+			<fb:struct id="mods_topic" path="mods_topic">
+				<fb:value id="value" path="."/>
+			</fb:struct>
+		</fb:case>
+	</fb:class>
+	<fb:class id="geographic-subject-class">
+		<fb:case id="mods_geographic" path=".">
+			<fb:insert-node>
+				<mods_geographic/>
+			</fb:insert-node>
+			<fb:struct id="mods_geographic" path="mods_geographic">
+				<fb:value id="value" path="."/>
+			</fb:struct>
+		</fb:case>
+	</fb:class>
+	<fb:class id="temporal-subject-class">
+		<fb:case id="mods_temporal" path=".">
+			<fb:insert-node>
+				<mods_temporal/>
+			</fb:insert-node>
+			<fb:struct id="mods_temporal" path="mods_temporal">
+				<fb:value id="value" path="."/>
+				<fb:new id="common-subject-date-elements-class"/>
+			</fb:struct>
+		</fb:case>
+	</fb:class>
+	<fb:class id="titleInfo-subject-class">
+		<fb:case id="mods_titleInfo" path=".">
+			<fb:insert-node>
+				<mods_titleInfo/>
+			</fb:insert-node>
+			<fb:struct id="mods_titleInfo" path="mods_titleInfo">
+				<!--<fb:value id="value" path="."/>-->
+				<fb:new id="titleInfo-class"/>
+				<fb:new id="common-language-elements-class"/>
+				<fb:new id="common-linking-elements-class"/>
+			</fb:struct>
+		</fb:case>
+	</fb:class>
+	<fb:class id="name-subject-class">
+		<fb:case id="mods_name" path=".">
+			<fb:insert-node>
+				<mods_name/>
+			</fb:insert-node>
+			<fb:struct id="mods_name" path="mods_name">
+				<fb:new id="name-class"/>
+				<fb:new id="common-language-elements-class"/>
+				<fb:new id="common-linking-elements-class"/>
+			</fb:struct>
+		</fb:case>
+	</fb:class>
+	<fb:class id="hierarchicalGeographic-subject-class">
+		<fb:case id="mods_hierarchicalGeographic" path=".">
+			<fb:insert-node>
+				<mods_hierarchicalGeographic/>
+			</fb:insert-node>
+			<fb:struct id="mods_hierarchicalGeographic" path="mods_hierarchicalGeographic">
+				<fb:value id="continent" path="mods_continent"/>
+				<fb:value id="country" path="mods_country"/>
+				<fb:value id="province" path="mods_province"/>
+				<fb:value id="region" path="mods_region"/>
+				<fb:value id="state" path="mods_state"/>
+				<fb:value id="territory" path="mods_territory"/>
+				<fb:value id="county" path="mods_county"/>
+				<fb:value id="city" path="mods_city"/>
+				<fb:value id="island" path="mods_island"/>
+				<fb:value id="area" path="mods_area"/>
+			</fb:struct>
+		</fb:case>
+	</fb:class>
+	<fb:class id="cartographics-subject-class">
+		<fb:case id="mods_cartographics" path=".">
+			<fb:insert-node>
+				<mods_cartographics>
+					<mods_coordinates/>
+				</mods_cartographics>
+			</fb:insert-node>
+			<fb:struct id="mods_cartographics" path="mods_cartographics">
+				<fb:value id="coordinates" path="mods_coordinates"/>
+				<fb:value id="scale" path="mods_scale"/>
+				<fb:value id="projection" path="mods_projection"/>
+			</fb:struct>
+		</fb:case>
+	</fb:class>
+	<fb:class id="geographicCode-subject-class">
+		<fb:case id="mods_geographicCode" path=".">
+			<fb:insert-node>
+				<mods_geographicCode/>
+			</fb:insert-node>
+			<fb:struct id="mods_geographicCode" path="mods_geographicCode">
+				<fb:value id="value" path="."/>
+				<fb:value id="authority" path="@authority"/>
+			</fb:struct>
+		</fb:case>
+	</fb:class>
+	<fb:class id="occupation-subject-class">
+		<fb:case id="mods_occupation" path=".">
+			<fb:insert-node>
+				<mods_occupation/>
+			</fb:insert-node>
+			<fb:struct id="mods_occupation" path="mods_occupation">
+				<fb:value id="value" path="."/>
+			</fb:struct>
+		</fb:case>
+	</fb:class>
+	<!-- **********************************************************************
+			classification
+		***************************************************************************-->
+	<fb:simple-repeater id="classifications" row-path="mods_classification" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:value id="value" path="."/>
+		<fb:value id="edition" path="@edition"/>
+		<fb:value id="authority" path="@authority"/>
+		<fb:new id="common-language-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_classification authority="" edition=""/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- **********************************************************************
+			identifier
+		***************************************************************************-->
+	<!-- note: id="identifiers" doesn't work, seems to be reserved word -->
+	<fb:simple-repeater id="xidentifiers" row-path="mods_identifier" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:value id="value" path="."/>
+		<fb:value id="type" path="@type"/>
+		<fb:value id="displayLabel" path="@displayLabel"/>
+		<fb:value id="invalid" path="@invalid"/>
+		<fb:new id="common-language-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_identifier authority="" edition=""/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- **********************************************************************
+			location
+		***************************************************************************-->
+	<fb:simple-repeater id="locations" row-path="mods_location" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:context path="mods_physicalLocation">
+			<fb:value id="physicalLocation" path="."/>
+			<fb:value id="authority" path="@authority"/>
+			<fb:value id="phys-displayLabel" path="@displayLabel"/>
+			<fb:new id="common-language-elements-class"/>
+		</fb:context>
+		<fb:context path="mods_url">
+			<fb:value id="url" path="."/>
+			<fb:value id="url-displayLabel" path="@displayLabel"/>
+			<fb:value id="dateLastAccessed" path="@dateLastAccessed"/>
+		</fb:context>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_location authority="" edition=""/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+	<!-- **********************************************************************
+			accessCondition
+		***************************************************************************-->
+	<fb:simple-repeater id="accessConditions" row-path="mods_accessCondition" parent-path=".">
+		<!--<fb:identity>
+			<fb:value id="id" path="position()"/>
+		</fb:identity>-->
+		<!--<fb:on-bind>-->
+		<fb:value id="id" path="@temp_id">
+			<fd:convertor datatype="integer"/>
+		</fb:value>
+		<fb:value id="value" path="."/>
+		<fb:value id="type" path="@type"/>
+		<fb:value id="displayLabel" path="@displayLabel"/>
+		<fb:value id="xlink" path="@xlink:href" lenient="true"/>
+		<fb:new id="common-language-elements-class"/>
+		<!--</fb:on-bind>-->
+		<!--<fb:on-delete-row>
+			<fb:delete-node/>
+		</fb:on-delete-row>-->
+		<!--<fb:on-insert-row>
+			<fb:insert-node>
+				<mods_accessCondition authority="" edition=""/>
+			</fb:insert-node>
+		</fb:on-insert-row>-->
+	</fb:simple-repeater>
+</fb:context>

@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ft="http://apache.org/cocoon/forms/1.0#template" xmlns:fi="http://apache.org/cocoon/forms/1.0#instance" xmlns:jx="http://apache.org/cocoon/templates/jx/1.0">
+	<head>
+		<title>Edit MODS Record</title>
+		<link href="../../mods.css" type="text/css" rel="stylesheet"/>
+	</head>
+	<body>
+		<ft:form-template action="#{$continuation/id}.continue" method="POST" name="mainform">
+			<!-- *************************************************************
+				Classes
+			***************************************************************** -->
+			<ft:class id="common-date-elements-class">
+				<ft:widget-label id="value"/>:
+					<ft:widget id="value">
+					<fi:styling size="15"/>
+				</ft:widget>
+				<ft:widget id="encoding"/>
+				<ft:widget id="point"/>
+				<ft:widget id="keydate"/>
+				<ft:widget id="qualifier"/>
+			</ft:class>
+			<ft:class id="common-language-elements-class">
+				<div class="common-language-elements">
+					<ft:widget-label id="lang"/>:
+					<ft:widget id="lang">
+						<fi:styling size="3"/>
+					</ft:widget> |
+					<ft:widget-label id="xml:lang"/>:
+					<ft:widget id="xml:lang">
+						<fi:styling size="3"/>
+					</ft:widget> |
+					<ft:widget-label id="script"/>:
+					<ft:widget id="script">
+						<fi:styling size="10"/>
+					</ft:widget> |
+					<ft:widget-label id="transliteration"/>:
+					<ft:widget id="script">
+						<fi:styling size="10"/>
+					</ft:widget>
+				</div>
+			</ft:class>
+			<ft:class id="common-linking-elements-class">
+				<ft:widget-label id="modsID"/>:
+					<ft:widget id="modsID">
+					<fi:styling size="10"/>
+				</ft:widget> |
+					<ft:widget-label id="xlink"/>:
+					<ft:widget id="xlink">
+					<fi:styling size="50"/>
+				</ft:widget>
+			</ft:class>
+			<!-- *************************************************************
+				Widgets
+			***************************************************************** -->
+			<div class="header">
+				<h2>Record <ft:widget id="id">
+						<fi:styling type="output"/>
+					</ft:widget>
+				</h2>
+				<ft:widget id="id">
+					<fi:styling type="hidden"/>
+				</ft:widget>
+				<div class="menu">
+					<a href="#titleinfo">titleInfo</a> |
+					<a href="#name">name</a> |
+					<a href="#typeofresource">typeOfResource</a> |
+					<a href="#genre">genre</a> |
+					<a href="#origininfo">originInfo</a> |
+					<a href="#language">language</a> |
+					<a href="#physicaldescription">physicalDescription</a> |
+<!--					<a href="#"></a> |
+					<a href="#"></a> |
+					<a href="#"></a> |-->
+				
+				
+				</div>
+			</div>
+			<!-- **********************************************************************
+			mods:titleInfo
+		***************************************************************************-->
+			<div id="titles" class="toplevel">
+				<h4><a id="titleinfo"></a>Titles</h4>
+				<ft:repeater-widget id="titles">
+					<div class="title">
+						<table border="0">
+							<tr>
+								<td valign="top">
+									<ft:widget-label id="type"/>:</td>
+								<td>
+									<ft:widget id="type"/>
+									<ft:widget id="deleteTitle"/>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top">
+									<ft:widget-label id="title"/>:</td>
+								<td>
+									<ft:widget id="title">
+										<fi:styling size="80"/>
+									</ft:widget>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top">
+									<ft:widget-label id="subtitle"/>:</td>
+								<td>
+									<ft:widget id="subtitle">
+										<fi:styling size="80"/>
+									</ft:widget>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top">
+									<ft:widget-label id="partnumber"/>:</td>
+								<td>
+									<ft:widget id="partnumber">
+										<fi:styling size="80"/>
+									</ft:widget>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top">
+									<ft:widget-label id="partname"/>:</td>
+								<td>
+									<ft:widget id="partname">
+										<fi:styling size="80"/>
+									</ft:widget>
+								</td>
+							</tr>
+							<tr>
+								<td valign="top">
+									<ft:widget-label id="nonsort"/>:</td>
+								<td>
+									<ft:widget id="nonsort">
+										<fi:styling size="80"/>
+									</ft:widget>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<ft:new id="common-language-elements-class"/>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<ft:new id="common-linking-elements-class"/>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</ft:repeater-widget>
+				<ft:widget id="addTitle"/>
+			</div>
+			<!-- **********************************************************************
+			mods:name
+		***************************************************************************-->
+			<div id="names" class="toplevel">
+				<h4><a id="name"></a>Names</h4>
+				<ft:repeater-widget id="authors">
+					<div class="name">
+						<div class="nameparts">
+						<ft:repeater-widget id="nameparts">
+							<div class="namepart">
+								<ft:widget-label id="value"/>:	
+								<ft:widget id="value">
+									<fi:styling size="50"/>
+								</ft:widget>
+								<ft:widget id="type"/>
+								<ft:widget id="deleteNamePart"/>
+							</div>
+						</ft:repeater-widget>
+						<ft:widget id="addNamePart"/>
+						</div>
+						<ft:widget-label id="type"/>:
+									<ft:widget id="type"/>
+						<ft:widget id="deleteAuthor"/>
+						<br/>
+						<ft:widget-label id="bio"/>:<br/>
+						<ft:widget id="bio">
+							<fi:styling type="textarea" rows="8" cols="60"/>
+						</ft:widget>
+						<ft:new id="common-language-elements-class"/>
+						<ft:new id="common-linking-elements-class"/>
+					</div>
+				</ft:repeater-widget>
+				<ft:widget id="addAuthor"/>
+			</div>
+			<!-- **********************************************************************
+			mods:typeOfResource
+		***************************************************************************-->
+			<div id="typeOfResources" class="toplevel">
+				<h4><a id="typeofresource"></a>Type of Resource</h4>
+				<ft:repeater-widget id="typeOfResources">
+					<div class="typeOfResource">
+						<ft:widget id="id">
+							<fi:styling type="hidden"/>
+						</ft:widget>
+						<ft:widget-label id="type"/>:
+							<ft:widget id="type"/>
+							|
+							<ft:widget-label id="collection"/>:
+							<ft:widget id="collection">
+							<fi:styling type="checkbox"/>
+						</ft:widget>
+							|
+							<ft:widget-label id="manuscript"/>:
+							<ft:widget id="manuscript">
+							<fi:styling type="checkbox"/>
+						</ft:widget>
+							|
+							<ft:widget id="deletetypeOfResource"/>
+					</div>
+				</ft:repeater-widget>
+				<ft:widget id="addtypeOfResource"/>
+			</div>
+			<!-- **********************************************************************
+			genre
+		***************************************************************************-->
+			<div id="genres" class="toplevel">
+				<h4><a id="genre"></a>Genre</h4>
+				<ft:repeater-widget id="genres">
+					<div class="genre">
+						<ft:widget id="id">
+							<fi:styling type="hidden"/>
+						</ft:widget>
+						<ft:widget-label id="genre"/>:
+						<ft:widget id="genre">
+							<fi:styling size="80"/>
+						</ft:widget>
+						|
+							<ft:widget-label id="authority"/>:
+							<ft:widget id="authority"/>
+						<ft:widget id="deleteGenre"/>
+						<br/>
+						<ft:new id="common-language-elements-class"/>
+					</div>
+				</ft:repeater-widget>
+				<ft:widget id="addGenre"/>
+			</div>
+			<!-- **********************************************************************
+			originInfo
+		***************************************************************************-->
+			<div id="originInfos" class="toplevel">
+				<h4><a id="origininfo"></a>Origin Info</h4>
+				<ft:repeater-widget id="originInfos">
+					<div class="originInfo">
+						<div class="places">
+							<h5>Places</h5>
+							<ft:repeater-widget id="places">
+								<div class="placeterms">
+									<ft:repeater-widget id="placeterms">
+										<div class="placeterm">
+											<ft:widget-label id="pubplace"/>:
+											<ft:widget id="pubplace">
+												<fi:styling size="40"/>
+											</ft:widget>
+											<ft:widget id="deletePlaceTerm"/>
+											<br/>
+											<ft:widget-label id="type"/>:
+									<ft:widget id="type"/>
+									|
+									<ft:widget-label id="authority"/>:
+									<ft:widget id="authority"/>
+										</div>
+									</ft:repeater-widget>
+									<ft:widget id="addPlaceTerm"/>
+									<ft:widget id="deletePlace"/>
+								</div>
+							</ft:repeater-widget>
+							<ft:widget id="addPlace"/>
+						</div>
+						<div class="publisher">
+							<ft:widget-label id="publisher"/>:
+						<ft:widget id="publisher">
+								<fi:styling size="40"/>
+							</ft:widget>
+						</div>
+						<div class="dates">
+							<h5>Dates</h5>
+							<ft:repeater-widget id="dateissueds">
+								<div class="date">
+									<ft:new id="common-date-elements-class"/>
+									<ft:widget id="deleteDateIssued"/>
+								</div>
+							</ft:repeater-widget>
+							<ft:widget id="addDateIssued"/>
+							<br/>
+							<!--<ft:widget-label id="dateissued"/>:
+								<ft:widget id="dateissued">
+									<fi:styling size="15"/>
+								</ft:widget>
+							|-->
+							<ft:widget-label id="datecreated"/>:
+								<ft:widget id="datecreated">
+								<fi:styling size="15"/>
+							</ft:widget>
+							|
+							<ft:widget-label id="datecaptured"/>:
+								<ft:widget id="datecaptured">
+								<fi:styling size="15"/>
+							</ft:widget>
+							|
+							<ft:widget-label id="datevalid"/>:
+								<ft:widget id="datevalid">
+								<fi:styling size="15"/>
+							</ft:widget>
+							<br/>
+							<ft:widget-label id="datemodified"/>:
+								<ft:widget id="datemodified">
+								<fi:styling size="15"/>
+							</ft:widget>
+							|
+							<ft:widget-label id="copyrightdate"/>:
+								<ft:widget id="copyrightdate">
+								<fi:styling size="15"/>
+							</ft:widget>
+							|
+							<ft:widget-label id="dateother"/>:
+								<ft:widget id="dateother">
+								<fi:styling size="15"/>
+							</ft:widget>
+						</div>
+						<ft:widget-label id="edition"/>:
+							<ft:widget id="edition">
+							<fi:styling size="40"/>
+						</ft:widget>
+						<br/>
+						<ft:widget-label id="issuance"/>:
+							<ft:widget id="issuance"/>
+						<br/>
+						<ft:widget-label id="frequency"/>:
+							<ft:widget id="frequency">
+							<fi:styling size="40"/>
+						</ft:widget>
+						<br/>
+						<ft:new id="common-language-elements-class"/>
+					</div>
+					<ft:widget id="deleteoriginInfo"/>
+				</ft:repeater-widget>
+				<ft:widget id="addoriginInfo"/>
+			</div>
+			<!-- ******************************************
+					languages
+				***********************************************-->
+			<div id="languages" class="toplevel">
+				<h4><a id="language"></a>Language</h4>
+				<ft:repeater-widget id="languages">
+					<div class="languageterms">
+						<ft:repeater-widget id="languageterms">
+							<ft:widget-label id="language"/>:
+									<ft:widget id="language">
+								<fi:styling size="40"/>
+							</ft:widget>
+							<br/>
+							<ft:widget-label id="type"/>:
+									<ft:widget id="type"/>
+									|
+									<ft:widget-label id="authority"/>:
+									<ft:widget id="authority"/>
+							<br/>
+							<ft:widget id="deleteLanguageTerm"/>
+						</ft:repeater-widget>
+						<ft:widget id="addLanguageTerm"/>
+					</div>
+					<ft:widget id="deleteLanguage"/>
+					<br/>
+				</ft:repeater-widget>
+				<br/>
+				<ft:widget id="addLanguage"/>
+			</div>
+			<!-- ****************************************************
+			physicalDescription
+		********************************************************-->
+			<div id="physicalDescriptions" class="toplevel">
+				<h4><a id="physicaldescription"></a>Physical Description</h4>
+				<ft:repeater-widget id="physicaldescriptions">
+					<div class="physicalDescription">
+						<ft:widget-label id="form"/>:
+						<ft:widget id="form">
+							<fi:styling size="40"/>
+						</ft:widget>
+						<ft:widget-label id="formauthority"/>:
+						<ft:widget id="formauthority">
+							<fi:styling size="10"/>
+						</ft:widget>
+						<br/>
+						<ft:widget-label id="reformattingquality"/>:
+						<ft:widget id="reformattingquality"/>
+						<ft:widget-label id="internetmediatype"/>:
+						<ft:widget id="internetmediatype">
+							<fi:styling size="40"/>
+						</ft:widget>
+						<br/>
+						<ft:widget-label id="extent"/>:
+									<ft:widget id="extent">
+							<fi:styling size="40"/>
+						</ft:widget>
+						<ft:widget-label id="digitalorigin"/>:
+						<ft:widget id="digitalorigin"/>
+						<br/>
+						<ft:repeater-widget id="notes">
+							<div class="note">
+								<h5>Note</h5>
+								<ft:widget-label id="type"/>:
+								<ft:widget id="type">
+									<fi:styling size="20"/>
+								</ft:widget>
+								<ft:widget-label id="displaylabel"/>:
+								<ft:widget id="displaylabel">
+									<fi:styling size="20"/>
+								</ft:widget>
+								<br/>
+								<ft:widget-label id="note"/>:
+								<ft:widget id="note">
+									<fi:styling type="textarea" rows="4" cols="60"/>
+								</ft:widget>
+								<ft:widget id="deleteNote"/>
+							</div>
+						</ft:repeater-widget>
+						<ft:widget id="addNote"/>
+						<br/>
+						<ft:new id="common-language-elements-class"/>
+						<ft:widget id="deletePhysicalDescription"/>
+					</div>
+				</ft:repeater-widget>
+				<ft:widget id="addPhysicalDescription"/>
+			</div>
+			<div class="datacontainer">
+				<div class="submit">
+					<ft:widget id="success"/>
+				</div>
+			</div>
+		</ft:form-template>
+	</body>
+</html>

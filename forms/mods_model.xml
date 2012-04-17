@@ -1,0 +1,1352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fd:form xmlns:fd="http://apache.org/cocoon/forms/1.0#definition" xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+	<fd:widgets>
+		<!-- *************************************************************** -->
+		<!--       Utility classes                                                                       -->
+		<!-- *************************************************************** -->
+		<fd:class id="common-subject-date-elements-class">
+			<!-- used for all dates in originInfo -->
+			<fd:widgets>
+				<fd:field id="value">
+					<fd:label>Date</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="encoding">
+					<fd:label>Encoding</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="">
+							<fd:label>(no encoding)</fd:label>
+						</fd:item>
+						<fd:item value="w3cdtf">
+							<fd:label>w3cdtf</fd:label>
+						</fd:item>
+						<fd:item value="iso8601">
+							<fd:label>iso8601</fd:label>
+						</fd:item>
+						<fd:item value="marc">
+							<fd:label>marc</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+				<fd:field id="point">
+					<fd:label>Point</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="">
+							<fd:label>(no point)</fd:label>
+						</fd:item>
+						<fd:item value="start">
+							<fd:label>start</fd:label>
+						</fd:item>
+						<fd:item value="end">
+							<fd:label>end</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+				<fd:field id="keydate">
+					<fd:label>keyDate</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="">
+							<fd:label>(no keyDate)</fd:label>
+						</fd:item>
+						<fd:item value="yes">
+							<fd:label>yes</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+			</fd:widgets>
+		</fd:class>
+		<fd:class id="common-date-elements-class">
+			<!-- used for all dates in originInfo -->
+			<fd:widgets>
+				<fd:field id="qualifier">
+					<fd:label>Qualifier</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="">
+							<fd:label>(no qualifier)</fd:label>
+						</fd:item>
+						<fd:item value="approximate">
+							<fd:label>approximate</fd:label>
+						</fd:item>
+						<fd:item value="inferred">
+							<fd:label>inferred</fd:label>
+						</fd:item>
+						<fd:item value="questionable">
+							<fd:label>questionable</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+			</fd:widgets>
+		</fd:class>
+		<fd:class id="common-language-elements-class">
+			<fd:widgets>
+				<fd:field id="lang">
+					<fd:label>lang</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="xml:lang">
+					<fd:label>xml:lang</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="script">
+					<fd:label>script</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="transliteration">
+					<fd:label>transliteration</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+			</fd:widgets>
+		</fd:class>
+		<fd:class id="common-linking-elements-class">
+			<fd:widgets>
+				<fd:field id="modsID">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="xlink">
+					<fd:label>xlink</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+			</fd:widgets>
+		</fd:class>
+		<fd:class id="common-controls-class">
+			<fd:widgets>
+				<fd:row-action id="insertWidget" action-command="add-after" class="submit">
+					<fd:label>+</fd:label>
+					<fd:on-activate>
+						<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+					</fd:on-activate>
+				</fd:row-action>
+				<fd:row-action id="deleteWidget" action-command="delete" class="submit">
+					<fd:label>–</fd:label>
+					<!-- use en-dash to make it clearer -->
+					<fd:on-activate>
+						<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+					</fd:on-activate>
+				</fd:row-action>
+				<fd:row-action id="moveUp" action-command="move-up" class="submit">
+					<fd:label>▲</fd:label>
+					<fd:on-activate>
+						<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+					</fd:on-activate>
+				</fd:row-action>
+				<fd:row-action id="moveDown" action-command="move-down" class="submit">
+					<fd:label>▼</fd:label>
+					<fd:on-activate>
+						<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+					</fd:on-activate>
+				</fd:row-action>
+			</fd:widgets>
+		</fd:class>
+		<fd:class id="textfield-class">
+			<fd:widgets>
+				<fd:field id="value">
+					<fd:label>Value</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="type">
+					<fd:label>Type</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="xlink">
+					<fd:label>xlink</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="displaylabel">
+					<fd:label>displayLabel</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+			</fd:widgets>
+		</fd:class>
+		<fd:class id="titleInfo-class">
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:field id="nonsort">
+					<fd:label>nonSort</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="title">
+					<fd:label>Title</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="subtitle">
+					<fd:label>subTitle</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="partnumber">
+					<fd:label>partNumber</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="partname">
+					<fd:label>partName</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="type">
+					<fd:label>Type</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="none">
+							<fd:label>(none)</fd:label>
+						</fd:item>
+						<fd:item value="abbreviated">
+							<fd:label>abbreviated</fd:label>
+						</fd:item>
+						<fd:item value="translated">
+							<fd:label>translated</fd:label>
+						</fd:item>
+						<fd:item value="alternative">
+							<fd:label>alternative</fd:label>
+						</fd:item>
+						<fd:item value="uniform">
+							<fd:label>uniform</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+			</fd:widgets>
+		</fd:class>
+		<fd:class id="name-class">
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:field id="type">
+					<fd:label>Type</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="personal">
+							<fd:label>personal</fd:label>
+						</fd:item>
+						<fd:item value="corporate">
+							<fd:label>corporate</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+				<fd:repeater id="nameparts">
+					<fd:label>nameParts</fd:label>
+					<fd:widgets>
+						<fd:field id="id">
+							<fd:label>ID</fd:label>
+							<fd:datatype base="integer"/>
+						</fd:field>
+						<fd:field id="type">
+							<fd:label>type</fd:label>
+							<fd:datatype base="string"/>
+							<fd:selection-list>
+								<fd:item value="">
+									<fd:label>(no type)</fd:label>
+								</fd:item>
+								<fd:item value="date">
+									<fd:label>date</fd:label>
+								</fd:item>
+								<fd:item value="family">
+									<fd:label>family</fd:label>
+								</fd:item>
+								<fd:item value="given">
+									<fd:label>given</fd:label>
+								</fd:item>
+								<fd:item value="termsOfAddress">
+									<fd:label>termsOfAddress</fd:label>
+								</fd:item>
+							</fd:selection-list>
+						</fd:field>
+						<fd:field id="value">
+							<fd:label>namePart</fd:label>
+							<fd:datatype base="string"/>
+						</fd:field>
+						<fd:new id="common-controls-class"/>
+					</fd:widgets>
+				</fd:repeater>
+				<fd:repeater-action id="addNamePart" action-command="add-row" repeater="nameparts">
+					<fd:label>+</fd:label>
+					<fd:on-activate>
+						<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+					</fd:on-activate>
+				</fd:repeater-action>
+				<fd:field id="description">
+					<fd:label>Description</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="role">
+					<fd:label>Role</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+			</fd:widgets>
+		</fd:class>
+		<!-- **********************************************************************
+		Widgets
+	***********************************************************************-->
+		<fd:field id="id">
+			<fd:label>ID</fd:label>
+			<fd:datatype base="string"/>
+		</fd:field>
+		<fd:field id="lastSubmitter">
+			<fd:datatype base="string"/>
+		</fd:field>
+		<fd:field id="tab-state">
+			<fd:datatype base="string"/>
+		</fd:field>
+		<!-- **********************************************************************
+			mods:titleInfo
+		***************************************************************************-->
+		<fd:repeater id="titleInfos">
+			<fd:label>mods:titleInfo</fd:label>
+			<fd:widgets>
+				<fd:new id="titleInfo-class"/>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-linking-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addTitle" action-command="add-row" repeater="titles">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- **********************************************************************
+			mods:name
+		***************************************************************************-->
+		<fd:repeater id="names">
+			<fd:label>mods:name</fd:label>
+			<fd:widgets>
+				<fd:new id="name-class"/>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-linking-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addAuthor" action-command="add-row" repeater="names">
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+			<fd:label>+</fd:label>
+		</fd:repeater-action>
+		<!-- **********************************************************************
+			mods:typeOfResource
+		***************************************************************************-->
+		<fd:repeater id="typeOfResources" initial-size="0">
+			<fd:label>typeOfResources</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:booleanfield id="collection">
+					<fd:label>Collection</fd:label>
+					<fd:datatype base="boolean"/>
+				</fd:booleanfield>
+				<fd:booleanfield id="manuscript">
+					<fd:label>Manuscript</fd:label>
+					<fd:datatype base="boolean"/>
+				</fd:booleanfield>
+				<fd:field id="type">
+					<fd:label>Type</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="text">
+							<fd:label>text</fd:label>
+						</fd:item>
+						<fd:item value="cartographic">
+							<fd:label>cartographic</fd:label>
+						</fd:item>
+						<fd:item value="notated music">
+							<fd:label>notated music</fd:label>
+						</fd:item>
+						<fd:item value="sound recording">
+							<fd:label>sound recording</fd:label>
+						</fd:item>
+						<fd:item value="sound recording-musical">
+							<fd:label>sound recording-musical</fd:label>
+						</fd:item>
+						<fd:item value="sound recording-nonmusical">
+							<fd:label>sound recording-nonmusical</fd:label>
+						</fd:item>
+						<fd:item value="still image">
+							<fd:label>still image</fd:label>
+						</fd:item>
+						<fd:item value="moving image">
+							<fd:label>moving image</fd:label>
+						</fd:item>
+						<fd:item value="three dimensional object">
+							<fd:label>three dimensional object</fd:label>
+						</fd:item>
+						<fd:item value="software, multimedia">
+							<fd:label>software, multimedia</fd:label>
+						</fd:item>
+						<fd:item value="mixed media">
+							<fd:label>mixed media</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addtypeOfResource" action-command="add-row" repeater="typeOfResources">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- **********************************************************************
+			genre
+		***************************************************************************-->
+		<fd:repeater id="genres">
+			<fd:label>Genres</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:field id="genre">
+					<fd:label>Genre</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="authority">
+					<fd:label>Authority</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="">
+							<fd:label>(none)</fd:label>
+						</fd:item>
+						<fd:item value="rbgenr">
+							<fd:label>rbgenr</fd:label>
+						</fd:item>
+						<fd:item value="marcgt">
+							<fd:label>marcgt</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addGenre" action-command="add-row" repeater="genres">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- **********************************************************************
+			originInfo
+		***************************************************************************-->
+		<fd:repeater id="originInfos">
+			<fd:label>originInfos</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:repeater id="places">
+					<fd:label>Places</fd:label>
+					<fd:widgets>
+						<fd:field id="id">
+							<fd:label>ID</fd:label>
+							<fd:datatype base="integer"/>
+						</fd:field>
+						<fd:repeater id="placeterms">
+							<fd:label>PlaceTerms</fd:label>
+							<fd:widgets>
+								<fd:field id="id">
+									<fd:label>ID</fd:label>
+									<fd:datatype base="integer"/>
+								</fd:field>
+								<fd:field id="pubplace">
+									<fd:label>Publication Place</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="type">
+									<fd:label>Type</fd:label>
+									<fd:datatype base="string"/>
+									<fd:selection-list>
+										<fd:item value="">
+											<fd:label>(none)</fd:label>
+										</fd:item>
+										<fd:item value="text">
+											<fd:label>text</fd:label>
+										</fd:item>
+										<fd:item value="code">
+											<fd:label>code</fd:label>
+										</fd:item>
+									</fd:selection-list>
+								</fd:field>
+								<fd:field id="authority">
+									<fd:label>Authority</fd:label>
+									<fd:datatype base="string"/>
+									<fd:selection-list>
+										<fd:item value="">
+											<fd:label>(none)</fd:label>
+										</fd:item>
+										<fd:item value="marccountry">
+											<fd:label>marccountry</fd:label>
+										</fd:item>
+										<fd:item value="iso3166">
+											<fd:label>iso3166</fd:label>
+										</fd:item>
+									</fd:selection-list>
+								</fd:field>
+								<!--<fd:row-action id="deletePlaceTerm" action-command="delete">
+													<fd:label>Delete this placeTerm</fd:label>
+												</fd:row-action>-->
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:repeater>
+						<fd:repeater-action id="addPlaceTerm" action-command="add-row" repeater="places">
+							<fd:label>+</fd:label>
+							<fd:on-activate>
+								<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+							</fd:on-activate>
+						</fd:repeater-action>
+						<!--										<fd:row-action id="deletePlace" action-command="delete">
+											<fd:label>Delete this place</fd:label>
+										</fd:row-action>-->
+						<fd:new id="common-controls-class"/>
+					</fd:widgets>
+				</fd:repeater>
+				<fd:repeater-action id="addPlace" action-command="add-row" repeater="places">
+					<fd:label>+</fd:label>
+					<fd:on-activate>
+						<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+					</fd:on-activate>
+				</fd:repeater-action>
+				<fd:field id="publisher">
+					<fd:label>Publisher</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:repeater id="dates">
+					<fd:label>date</fd:label>
+					<fd:widgets>
+						<fd:field id="id">
+							<fd:label>ID</fd:label>
+							<fd:datatype base="integer"/>
+						</fd:field>
+						<fd:field id="temp_type">
+							<fd:label>Type</fd:label>
+							<fd:datatype base="string"/>
+							<fd:selection-list>
+								<fd:item value="dateIssued">
+									<fd:label>dateIssued</fd:label>
+								</fd:item>
+								<fd:item value="dateCreated">
+									<fd:label>dateCreated</fd:label>
+								</fd:item>
+								<fd:item value="dateCaptured">
+									<fd:label>dateCaptured</fd:label>
+								</fd:item>
+								<fd:item value="dateValid">
+									<fd:label>dateValid</fd:label>
+								</fd:item>
+								<fd:item value="dateModified">
+									<fd:label>dateModified</fd:label>
+								</fd:item>
+								<fd:item value="copyrightDate">
+									<fd:label>copyrightDate</fd:label>
+								</fd:item>
+								<fd:item value="dateOther">
+									<fd:label>dateOther</fd:label>
+								</fd:item>
+							</fd:selection-list>
+						</fd:field>
+						<fd:new id="common-subject-date-elements-class"/>
+						<fd:new id="common-date-elements-class"/>
+						<!--									<fd:row-action id="deleteDate" action-command="delete">
+											<fd:label>Delete this date</fd:label>
+										</fd:row-action>-->
+						<fd:new id="common-controls-class"/>
+					</fd:widgets>
+				</fd:repeater>
+				<fd:repeater-action id="addDate" action-command="add-row" repeater="dates">
+					<fd:label>+</fd:label>
+					<fd:on-activate>
+						<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+					</fd:on-activate>
+				</fd:repeater-action>
+				<!--
+				<fd:field id="dateissued">
+					<fd:label>Issued</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>-->
+				<fd:field id="datecreated">
+					<fd:label>Created</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="datecaptured">
+					<fd:label>Captured</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="datevalid">
+					<fd:label>Valid</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="datemodified">
+					<fd:label>Modified</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="copyrightdate">
+					<fd:label>Copyright</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="dateother">
+					<fd:label>Other</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="edition">
+					<fd:label>Edition</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="issuance">
+					<fd:label>Issuance</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="">
+							<fd:label>(none)</fd:label>
+						</fd:item>
+						<fd:item value="continuing">
+							<fd:label>continuing</fd:label>
+						</fd:item>
+						<fd:item value="monographic">
+							<fd:label>monographic</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+				<fd:field id="frequency">
+					<fd:label>Frequency</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addoriginInfo" action-command="add-row" repeater="originInfos">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- **************************************************
+				Language
+			****************************************************-->
+		<fd:repeater id="languages">
+			<fd:label>Languages</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:repeater id="languageterms">
+					<fd:label>Language Terms</fd:label>
+					<fd:widgets>
+						<fd:field id="id">
+							<fd:label>ID</fd:label>
+							<fd:datatype base="integer"/>
+						</fd:field>
+						<fd:field id="language">
+							<fd:label>Language</fd:label>
+							<fd:datatype base="string"/>
+						</fd:field>
+						<fd:field id="type">
+							<fd:label>Type</fd:label>
+							<fd:datatype base="string"/>
+							<fd:selection-list>
+								<fd:item value="">
+									<fd:label>(none)</fd:label>
+								</fd:item>
+								<fd:item value="text">
+									<fd:label>text</fd:label>
+								</fd:item>
+								<fd:item value="code">
+									<fd:label>code</fd:label>
+								</fd:item>
+							</fd:selection-list>
+						</fd:field>
+						<fd:field id="authority">
+							<fd:label>Authority</fd:label>
+							<fd:datatype base="string"/>
+							<fd:selection-list>
+								<fd:item value="">
+									<fd:label>(none)</fd:label>
+								</fd:item>
+								<fd:item value="iso639-2b">
+									<fd:label>iso639-2b</fd:label>
+								</fd:item>
+								<fd:item value="rfc3066">
+									<fd:label>rfc3066</fd:label>
+								</fd:item>
+							</fd:selection-list>
+						</fd:field>
+					</fd:widgets>
+				</fd:repeater>
+				<fd:repeater-action id="addLanguageTerm" action-command="add-row" repeater="languages">
+					<fd:label>+</fd:label>
+					<fd:on-activate>
+						<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+					</fd:on-activate>
+				</fd:repeater-action>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addLanguage" action-command="add-row" repeater="places">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- ****************************************************
+			physicalDescription
+		********************************************************-->
+		<fd:repeater id="physicaldescriptions">
+			<fd:label>physicalDescriptions</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:field id="form">
+					<fd:label>Form</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="formauthority">
+					<fd:label>Authority</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="reformattingquality">
+					<fd:label>Reformatting Quality</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="">
+							<fd:label>(none)</fd:label>
+						</fd:item>
+						<fd:item value="access">
+							<fd:label>access</fd:label>
+						</fd:item>
+						<fd:item value="preservation">
+							<fd:label>preservation</fd:label>
+						</fd:item>
+						<fd:item value="replacement">
+							<fd:label>replacement</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+				<fd:field id="internetmediatype">
+					<fd:label>InternetMediaType</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="extent">
+					<fd:label>Extent</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="digitalorigin">
+					<fd:label>Digital Origin</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="">
+							<fd:label>(none)</fd:label>
+						</fd:item>
+						<fd:item value="born digital">
+							<fd:label>born digital</fd:label>
+						</fd:item>
+						<fd:item value="reformatted digital">
+							<fd:label>reformatted digital</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+				<!-- note: repeater -->
+				<fd:repeater id="notes">
+					<fd:label>Notes</fd:label>
+					<fd:widgets>
+						<fd:field id="id">
+							<fd:label>ID</fd:label>
+							<fd:datatype base="integer"/>
+						</fd:field>
+						<fd:new id="textfield-class"/>
+						<!--<fd:row-action id="deleteNote" action-command="delete">
+											<fd:label>Delete this note</fd:label>
+										</fd:row-action>-->
+						<fd:new id="common-controls-class"/>
+					</fd:widgets>
+				</fd:repeater>
+				<fd:repeater-action id="addNote" action-command="add-row" repeater="notes">
+					<fd:label>+</fd:label>
+					<fd:on-activate>
+						<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+					</fd:on-activate>
+				</fd:repeater-action>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addPhysicalDescription" action-command="add-row" repeater="physicaldescriptions">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- ************************************************
+			mods:abstract
+		***************************************************-->
+		<fd:repeater id="abstracts">
+			<fd:label>Abstracts</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:new id="textfield-class"/>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addAbstract" action-command="add-row" repeater="abstracts">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- ************************************************
+			mods:tableOfContents
+		***************************************************-->
+		<fd:repeater id="tableofcontentss">
+			<fd:label>Tables of Contents</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:new id="textfield-class"/>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addTableOfContents" action-command="add-row" repeater="tableofcontentss">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- ************************************************
+			mods:targetAudience
+		***************************************************-->
+		<fd:repeater id="targetaudiences">
+			<fd:label>Target Audience</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:field id="value">
+					<fd:label>targetAudience</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="authority">
+					<fd:label>Authority</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addTargetAudience" action-command="add-row" repeater="targetaudiences">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- ************************************************
+			mods:note
+		***************************************************-->
+		<fd:repeater id="notes">
+			<fd:label>Note</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:new id="textfield-class"/>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addNote" action-command="add-row" repeater="notes">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- ************************************************
+			mods:subject
+		***************************************************-->
+		<fd:repeater id="subjects">
+			<fd:label>Subject</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:field id="authority">
+					<fd:label>Authority</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:new id="subject-widgets-class"/>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-linking-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addSubject" action-command="add-row" repeater="subjects">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<fd:class id="subject-widgets-class">
+			<fd:widgets>
+				<fd:repeater id="subject-widgets" initial-size="1">
+					<fd:label>Subjects</fd:label>
+					<fd:widgets>
+						<fd:new id="subject-widget-row-class"/>
+					</fd:widgets>
+				</fd:repeater>
+				<fd:repeater-action id="addSubject" action-command="add-row" repeater="subjects">
+					<fd:label>+</fd:label>
+				</fd:repeater-action>
+			</fd:widgets>
+		</fd:class>
+		<fd:class id="subject-widget-row-class">
+			<fd:widgets>
+				<fd:field id="type">
+					<fd:label>Subject Type</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="">
+							<fd:label>Choose a type</fd:label>
+						</fd:item>
+						<fd:item value="mods_topic">
+							<fd:label>topic</fd:label>
+						</fd:item>
+						<fd:item value="mods_geographic">
+							<fd:label>geographic</fd:label>
+						</fd:item>
+						<fd:item value="mods_temporal">
+							<fd:label>temporal</fd:label>
+						</fd:item>
+						<fd:item value="mods_titleInfo">
+							<fd:label>titleInfo</fd:label>
+						</fd:item>
+						<fd:item value="mods_name">
+							<fd:label>name</fd:label>
+						</fd:item>
+						<fd:item value="mods_hierarchicalGeographic">
+							<fd:label>hierarchicalGeographic</fd:label>
+						</fd:item>
+						<fd:item value="mods_cartographics">
+							<fd:label>cartographics</fd:label>
+						</fd:item>
+						<fd:item value="mods_geographicCode">
+							<fd:label>geographicCode</fd:label>
+						</fd:item>
+						<fd:item value="mods_occupation">
+							<fd:label>occupation</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+				<fd:union id="subjects" default="" case="type" title="subjects">
+					<fd:datatype base="string"/>
+					<fd:label>Type</fd:label>
+					<fd:widgets>
+						<fd:struct id="mods_topic">
+							<fd:label>Topic</fd:label>
+							<fd:widgets>
+								<fd:field id="id">
+									<fd:label>ID</fd:label>
+									<fd:datatype base="integer"/>
+								</fd:field>
+								<fd:field id="value">
+									<fd:label>Value</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:struct>
+						<fd:struct id="mods_geographic">
+							<fd:label>geographic</fd:label>
+							<fd:widgets>
+								<fd:field id="id">
+									<fd:label>ID</fd:label>
+									<fd:datatype base="integer"/>
+								</fd:field>
+								<fd:field id="value">
+									<fd:label>Value</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:struct>
+						<fd:struct id="mods_temporal">
+							<fd:label>Temporal</fd:label>
+							<fd:widgets>
+								<fd:field id="id">
+									<fd:label>ID</fd:label>
+									<fd:datatype base="integer"/>
+								</fd:field>
+								<fd:new id="common-subject-date-elements-class"/>
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:struct>
+						<fd:struct id="mods_titleInfo">
+							<fd:label>titleInfo</fd:label>
+							<fd:widgets>
+								<fd:new id="titleInfo-class"/>
+								<fd:new id="common-language-elements-class"/>
+								<fd:new id="common-linking-elements-class"/>
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:struct>
+						<fd:struct id="mods_name">
+							<fd:label>name</fd:label>
+							<fd:widgets>
+								<fd:new id="name-class"/>
+								<fd:new id="common-language-elements-class"/>
+								<fd:new id="common-linking-elements-class"/>
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:struct>
+						<fd:struct id="mods_hierarchicalGeographic">
+							<fd:label>hierarchicalGeographic</fd:label>
+							<fd:widgets>
+								<fd:field id="id">
+									<fd:label>ID</fd:label>
+									<fd:datatype base="integer"/>
+								</fd:field>
+								<fd:field id="continent">
+									<fd:label>Continent</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="country">
+									<fd:label>Country</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="province">
+									<fd:label>Province</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="region">
+									<fd:label>Region</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="state">
+									<fd:label>State</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="territory">
+									<fd:label>Territory</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="county">
+									<fd:label>County</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="city">
+									<fd:label>City</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="island">
+									<fd:label>Island</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="area">
+									<fd:label>Area</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:struct>
+						<fd:struct id="mods_cartographics">
+							<fd:label>cartographics</fd:label>
+							<fd:widgets>
+								<fd:field id="id">
+									<fd:label>ID</fd:label>
+									<fd:datatype base="integer"/>
+								</fd:field>
+								<fd:field id="coordinates">
+									<fd:label>Coordinates</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="scale">
+									<fd:label>Scale</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="projection">
+									<fd:label>Projection</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:struct>
+						<fd:struct id="mods_geographicCode">
+							<fd:label>geographicCode</fd:label>
+							<fd:widgets>
+								<fd:field id="id">
+									<fd:label>ID</fd:label>
+									<fd:datatype base="integer"/>
+								</fd:field>
+								<fd:field id="value">
+									<fd:label>Value</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="authority">
+									<fd:label>Authority</fd:label>
+									<fd:datatype base="string"/>
+									<fd:selection-list>
+										<fd:item value="">
+											<fd:label>(none)</fd:label>
+										</fd:item>
+										<fd:item value="marcgac">
+											<fd:label>marcgac</fd:label>
+										</fd:item>
+										<fd:item value="marccountry">
+											<fd:label>marccountry</fd:label>
+										</fd:item>
+										<fd:item value="iso3166">
+											<fd:label>iso3166</fd:label>
+										</fd:item>
+									</fd:selection-list>
+								</fd:field>
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:struct>
+						<fd:struct id="mods_occupation">
+							<fd:label>occupation</fd:label>
+							<fd:widgets>
+								<fd:field id="id">
+									<fd:label>ID</fd:label>
+									<fd:datatype base="integer"/>
+								</fd:field>
+								<fd:field id="value">
+									<fd:label>Value</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:struct>
+					</fd:widgets>
+				</fd:union>
+			</fd:widgets>
+		</fd:class>
+		<!-- **********************************************************************
+			classification
+		***************************************************************************-->
+		<fd:repeater id="classifications">
+			<fd:label>Classifications</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:field id="value">
+					<fd:label>Classification</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="authority">
+					<fd:label>Authority</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="edition">
+					<fd:label>Edition</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addClassification" action-command="add-row" repeater="classifications">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- **********************************************************************
+			identifier
+		***************************************************************************-->
+		<!-- note: id="identifiers" doesn't work, seems to be reserved word -->
+		<fd:repeater id="xidentifiers">
+			<fd:label>Identifiers</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:field id="value">
+					<fd:label>Identifier</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="type">
+					<fd:label>Type</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="displayLabel">
+					<fd:label>displayLabel</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:booleanfield id="invalid">
+					<fd:label>invalid</fd:label>
+					<fd:datatype base="boolean"/>
+				</fd:booleanfield>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addIdentifier" action-command="add-row" repeater="xidentifiers">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- **********************************************************************
+			location
+		***************************************************************************-->
+		<fd:repeater id="locations">
+			<fd:label>Locations</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<!-- physicalLocation elements -->
+				<fd:field id="physicalLocation">
+					<fd:label>physicalLocation</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="authority">
+					<fd:label>Authority</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="phys-displayLabel">
+					<fd:label>displayLabel</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:new id="common-language-elements-class"/>
+				<!-- url elements -->
+				<fd:field id="url">
+					<fd:label>URL</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="url-displayLabel">
+					<fd:label>displayLabel</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="dateLastAccessed">
+					<fd:label>dateLastAccessed</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addLocation" action-command="add-row" repeater="locations">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- **********************************************************************
+			accessCondition
+		***************************************************************************-->
+		<fd:repeater id="accessConditions">
+			<fd:label>AccessConditions</fd:label>
+			<fd:widgets>
+				<fd:field id="id">
+					<fd:label>ID</fd:label>
+					<fd:datatype base="integer"/>
+				</fd:field>
+				<fd:field id="value">
+					<fd:label>accessCondition</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="type">
+					<fd:label>Type</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="displayLabel">
+					<fd:label>displayLabel</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:field id="xlink">
+					<fd:label>xlink</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:new id="common-language-elements-class"/>
+				<fd:new id="common-controls-class"/>
+			</fd:widgets>
+		</fd:repeater>
+		<fd:repeater-action id="addAccessCondition" action-command="add-row" repeater="accessConditions">
+			<fd:label>+</fd:label>
+			<fd:on-activate>
+				<javascript>
+					saveLastSubmitter(event);
+				</javascript>
+			</fd:on-activate>
+		</fd:repeater-action>
+		<!-- ************************************************
+			Submit button
+		***************************************************-->
+		<fd:submit id="success" action-command="success">
+			<fd:label>Submit</fd:label>
+		</fd:submit>
+	</fd:widgets>
+</fd:form>
