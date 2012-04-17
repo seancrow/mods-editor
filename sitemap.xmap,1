@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- sitemap for mods subproject -->
+<map:sitemap xmlns:map="http://apache.org/cocoon/sitemap/1.0">
+	<map:components>
+		<map:actions>
+			<map:action name="make-form" src="org.apache.cocoon.forms.acting.MakeFormAction" logger="forms"/>
+			<map:action name="init-form" src="org.apache.cocoon.forms.samples.InitForm1Action" logger="forms"/>
+			<map:action name="handle-form-submit" src="org.apache.cocoon.forms.acting.HandleFormSubmitAction" logger="forms"/>
+		</map:actions>
+		<map:pipes default="caching"/>
+	</map:components>
+	<map:views>
+		<map:view from-label="step1" name="step1">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view from-label="step2" name="step2">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view from-label="step3" name="step3">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view from-label="step4" name="step4">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view from-label="step5" name="step5">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view from-label="step6" name="step6">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view from-label="step7" name="step7">
+			<map:serialize type="xml"/>
+		</map:view>
+		<map:view from-label="step8" name="step8">
+			<map:serialize type="xml"/>
+		</map:view>
+	</map:views>
+	<map:resources>
+		<!-- this will later become a virtual transformer -->
+		<map:resource name="simple-page2html">
+			<map:transform src="resources/simple-page2html.xsl">
+				<!--				<map:parameter name="contextPath" value="{request:contextPath}"/>-->
+				<map:parameter name="contextPath" value=".."/>
+				<map:parameter name="servletPath" value="{request:servletPath}"/>
+				<map:parameter name="sitemapURI" value="{request:sitemapURI}"/>
+				<map:parameter name="file" value="{file}"/>
+				<map:parameter name="remove" value="{../0}"/>
+			</map:transform>
+		</map:resource>
+	</map:resources>
+	<map:flow language="javascript">
+		<map:script src="flow/bindings.js"/>
+		<map:script src="flow/mods_binding.js"/>
+	</map:flow>
+	<map:pipelines>
+		<map:pipeline>
+			<map:match pattern="*/*.continue">
+				<map:call continuation="{2}"/>
+			</map:match>
+			<map:match pattern="*.css">
+				<map:read mime-type="text/css" src="css/{1}.css"/>
+			</map:match>
+			<map:match pattern="resources/**">
+				<map:read src="{0}"/>
+			</map:match>
+			<map:match pattern="">
+				<map:redirect-to uri="index.html"/>
+			</map:match>
+			<map:match pattern="/">
+				<map:redirect-to uri="index.html"/>
+			</map:match>
+			<map:match pattern="index.html">
+				<map:generate src="xml/mods-samples.xml"/>
+				<map:transform src="xsl/mods-samples.xsl"/>
+				<map:serialize/>
+			</map:match>
+		</map:pipeline>
+		<!-- *************************************************************-->
+		<!-- MODS pipelines                                                                    -->
+		<!-- *************************************************************-->
+		<map:pipeline>
+			<map:match pattern="mods-data/**">
+				<map:generate src="mods/{1}"/>
+				<map:transform src="xsl/strip-namespaces.xsl"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="peelmap-data/**">
+				<map:generate src="/export/digital_1/maps/Peel Maps/{1}"/>
+				<map:transform src="xsl/strip-namespaces.xsl"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="peelnew-data/**">
+				<map:generate src="http://ebdon.library.ualberta.ca:28081/exist/servlet/db/mods/{1}"/>
+				<map:transform src="xsl/strip-namespaces.xsl"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="ahmap-data/**">
+				<map:generate src="/export/digital_1/maps/Austria-Hungarian Maps/{1}"/>
+				<map:transform src="xsl/strip-namespaces.xsl"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="lc-data/*.xml">
+				<map:generate src="http://z3950.loc.gov:7090/voyager?operation=searchRetrieve&amp;version=1.1&amp;query=bath.isbn={1}&amp;startRecord=1&amp;maximumRecords=1&amp;recordSchema=mods"/>
+				<map:transform src="xsl/sru.xsl"/>
+				<map:transform src="xsl/strip-namespaces.xsl"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="mods-display-pipeline">
+				<!--				<map:generate type="jx" src="forms/mods_template.jx"/>-->
+				<map:generate type="jx" src="forms/mods_template.xml" label="step1"/>
+				<map:transform type="forms" label="step2"/>
+				<map:call resource="simple-page2html">
+					<map:paramter name="contextPath" value=".."/>
+					<map:parameter name="file" value="forms/mods_template.xml"/>
+				</map:call>
+				<!--				<map:transform src="forms/copyright-forms-field-styling.xsl"/>-->
+				<map:transform src="resources/forms-samples-styling.xsl" label="step3"/>
+				<map:serialize type="html"/>
+				<!--				<map:serialize type="xml"/>-->
+			</map:match>
+			<map:match pattern="mods-success-pipeline">
+				<map:generate type="jx" src="forms/mods_success.jx" label="step1"/>
+				<map:transform src="xsl/add-namespaces.xsl"/>
+				<map:serialize type="xml"/>
+			</map:match>
+			<map:match pattern="edit/*.html">
+				<!-- match peel3 number -->
+				<map:call function="handleForm">
+					<map:parameter name="function" value="modsxml"/>
+					<map:parameter name="form-definition" value="forms/mods_model.xml"/>
+					<map:parameter name="documentURI" value="cocoon:/mods-data/{1}.xml"/>
+					<map:parameter name="bindingURI" value="forms/mods_bind.xml"/>
+				</map:call>
+			</map:match>
+			<map:match pattern="peelmap/*.html">
+				<map:call function="handleForm">
+					<map:parameter name="function" value="modsxml"/>
+					<map:parameter name="form-definition" value="forms/mods_model.xml"/>
+					<map:parameter name="documentURI" value="cocoon:/peelmap-data/{1}.xml"/>
+					<map:parameter name="bindingURI" value="forms/mods_bind.xml"/>
+				</map:call>
+			</map:match>
+			<map:match pattern="peelnew/*.html">
+				<map:call function="handleForm">
+					<map:parameter name="function" value="modsxml"/>
+					<map:parameter name="form-definition" value="forms/mods_model.xml"/>
+					<map:parameter name="documentURI" value="cocoon:/peelnew-data/{1}.xml"/>
+					<map:parameter name="bindingURI" value="forms/mods_bind.xml"/>
+				</map:call>
+			</map:match>
+			<map:match pattern="ahmap/*.html">
+				<map:call function="handleForm">
+					<map:parameter name="function" value="modsxml"/>
+					<map:parameter name="form-definition" value="forms/mods_model.xml"/>
+					<map:parameter name="documentURI" value="cocoon:/ahmap-data/{1}.xml"/>
+					<map:parameter name="bindingURI" value="forms/mods_bind.xml"/>
+				</map:call>
+			</map:match>
+			<map:match pattern="lc/*.html">
+				<map:call function="handleForm">
+					<map:parameter name="function" value="modsxml"/>
+					<map:parameter name="form-definition" value="forms/mods_model.xml"/>
+					<map:parameter name="documentURI" value="cocoon:/lc-data/{1}.xml"/>
+					<map:parameter name="bindingURI" value="forms/mods_bind.xml"/>
+				</map:call>
+			</map:match>
+			<map:match pattern="view/*.xml">
+				<map:generate src="mods/{1}.xml"/>
+				<map:serialize type="xml"/>
+			</map:match>
+		</map:pipeline>
+		<map:pipeline>
+			<map:match pattern="mods.tar.gz">
+				<map:read src="tar/mods.tar.gz"/>
+			</map:match>
+		</map:pipeline>
+	</map:pipelines>
+</map:sitemap>
