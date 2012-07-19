@@ -17,11 +17,12 @@
 	You should have received a copy of the GNU General Public License
 	along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 -->
+<!-- John's comments look like this - jh -->
 <fd:form xmlns:fd="http://apache.org/cocoon/forms/1.0#definition"
 	xmlns:i18n="http://apache.org/cocoon/i18n/2.1"
 	xmlns:doc="http://peel.library.ualberta.ca/modseditor/doc/1.0">
 	<fd:widgets>
-		<fd:class id="common-subject-date-elements-class">
+		<fd:class id="common-date-elements-class">
 			<doc:doc>
 				<p>This class is used for all dates in originInfo.</p>
 			</doc:doc>
@@ -45,6 +46,12 @@
 						</fd:item>
 						<fd:item value="marc">
 							<fd:label>marc</fd:label>
+						</fd:item>
+						<fd:item value="edtf">
+							<fd:label>edtf</fd:label>
+						</fd:item>
+						<fd:item value="temper">
+							<fd:label>temper</fd:label>
 						</fd:item>
 					</fd:selection-list>
 				</fd:field>
@@ -75,11 +82,6 @@
 						</fd:item>
 					</fd:selection-list>
 				</fd:field>
-			</fd:widgets>
-		</fd:class>
-		<fd:class id="common-date-elements-class">
-			<!-- used for all dates in originInfo -->
-			<fd:widgets>
 				<fd:field id="qualifier">
 					<fd:label>Qualifier</fd:label>
 					<fd:datatype base="string" />
@@ -167,8 +169,20 @@
 					<fd:label>xlink</fd:label>
 					<fd:datatype base="string" />
 				</fd:field>
-				<fd:field id="displaylabel">
+				<fd:field id="displayLabel">
 					<fd:label>displayLabel</fd:label>
+					<fd:datatype base="string" />
+				</fd:field>
+			</fd:widgets>
+		</fd:class>
+		<fd:class id="common-authority-class">
+			<fd:widgets>
+				<fd:field id="authorityURI">
+					<fd:label>authorityURI</fd:label>
+					<fd:datatype base="string" />
+				</fd:field>
+				<fd:field id="valueURI">
+					<fd:label>valueURI</fd:label>
 					<fd:datatype base="string" />
 				</fd:field>
 			</fd:widgets>
@@ -255,7 +269,7 @@
 							<fd:label>Temporal</fd:label>
 							<fd:widgets>
 								<fd:new
-									id="common-subject-date-elements-class" />
+									id="common-date-elements-class" />
 								<fd:new id="common-controls-class" />
 							</fd:widgets>
 						</fd:group>
@@ -453,6 +467,12 @@
 						<fd:item value="corporate">
 							<fd:label>corporate</fd:label>
 						</fd:item>
+						<fd:item value="conference">
+							<fd:label>conference</fd:label>
+						</fd:item>
+						<fd:item value="family">
+							<fd:label>family</fd:label>
+						</fd:item>
 					</fd:selection-list>
 				</fd:field>
 				<fd:repeater id="nameparts" orderable="true">
@@ -538,7 +558,6 @@
 			      action-command="add-row" repeater="roles">
 			      <fd:label>New role</fd:label>
 			   </fd:repeater-action>
-			   
 				<fd:new id="common-language-elements-class" />
 				<fd:new id="common-linking-elements-class" />
 			</fd:widgets>
@@ -635,6 +654,7 @@
 						<fd:field id="authority">
 							<fd:label>Authority</fd:label>
 							<fd:datatype base="string" />
+							<!-- this is a selection from the complete set of allowable values found at: http://www.loc.gov/standards/sourcelist/genre-form.html - jh -->
 							<fd:selection-list>
 								<fd:item value="">
 									<fd:label>(none)</fd:label>
@@ -650,8 +670,29 @@
 								</fd:item>
 							</fd:selection-list>
 						</fd:field>
+						<fd:field id="type">
+							<fd:label>Type</fd:label>
+							<fd:datatype base="string" />
+						</fd:field>
+						<fd:field id="displayLabel">
+							<fd:label>Display Label</fd:label>
+							<fd:datatype base="string" />
+						</fd:field>
+						<fd:field id="usage">
+							<fd:label>Usage</fd:label>
+							<fd:datatype base="string" />
+							<fd:selection-list>
+								<fd:item value="">
+									<fd:label>(none)</fd:label>
+								</fd:item>
+								<fd:item value="primary">
+									<fd:label>Primary</fd:label>
+								</fd:item>
+							</fd:selection-list>
+						</fd:field>
 						<fd:new id="common-language-elements-class" />
 						<fd:new id="common-controls-class" />
+						<fd:new id="common-authority-class" />
 					</fd:widgets>
 				</fd:repeater>
 			</fd:widgets>
@@ -758,8 +799,6 @@
 										</fd:item>
 									</fd:selection-list>
 								</fd:field>
-								<fd:new
-									id="common-subject-date-elements-class" />
 								<fd:new id="common-date-elements-class" />
 								<fd:new id="common-controls-class" />
 							</fd:widgets>
@@ -808,6 +847,18 @@
 								</fd:item>
 								<fd:item value="monographic">
 									<fd:label>monographic</fd:label>
+								</fd:item>
+								<fd:item value="single unit">
+									<fd:label>single unit</fd:label>
+								</fd:item>
+								<fd:item value="mulipart monographic">
+									<fd:label>mulipart monographic</fd:label>
+								</fd:item>
+								<fd:item value="serial">
+									<fd:label>serial</fd:label>
+								</fd:item>
+								<fd:item value="integrating resource">
+									<fd:label>integrating resource</fd:label>
 								</fd:item>
 							</fd:selection-list>
 						</fd:field>
@@ -965,7 +1016,7 @@
 		</fd:class>
 		<fd:class id="tableOfContents-class">
 			<fd:widgets>
-				<fd:repeater id="tableOfContentss" orderable="true">
+				<fd:repeater id="tableOfContents" orderable="true">
 					<fd:label>mods:tableOfContents</fd:label>
 					<fd:widgets>
 						<fd:new id="common-textfield-class" />
@@ -1159,6 +1210,7 @@
 									<fd:selection-list>
 										<fd:item value=""><fd:label>(none)</fd:label></fd:item>
 										<fd:item value="primary display"><fd:label>primary display</fd:label></fd:item>
+										<fd:item value="primary"><fd:label>primary</fd:label></fd:item>
 									</fd:selection-list>
 									-->
 								</fd:field>
@@ -1289,8 +1341,6 @@
 						<fd:repeater id="dates">
 							<fd:label>Dates</fd:label>
 							<fd:widgets>
-								<fd:new
-									id="common-subject-date-elements-class" />
 								<fd:new id="common-date-elements-class" />
 								<fd:new id="common-controls-class" />
 							</fd:widgets>
@@ -1361,8 +1411,6 @@
 						<fd:repeater id="recordCreationDates">
 							<fd:label>recordCreationDate</fd:label>
 							<fd:widgets>
-								<fd:new
-									id="common-subject-date-elements-class" />
 								<fd:new id="common-date-elements-class" />
 								<fd:new id="common-controls-class" />
 							</fd:widgets>
@@ -1375,8 +1423,6 @@
 						<fd:repeater id="recordChangeDates">
 							<fd:label>recordChangeDate</fd:label>
 							<fd:widgets>
-								<fd:new
-									id="common-subject-date-elements-class" />
 								<fd:new id="common-date-elements-class" />
 								<fd:new id="common-controls-class" />
 							</fd:widgets>
@@ -1465,6 +1511,12 @@
 								<fd:item value="isReferencedBy">
 									<fd:label>isReferencedBy</fd:label>
 								</fd:item>
+								<fd:item value="references">
+									<fd:label>references</fd:label>
+								</fd:item>
+								<fd:item value="reviewOf">
+									<fd:label>reviewOf</fd:label>
+								</fd:item>
 							</fd:selection-list>
 						</fd:field>
 						<fd:field id="displayLabel">
@@ -1543,6 +1595,12 @@
 								</fd:item>
 								<fd:item value="isReferencedBy">
 									<fd:label>isReferencedBy</fd:label>
+								</fd:item>
+								<fd:item value="references">
+									<fd:label>references</fd:label>
+								</fd:item>
+								<fd:item value="reviewOf">
+									<fd:label>reviewOf</fd:label>
 								</fd:item>-->
 							</fd:selection-list>
 						</fd:field>
