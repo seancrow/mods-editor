@@ -175,7 +175,7 @@
 				</fd:field>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="common-authority-class">
+		<fd:class id="common-authority-elements-class">
 			<fd:widgets>
 				<fd:field id="authorityURI">
 					<fd:label>authorityURI</fd:label>
@@ -445,12 +445,17 @@
 						</fd:item>
 					</fd:selection-list>
 				</fd:field>
+				<fd:field id="authority">
+					<fd:label>Authority</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:new id="common-authority-elements-class"/>
 				<fd:field id="displayLabel">
 					<fd:label>displayLabel</fd:label>
 					<fd:datatype base="string"/>
 				</fd:field>
 				<fd:booleanfield id="supplied">
-					<fd:label>Supplied</fd:label>
+					<fd:label>supplied</fd:label>
 					<fd:datatype base="boolean"/>
 				</fd:booleanfield>
 				<fd:field id="usage">
@@ -761,10 +766,10 @@
 						<fd:field id="altRepGroup">
 							<fd:label>altRepGroup</fd:label>
 							<fd:datatype base="string"/>
-						</fd:field>						
+						</fd:field>
 						<fd:new id="common-language-elements-class"/>
 						<fd:new id="common-controls-class"/>
-						<fd:new id="common-authority-class"/>
+						<fd:new id="common-authority-elements-class"/>
 					</fd:widgets>
 				</fd:repeater>
 			</fd:widgets>
@@ -816,6 +821,7 @@
 										</fd:item>
 										</fd:selection-list>
 										</fd:field>
+										<fd:new id="common-language-elements-class"/>
 										<fd:new id="common-controls-class"/>
 									</fd:widgets>
 								</fd:repeater>
@@ -988,10 +994,10 @@
 										<fd:label>rfc3066</fd:label>
 										</fd:item>
 										<fd:item value="iso639-3">
-											<fd:label>iso639-3</fd:label>
+										<fd:label>iso639-3</fd:label>
 										</fd:item>
 										<fd:item value="rfc4646">
-											<fd:label>rfc4646</fd:label>
+										<fd:label>rfc4646</fd:label>
 										</fd:item>
 									</fd:selection-list>
 								</fd:field>
@@ -1427,6 +1433,10 @@
 							<fd:label>xlink</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
+						<fd:field id="altRepGroup">
+							<fd:label>altRepGroup</fd:label>
+							<fd:datatype base="string"/>
+						</fd:field>
 						<fd:new id="common-language-elements-class"/>
 						<fd:new id="common-controls-class"/>
 					</fd:widgets>
@@ -1523,8 +1533,36 @@
 							action-command="add-row" repeater="texts">
 							<fd:label>New text</fd:label>
 						</fd:repeater-action>
+						<fd:field id="modsID">
+							<fd:label>ID</fd:label>
+							<fd:datatype base="string"/>
+						</fd:field>
+						<fd:field id="type">
+							<fd:label>type</fd:label>
+							<fd:datatype base="string"/>
+							<fd:selection-list>
+								<fd:item value="part"/>
+								<fd:item value="volume"/>
+								<fd:item value="issue"/>
+								<fd:item value="chapter"/>
+								<fd:item value="section"/>
+								<fd:item value="paragraph"/>
+								<fd:item value="track"/>
+							</fd:selection-list>
+						</fd:field>
+						<fd:field id="order">
+							<fd:label>order</fd:label>
+							<fd:datatype base="string"/>
+						</fd:field>
+						<fd:field id="displayLabel">
+							<fd:label>displayLabel</fd:label>
+							<fd:datatype base="string"/>
+						</fd:field>
+						<fd:field id="altRepGroup">
+							<fd:label>altRepGroup</fd:label>
+							<fd:datatype base="string"/>
+						</fd:field>
 						<fd:new id="common-language-elements-class"/>
-						<fd:new id="common-linking-elements-class"/>
 						<fd:new id="common-controls-class"/>
 					</fd:widgets>
 				</fd:repeater>
@@ -1556,6 +1594,7 @@
 									<fd:label>Authority</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
+								<fd:new id="common-authority-elements-class"/>
 								<fd:new id="common-language-elements-class"/>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
@@ -1569,6 +1608,7 @@
 							<fd:label>recordCreationDate</fd:label>
 							<fd:widgets>
 								<fd:new id="common-date-elements-class"/>
+								<fd:new id="common-language-elements-class"/>	
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:repeater>
@@ -1581,6 +1621,7 @@
 							<fd:label>recordChangeDate</fd:label>
 							<fd:widgets>
 								<fd:new id="common-date-elements-class"/>
+								<fd:new id="common-language-elements-class"/>	
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:repeater>
@@ -1602,6 +1643,7 @@
 									<fd:datatype base="string"/>
 									<fd:label>source</fd:label>
 								</fd:field>
+								<fd:new id="common-language-elements-class"/>	
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:repeater>
@@ -1619,6 +1661,14 @@
 						</fd:field>
 						<fd:field id="recordChangeDate">
 							<fd:label>recordChangeDate</fd:label>
+							<fd:datatype base="string"/>
+						</fd:field>
+						<fd:field id="displayLabel">
+							<fd:label>displayLabel</fd:label>
+							<fd:datatype base="string"/>
+						</fd:field>
+						<fd:field id="altRepGroup">
+							<fd:label>altRepGroup</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:new id="common-language-elements-class"/>
@@ -1987,36 +2037,56 @@
 	</fd:widgets>
 
 
-<!-- Spare parts start - Delete when finished - jh -->
+	<!-- Spare parts start - Delete when finished - jh -->
 
-<fd:field id="displayLabel">
-	<fd:label>displayLabel</fd:label>
-	<fd:datatype base="string"/>
-</fd:field>
-<fd:field id="usage">
-	<fd:label>Usage</fd:label>
-	<fd:datatype base="string"/>
-	<fd:selection-list>
-		<fd:item value="">
-			<fd:label>(none)</fd:label>
-		</fd:item>
-		<fd:item value="primary">
-			<fd:label>primary</fd:label>
-		</fd:item>
-	</fd:selection-list>
-</fd:field>
-<fd:field id="altRepGroup">
-	<fd:label>altRepGroup</fd:label>
-	<fd:datatype base="string"/>
-</fd:field>
-<fd:field id="nameTitleGroup">
-	<fd:label>nameTitleGroup</fd:label>
-	<fd:datatype base="string"/>
-</fd:field>
+
+	<fd:field id="displayLabel">
+		<fd:label>displayLabel</fd:label>
+		<fd:datatype base="string"/>
+	</fd:field>
+	<fd:field id="usage">
+		<fd:label>Usage</fd:label>
+		<fd:datatype base="string"/>
+		<fd:selection-list>
+			<fd:item value="">
+				<fd:label>(none)</fd:label>
+			</fd:item>
+			<fd:item value="primary">
+				<fd:label>primary</fd:label>
+			</fd:item>
+		</fd:selection-list>
+	</fd:field>
+	<fd:field id="altRepGroup">
+		<fd:label>altRepGroup</fd:label>
+		<fd:datatype base="string"/>
+	</fd:field>
+	<fd:field id="nameTitleGroup">
+		<fd:label>nameTitleGroup</fd:label>
+		<fd:datatype base="string"/>
+	</fd:field>
 	<fd:booleanfield id="supplied">
 		<fd:label>Supplied</fd:label>
 		<fd:datatype base="boolean"/>
 	</fd:booleanfield>
-	
-<!-- Spare parts end - Delete when finished - jh -->
+
+	<fd:field id="authority">
+		<fd:label>Authority</fd:label>
+		<fd:datatype base="string"/>
+		<fd:selection-list>
+			<fd:item value="">
+				<fd:label>(none)</fd:label>
+			</fd:item>
+			<fd:item value="rbgenr">
+				<fd:label>rbgenr</fd:label>
+			</fd:item>
+			<fd:item value="marcgt">
+				<fd:label>marcgt</fd:label>
+			</fd:item>
+			<fd:item value="gmgpc">
+				<fd:label>gmgpc</fd:label>
+			</fd:item>
+		</fd:selection-list>
+	</fd:field>
+
+	<!-- Spare parts end - Delete when finished - jh -->
 </fd:form>
