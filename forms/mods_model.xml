@@ -821,7 +821,8 @@
 										</fd:item>
 										</fd:selection-list>
 										</fd:field>
-										<fd:new id="common-language-elements-class"/>
+										<fd:new
+										id="common-language-elements-class"/>
 										<fd:new id="common-controls-class"/>
 									</fd:widgets>
 								</fd:repeater>
@@ -1608,7 +1609,7 @@
 							<fd:label>recordCreationDate</fd:label>
 							<fd:widgets>
 								<fd:new id="common-date-elements-class"/>
-								<fd:new id="common-language-elements-class"/>	
+								<fd:new id="common-language-elements-class"/>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:repeater>
@@ -1621,7 +1622,7 @@
 							<fd:label>recordChangeDate</fd:label>
 							<fd:widgets>
 								<fd:new id="common-date-elements-class"/>
-								<fd:new id="common-language-elements-class"/>	
+								<fd:new id="common-language-elements-class"/>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:repeater>
@@ -1643,7 +1644,7 @@
 									<fd:datatype base="string"/>
 									<fd:label>source</fd:label>
 								</fd:field>
-								<fd:new id="common-language-elements-class"/>	
+								<fd:new id="common-language-elements-class"/>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:repeater>
