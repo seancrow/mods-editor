@@ -252,6 +252,7 @@
 									<fd:label>Value</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
+								<fd:new id="common-language-elements-class"/>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:group>
@@ -262,12 +263,14 @@
 									<fd:label>Value</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
+								<fd:new id="common-language-elements-class"/>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:group>
 						<fd:group id="mods_temporal">
 							<fd:label>Temporal</fd:label>
 							<fd:widgets>
+								<fd:new id="common-language-elements-class"/>
 								<fd:new id="common-date-elements-class"/>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
@@ -408,6 +411,9 @@
 						spaces will be trimmed) </fd:hint>
 					<fd:datatype base="string"/>
 				</fd:field>
+				<!-- Not sure how to attach the following element to multiple subclasses -
+					jh -->
+				<fd:new id="common-language-elements-class"/>
 				<fd:field id="title">
 					<fd:label>Title</fd:label>
 					<fd:datatype base="string"/>
@@ -2088,6 +2094,8 @@
 			</fd:item>
 		</fd:selection-list>
 	</fd:field>
-
+	<fd:new id="common-language-elements-class"/>
+	
+	
 	<!-- Spare parts end - Delete when finished - jh -->
 </fd:form>
