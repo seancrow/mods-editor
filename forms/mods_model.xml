@@ -1146,7 +1146,7 @@
 		</fd:class>
 		<fd:class id="tableOfContents-class">
 			<fd:widgets>
-				<fd:repeater id="tableOfContents" orderable="true">
+				<fd:repeater id="tableOfContentss" orderable="true">
 					<fd:label>mods:tableOfContents</fd:label>
 					<fd:widgets>
 						<fd:booleanfield id="shareable">
@@ -1227,6 +1227,26 @@
 					<fd:widgets>
 						<fd:field id="authority">
 							<fd:label>Authority</fd:label>
+							<fd:datatype base="string"/>
+						</fd:field>
+						<fd:field id="displayLabel">
+							<fd:label>displayLabel</fd:label>
+							<fd:datatype base="string"/>
+						</fd:field>
+						<fd:field id="usage">
+							<fd:label>usage</fd:label>
+							<fd:datatype base="string"/>
+							<fd:selection-list>
+								<fd:item value="">
+									<fd:label>(none)</fd:label>
+								</fd:item>
+								<fd:item value="primary">
+									<fd:label>primary</fd:label>
+								</fd:item>
+							</fd:selection-list>
+						</fd:field>
+						<fd:field id="altRepGroup">
+							<fd:label>altRepGroup</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:new id="subject-widgets-class"/>
@@ -1659,6 +1679,95 @@
 							repeater="recordIdentifiers">
 							<fd:label>New recordIdentifier</fd:label>
 						</fd:repeater-action>
+<!--Added element recordOrigins - jh-->						
+						<fd:repeater id="recordOrigins">
+							<fd:label>recordOrigin</fd:label>
+							<fd:widgets>
+								<fd:field
+									id="recordOrigins_recordOrigin">
+									<fd:datatype base="string"/>
+									<fd:label>recordOrigin</fd:label>
+								</fd:field>
+								<fd:new id="common-language-elements-class"/>
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:repeater>
+						<fd:repeater-action id="add-to-recordOrigins"
+							action-command="add-row"
+							repeater="recordOrigins">
+							<fd:label>New recordOrigin</fd:label>
+						</fd:repeater-action>
+<!--Added element languageOfCataloging - jh-->
+						<fd:repeater id="languageOfCatalogings">
+							<fd:label>languageOfCataloging</fd:label>
+							<fd:widgets>
+<!--Did not add field languageOfCatalogings_languageOfCataloging because _languageTerm serves this purpose - jh-->
+								<fd:field
+									id="languageOfCatalogings_objectPart">
+									<fd:datatype base="string"/>
+									<fd:label>objectPart</fd:label>
+								</fd:field>
+								<fd:field
+									id="languageOfCatalogings_languageTerm">
+									<fd:datatype base="string"/>
+									<fd:label>source</fd:label>
+								</fd:field>
+								<fd:field
+									id="languageOfCatalogings_scriptTerm">
+									<fd:datatype base="string"/>
+									<fd:label>source</fd:label>
+								</fd:field>
+								<fd:field id="altRepGroup">
+									<fd:label>altRepGroup</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:field id="usage">
+									<fd:label>Usage</fd:label>
+									<fd:datatype base="string"/>
+									<fd:selection-list>
+										<fd:item value="">
+											<fd:label>(none)</fd:label>
+										</fd:item>
+										<fd:item value="primary">
+											<fd:label>primary</fd:label>
+										</fd:item>
+									</fd:selection-list>
+								</fd:field>
+								<fd:field id="displayLabel">
+									<fd:label>displayLabel</fd:label>
+									<fd:datatype base="string"/>
+								</fd:field>
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:repeater>
+						<fd:repeater-action id="add-to-languageOfCatalogings"
+							action-command="add-row"
+							repeater="languageOfCatalogings">
+							<fd:label>New languageOfCataloging</fd:label>
+						</fd:repeater-action>
+<!--Added element descriptionStandard - jh-->
+						<fd:repeater id="descriptionStandards">
+							<fd:label>descriptionStandard</fd:label>
+							<fd:widgets>
+								<fd:field
+									id="descriptionStandards_descriptionStandard">
+									<fd:datatype base="string"/>
+									<fd:label>descriptionStandard</fd:label>
+								</fd:field>
+								<fd:field
+									id="descriptionStandards_authority">
+									<fd:datatype base="string"/>
+									<fd:label>authority</fd:label>
+								</fd:field>
+								<fd:new id="common-language-elements-class"/>
+								<fd:new id="common-controls-class"/>
+							</fd:widgets>
+						</fd:repeater>
+						<fd:repeater-action id="add-to-descriptionStandards"
+							action-command="add-row"
+							repeater="descriptionStandards">
+							<fd:label>New descriptionStandard</fd:label>
+						</fd:repeater-action>
 						<fd:field id="lastModifiedBy">
 							<fd:label>Last Modified By</fd:label>
 							<fd:datatype base="string"/>
@@ -2045,6 +2154,9 @@
 
 
 	<!-- Spare parts start - Delete when finished - jh -->
+
+
+
 
 
 	<fd:field id="displayLabel">
