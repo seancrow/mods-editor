@@ -32,7 +32,7 @@
 					<fd:datatype base="string"/>
 				</fd:field>
 				<fd:field id="encoding">
-					<fd:label>Encoding</fd:label>
+					<fd:label>encoding</fd:label>
 					<fd:datatype base="string"/>
 					<fd:selection-list>
 						<fd:item value="">
@@ -56,7 +56,7 @@
 					</fd:selection-list>
 				</fd:field>
 				<fd:field id="point">
-					<fd:label>Point</fd:label>
+					<fd:label>point</fd:label>
 					<fd:datatype base="string"/>
 					<fd:selection-list>
 						<fd:item value="">
@@ -175,7 +175,7 @@
 				</fd:field>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="common-authority-elements-class">
+		<fd:class id="common-authorityAndValueURI-elements-class">
 			<fd:widgets>
 				<fd:field id="authorityURI">
 					<fd:label>authorityURI</fd:label>
@@ -187,6 +187,66 @@
 				</fd:field>
 			</fd:widgets>
 		</fd:class>
+		<fd:class id="common-authority-elements-class">
+			<fd:widgets>
+				<fd:field id="authority">
+					<fd:label>authority</fd:label>
+					<fd:datatype base="string"/>
+				</fd:field>
+				<fd:new id="common-authorityAndValueURI-elements-class"/>
+			</fd:widgets>
+		</fd:class>
+		<fd:class id="common-placeAuthority-elements-class">
+			<fd:widgets>
+				<fd:field id="authority">
+					<fd:label>authority</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="">
+							<fd:label>(none)</fd:label>
+						</fd:item>
+						<fd:item value="marcgac">
+							<fd:label>marcgac</fd:label>
+						</fd:item>
+						<fd:item value="marccountry">
+							<fd:label>marccountry</fd:label>
+						</fd:item>
+						<fd:item value="iso3166">
+							<fd:label>iso3166</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+				<fd:new id="common-authorityAndValueURI-elements-class"/>
+			</fd:widgets>
+		</fd:class>
+		<fd:class id="common-languageAuthority-elements-class">
+			<fd:widgets>
+				<fd:field id="authority">
+					<fd:label>authority</fd:label>
+					<fd:datatype base="string"/>
+					<fd:selection-list>
+						<fd:item value="">
+							<fd:label>(none)</fd:label>
+						</fd:item>
+						<fd:item value="iso639-2b">
+							<fd:label>iso639-2b</fd:label>
+						</fd:item>
+						<fd:item value="rfc3066">
+							<fd:label>rfc3066</fd:label>
+						</fd:item>
+						<fd:item value="iso639-3">
+							<fd:label>iso639-3</fd:label>
+						</fd:item>
+						<fd:item value="rfc4646">
+							<fd:label>rfc4646</fd:label>
+						</fd:item>
+					</fd:selection-list>
+				</fd:field>
+				<fd:new id="common-authorityAndValueURI-elements-class"/>
+			</fd:widgets>
+		</fd:class>
+		<!-- A planned common class for Term types (code, text) called
+			"common-termType-elements-class" will go here - jh -->
 		<fd:class id="subject-widgets-class">
 			<fd:widgets>
 				<fd:repeater id="subject-widgets" initial-size="1"
@@ -210,7 +270,7 @@
 					<fd:datatype base="string"/>
 					<fd:selection-list>
 						<fd:item value="">
-							<fd:label>Choose a type</fd:label>
+							<fd:label>choose a type</fd:label>
 						</fd:item>
 						<fd:item value="mods_topic">
 							<fd:label>topic</fd:label>
@@ -293,43 +353,43 @@
 							<fd:label>hierarchicalGeographic</fd:label>
 							<fd:widgets>
 								<fd:field id="continent">
-									<fd:label>Continent</fd:label>
+									<fd:label>continent</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="country">
-									<fd:label>Country</fd:label>
+									<fd:label>country</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="province">
-									<fd:label>Province</fd:label>
+									<fd:label>province</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="region">
-									<fd:label>Region</fd:label>
+									<fd:label>region</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="state">
-									<fd:label>State</fd:label>
+									<fd:label>state</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="territory">
-									<fd:label>Territory</fd:label>
+									<fd:label>territory</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="county">
-									<fd:label>County</fd:label>
+									<fd:label>county</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="city">
-									<fd:label>City</fd:label>
+									<fd:label>city</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="island">
-									<fd:label>Island</fd:label>
+									<fd:label>island</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="area">
-									<fd:label>Area</fd:label>
+									<fd:label>area</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="extraterrestrialArea">
@@ -347,7 +407,7 @@
 							<fd:label>cartographics</fd:label>
 							<fd:widgets>
 								<fd:field id="coordinates">
-									<fd:label>Coordinates</fd:label>
+									<fd:label>coordinates</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="scale">
@@ -368,24 +428,7 @@
 									<fd:label>Value</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
-								<fd:field id="authority">
-									<fd:label>Authority</fd:label>
-									<fd:datatype base="string"/>
-									<fd:selection-list>
-										<fd:item value="">
-										<fd:label>(none)</fd:label>
-										</fd:item>
-										<fd:item value="marcgac">
-										<fd:label>marcgac</fd:label>
-										</fd:item>
-										<fd:item value="marccountry">
-										<fd:label>marccountry</fd:label>
-										</fd:item>
-										<fd:item value="iso3166">
-										<fd:label>iso3166</fd:label>
-										</fd:item>
-									</fd:selection-list>
-								</fd:field>
+								<fd:new id="common-placeAuthority-elements-class"/>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:group>
@@ -452,7 +495,7 @@
 					</fd:selection-list>
 				</fd:field>
 				<fd:field id="authority">
-					<fd:label>Authority</fd:label>
+					<fd:label>authority</fd:label>
 					<fd:datatype base="string"/>
 				</fd:field>
 				<fd:new id="common-authority-elements-class"/>
@@ -608,7 +651,7 @@
 									</fd:selection-list>
 								</fd:field>
 								<fd:field id="roles_roleterms_authority">
-									<fd:label>Authority</fd:label>
+									<fd:label>authority</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:new id="common-controls-class"/>
@@ -647,7 +690,7 @@
 					<fd:label>mods:typeOfResource</fd:label>
 					<fd:widgets>
 						<fd:booleanfield id="collection">
-							<fd:label>Collection</fd:label>
+							<fd:label>collection</fd:label>
 							<fd:datatype base="boolean"/>
 						</fd:booleanfield>
 						<fd:booleanfield id="manuscript">
@@ -731,7 +774,7 @@
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="authority">
-							<fd:label>Authority</fd:label>
+							<fd:label>authority</fd:label>
 							<fd:datatype base="string"/>
 							<!-- this is a selection from the complete set of allowable values found at: http://www.loc.gov/standards/sourcelist/genre-form.html - jh -->
 							<fd:selection-list>
@@ -811,22 +854,7 @@
 										</fd:item>
 										</fd:selection-list>
 										</fd:field>
-										<fd:field
-										id="places_placeterms_authority">
-										<fd:label>Authority</fd:label>
-										<fd:datatype base="string"/>
-										<fd:selection-list>
-										<fd:item value="">
-										<fd:label>(none)</fd:label>
-										</fd:item>
-										<fd:item value="marccountry">
-										<fd:label>marccountry</fd:label>
-										</fd:item>
-										<fd:item value="iso3166">
-										<fd:label>iso3166</fd:label>
-										</fd:item>
-										</fd:selection-list>
-										</fd:field>
+										<fd:new id="common-placeAuthority-elements-class"/>
 										<fd:new
 										id="common-language-elements-class"/>
 										<fd:new id="common-controls-class"/>
@@ -888,35 +916,35 @@
 							<fd:label>New date</fd:label>
 						</fd:repeater-action>
 						<fd:field id="datecreated">
-							<fd:label>Created</fd:label>
+							<fd:label>created</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="datecaptured">
-							<fd:label>Captured</fd:label>
+							<fd:label>captured</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="datevalid">
-							<fd:label>Valid</fd:label>
+							<fd:label>valid</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="datemodified">
-							<fd:label>Modified</fd:label>
+							<fd:label>modified</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="copyrightdate">
-							<fd:label>Copyright</fd:label>
+							<fd:label>copyright</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="dateother">
-							<fd:label>Other</fd:label>
+							<fd:label>other</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="edition">
-							<fd:label>Edition</fd:label>
+							<fd:label>edition</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="issuance">
-							<fd:label>Issuance</fd:label>
+							<fd:label>issuance</fd:label>
 							<fd:datatype base="string"/>
 							<fd:selection-list>
 								<fd:item value="">
@@ -987,27 +1015,7 @@
 										</fd:item>
 									</fd:selection-list>
 								</fd:field>
-								<fd:field id="languageterms_authority">
-									<fd:label>Authority</fd:label>
-									<fd:datatype base="string"/>
-									<fd:selection-list>
-										<fd:item value="">
-										<fd:label>(none)</fd:label>
-										</fd:item>
-										<fd:item value="iso639-2b">
-										<fd:label>iso639-2b</fd:label>
-										</fd:item>
-										<fd:item value="rfc3066">
-										<fd:label>rfc3066</fd:label>
-										</fd:item>
-										<fd:item value="iso639-3">
-										<fd:label>iso639-3</fd:label>
-										</fd:item>
-										<fd:item value="rfc4646">
-										<fd:label>rfc4646</fd:label>
-										</fd:item>
-									</fd:selection-list>
-								</fd:field>
+								<fd:new id="common-languageAuthority-elements-class"/>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:repeater>
@@ -1055,7 +1063,7 @@
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="formauthority">
-							<fd:label>Authority</fd:label>
+							<fd:label>authority</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="reformattingquality">
@@ -1190,7 +1198,7 @@
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="authority">
-							<fd:label>Authority</fd:label>
+							<fd:label>authority</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="displayLabel">
@@ -1226,7 +1234,7 @@
 					<fd:label>mods:subject</fd:label>
 					<fd:widgets>
 						<fd:field id="authority">
-							<fd:label>Authority</fd:label>
+							<fd:label>authority</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="displayLabel">
@@ -1263,11 +1271,11 @@
 					<fd:label>mods:classification</fd:label>
 					<fd:widgets>
 						<fd:field id="value">
-							<fd:label>Classification</fd:label>
+							<fd:label>classification</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="authority">
-							<fd:label>Authority</fd:label>
+							<fd:label>authority</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="edition">
@@ -1346,7 +1354,7 @@
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="authority">
-							<fd:label>Authority</fd:label>
+							<fd:label>authority</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:field id="phys-displayLabel">
@@ -1374,7 +1382,7 @@
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="access">
-									<fd:label>Access</fd:label>
+									<fd:label>access</fd:label>
 									<fd:datatype base="string"/>
 									<!--
 									<fd:selection-list>
@@ -1618,7 +1626,7 @@
 									<fd:label>Value</fd:label>
 								</fd:field>
 								<fd:field id="recordContentSources_authority">
-									<fd:label>Authority</fd:label>
+									<fd:label>authority</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:new id="common-authority-elements-class"/>
@@ -1707,22 +1715,12 @@
 									<fd:datatype base="string"/>
 									<fd:label>objectPart</fd:label>
 								</fd:field>
-								<fd:field
-									id="languageOfCatalogings_languageTerm">
-									<fd:datatype base="string"/>
-									<fd:label>source</fd:label>
-								</fd:field>
-								<fd:field
-									id="languageOfCatalogings_scriptTerm">
-									<fd:datatype base="string"/>
-									<fd:label>source</fd:label>
-								</fd:field>
 								<fd:field id="altRepGroup">
 									<fd:label>altRepGroup</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:field id="usage">
-									<fd:label>Usage</fd:label>
+									<fd:label>usage</fd:label>
 									<fd:datatype base="string"/>
 									<fd:selection-list>
 										<fd:item value="">
@@ -1736,6 +1734,37 @@
 								<fd:field id="displayLabel">
 									<fd:label>displayLabel</fd:label>
 									<fd:datatype base="string"/>
+								</fd:field>
+								
+								<fd:repeater id="languageOfCatalogings_languageTerms">
+									<fd:label>languageOfCataloging_languageTerm</fd:label>
+									<fd:widgets>
+										<fd:field
+											id="languageOfCatalogings_languageTerm">
+											<fd:datatype base="string"/>
+											<fd:label>languageTerm</fd:label>
+										</fd:field>
+										<fd:field 
+											id="ID">
+											<fd:datatype base="string"/>
+											<fd:label>ID</fd:label>
+										</fd:field>
+										<fd:new id="common-termType-elements-class"/>
+										<fd:new id="common-languageAuthority-elements-class"/>
+										<fd:new id="common-language-elements-class"/>
+									</fd:widgets>
+								</fd:repeater>
+					
+								<fd:repeater-action id="add-to-languageOfCatalogings_languageTerms"
+									action-command="add-row"
+									repeater="languageOfCatalogings_languageTerms">
+									<fd:label>New languageTerm</fd:label>
+								</fd:repeater-action>
+								
+								<fd:field
+									id="languageOfCatalogings_scriptTerm">
+									<fd:datatype base="string"/>
+									<fd:label>scriptTerm</fd:label>
 								</fd:field>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
@@ -2189,7 +2218,7 @@
 	</fd:booleanfield>
 
 	<fd:field id="authority">
-		<fd:label>Authority</fd:label>
+		<fd:label>authority</fd:label>
 		<fd:datatype base="string"/>
 		<fd:selection-list>
 			<fd:item value="">
