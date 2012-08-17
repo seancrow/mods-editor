@@ -2803,33 +2803,4 @@
 			<fd:label>Submit</fd:label>
 		</fd:submit>
 	</fd:widgets>
-
-
-	<!-- Spare parts start - Delete when finished - jh -->
-
-	<fd:field id="supplied">
-		<fd:label>supplied</fd:label>
-		<fd:datatype base="string"/>
-		<fd:selection-list>
-			<fd:item value="">
-				<fd:label>(none)</fd:label>
-			</fd:item>
-			<fd:item value="yes">
-				<fd:label>yes</fd:label>
-			</fd:item>
-		</fd:selection-list>
-	</fd:field>
-
-	<fd:widgets>
-		<fd:repeater id="names" orderable="true">
-			<fd:label>mods:name</fd:label>
-			<fd:widgets>
-				<fd:new id="single-name-class"/>
-				<fd:new id="common-controls-class"/>
-			</fd:widgets>
-		</fd:repeater>
-	</fd:widgets>
-
-
-	<!-- Spare parts end - Delete when finished - jh -->
 </fd:form>
