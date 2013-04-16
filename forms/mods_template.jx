@@ -127,7 +127,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 				</div>
 				<div class="clear"/>
 			</ft:class>
-			<ft:class id="common-textfield-class">
+			<ft:class id="common-textfield-elements-class">
 				<span class="setwidth">
 					<ft:widget-label id="type"/>
 				</span>
@@ -150,6 +150,38 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 					<fi:styling size="50"/>
 				</ft:widget>
 			</ft:class>
+		   <ft:class id="common-authorityURIAndValueURI-elements-class">
+		      <ft:widget-label id="authorityURI"/>
+		      <ft:widget id="authorityURI">
+		         <fi:styling size="20"/>
+		      </ft:widget>
+		      <ft:widget-label id="authorityURI"/>
+		      <ft:widget id="authorityURI">
+		         <fi:styling size="20"/>
+		      </ft:widget>
+		   </ft:class>
+		   <ft:class id="common-authority-elements-class">
+		      <ft:widget-label id="authority"/>
+		      <ft:widget id="authority">
+		         <fi:styling size="20"/>
+		      </ft:widget>
+		      <ft:new id="common-authorityURIAndValueURI-elements-class"/>
+		   </ft:class>
+		   <ft:class id="common-placeAuthority-elements-class">
+		      <ft:new id="common-authority-elements-class"/>
+		   </ft:class>
+		   <ft:class id="common-languageAuthority-elements-class">
+		      <ft:new id="common-authority-elements-class"/>
+		   </ft:class>
+		   <ft:class id="common-termType-elements-class">
+		      <ft:widget-label id="termType"/>
+		      <ft:widget id="termType">
+		         <fi:styling size="20"/>
+		      </ft:widget>
+		   </ft:class>
+		      
+		   
+		   
 			<ft:class id="subject-widgets-class">
 				<ft:repeater id="subject-widgets">
 					<jx:if test="${repeater.getSize() &gt; 0}">

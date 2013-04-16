@@ -41,12 +41,32 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		<fb:value id="modsID" path="@ID" lenient="true"/>
 		<fb:value id="xlink" path="@xlink_href" lenient="true"/>
 	</fb:class>
-	<fb:class id="common-textfield-class">
+	<fb:class id="common-textfield-elements-class">
 		<fb:value id="value" path="."/>
 		<fb:value id="type" path="@type"/>
 		<fb:value id="displaylabel" path="@displayLabel"/>
 		<fb:value id="xlink" path="@xlink_href" lenient="true"/>
 	</fb:class>
+   <!-- 3.4 -->
+   <fb:class id="common-authorityURIAndValueURI-elements-class">
+      <fb:value id="authorityURI" path="@authorityURI"/>
+      <fb:value id="valueURI" path="@valueURI"/>
+   </fb:class>
+   <fb:class id="common-authority-elements-class">
+      <fb:value id="authority" path="@authority"/>
+      <fb:new id="common-authorityURIAndValueURI-elements-class"/>
+   </fb:class>
+   <fb:class id="common-placeAuthority-elements-class">
+      <fb:new id="common-authority-elements-class"/>
+   </fb:class>
+   <fb:class id="common-languageAuthority-elements-class">
+      <fb:new id="common-authority-elements-class"/>
+   </fb:class>
+   <fb:class id="common-termType-elements-class">
+      <fb:value id="termType" path="@termType"/>
+   </fb:class>      
+   
+   
 	<!-- note: this structure is copied from form_model_gui_binding.xml in the samples -->
 	<fb:class id="subject-widgets-class">
 		<fb:temp-repeater id="subject-widgets" parent-path="." row-path="*" row-path-insert="." virtual-rows="true">
