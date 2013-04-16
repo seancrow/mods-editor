@@ -2525,6 +2525,10 @@
 							action-command="add-row" repeater="recordInfos">
 							<fd:label>New recordInfo</fd:label>
 						</fd:repeater-action>
+					   <fd:repeater-action id="add-to-relatedItems" action-command="add-row"
+					      repeater="relatedItems">
+					      <fd:label>New relatedItem</fd:label>
+					   </fd:repeater-action>
 						<fd:new id="common-language-elements-class"/>
 						<fd:new id="common-controls-class"/>
 					</fd:widgets>

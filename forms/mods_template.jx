@@ -1341,6 +1341,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 										<ft:new id="xidentifier-class"/>
 										<ft:new id="location-class"/>
 										<ft:new id="accessCondition-class"/>
+									   <ft:new id="sub-relatedItem-class"/>
 										<ft:new id="recordInfo-class"/>
 										<ft:new id="common-controls-class"/>
 									</div>
@@ -1353,7 +1354,64 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 					</div>
 				</ft:repeater>
 			</ft:class>
-<!-- START PATCH -->
+		   <ft:class id="sub-relatedItem-class">
+		      <ft:repeater id="relatedItems">
+		         <div class="block empty-block-${repeater.getSize() == 0}">
+		            <h4>
+		               <ft:widget-label id="../relatedItems"/>
+		            </h4>
+		            <jx:if test="${repeater.getSize() &gt; 0}">
+		               <div class="repeater">
+		                  <ft:repeater-rows>
+		                     <div class="row toplevel relatedItem">
+		                        <h5>
+		                           <ft:widget-label id="../../relatedItems"/>
+		                           <jx:out value="${repeaterLoop.index + 1}"/>
+		                        </h5>
+		                        <ft:new id="common-linking-elements-class"/>
+		                        <ft:widget-label id="type"/>
+		                        <ft:widget id="type"/>
+		                        <jx:out value="${divider}"/>
+		                        <ft:widget-label id="displayLabel"/>
+		                        <ft:widget id="displayLabel"/>
+		                        <jx:out value="${divider}"/>
+		                        <!--										<ft:widget-label id="relatedItem_ID"/>
+										<ft:widget id="relatedItem_ID">
+											<fi:styling size="8"/>
+										</ft:widget>-->
+		                        <br/>
+		                        <br/>
+		                        <!--<ft:new id="part-class"/>-->
+		                        <ft:new id="titleInfo-class"/>
+		                        <ft:new id="name-class"/>
+		                        <ft:new id="typeOfResource-class"/>
+		                        <ft:new id="genre-class"/>
+		                        <ft:new id="originInfo-class"/>
+		                        <ft:new id="language-class"/>
+		                        <ft:new id="physicalDescription-class"/>
+		                        <ft:new id="abstract-class"/>
+		                        <ft:new id="tableOfContents-class"/>
+		                        <ft:new id="targetAudience-class"/>
+		                        <ft:new id="note-class"/>
+		                        <ft:new id="subject-class"/>
+		                        <ft:new id="classification-class"/>
+		                        <ft:new id="part-class"/>
+		                        <ft:new id="xidentifier-class"/>
+		                        <ft:new id="location-class"/>
+		                        <ft:new id="accessCondition-class"/>
+		                        <ft:new id="recordInfo-class"/>
+		                        <ft:new id="common-controls-class"/>
+		                     </div>
+		                  </ft:repeater-rows>
+		               </div>
+		            </jx:if>
+		            <jx:if test="${repeater.getSize() == 0}">
+		               <ft:widget id="../add-to-relatedItems"/>
+		            </jx:if>
+		         </div>
+		      </ft:repeater>
+		   </ft:class>
+		   <!-- START PATCH -->
 			<ft:class id="relatedItemConstituent-class">
 				<ft:repeater id="relatedItemConstituents">
 					<div class="block empty-block-${repeater.getSize() == 0}">
@@ -1399,6 +1457,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 										<ft:new id="xidentifier-class"/>
 										<ft:new id="location-class"/>
 										<ft:new id="accessCondition-class"/>
+									   <ft:new id="sub-relatedItem-class"/>
 										<ft:new id="recordInfo-class"/>
 										<ft:new id="common-controls-class"/>
 									</div>

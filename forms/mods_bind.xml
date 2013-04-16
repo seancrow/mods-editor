@@ -544,10 +544,25 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			<fb:new id="common-language-elements-class"/>
 <!-- 			<fb:new id="part-class"/>-->
 			<fb:new id="core-elements"/>
+		   <fb:new id="sub-relatedItem-class"/>
 			<fb:new id="recordInfo-relatedItem-class"/>
 		</fb:repeater>
 	</fb:class>
-	<!-- START PATCH -->
+   <fb:class id="sub-relatedItem-class">
+      <!-- PATCH: added path -->
+      <fb:repeater id="relatedItems" row-path="mods_relatedItem" parent-path=".">
+         <fb:new id="common-linking-elements-class"/>
+         <fb:value id="type" path="@type"/>
+         <fb:value id="displayLabel" path="@displayLabel"/>
+         <!--  			<fb:value id="xlink" path="@xlink_href" lenient="true"/>
+			<fb:value id="relatedItem_ID" path="@ID" lenient="true"/>-->
+         <fb:new id="common-language-elements-class"/>
+         <!-- 			<fb:new id="part-class"/>-->
+         <fb:new id="core-elements"/>
+         <fb:new id="recordInfo-relatedItem-class"/>
+      </fb:repeater>
+   </fb:class>
+   <!-- START PATCH -->
 	<!-- **********************************************************************
 		relatedItemConstituent
 		***************************************************************************-->
@@ -561,6 +576,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			<fb:new id="common-language-elements-class"/>
 			<!-- 			<fb:new id="part-class"/>-->
 			<fb:new id="core-elements"/>
+		   <fb:new id="sub-relatedItem-class"/>
 			<fb:new id="recordInfo-relatedItem-class"/>
 		</fb:repeater>
 	</fb:class>
