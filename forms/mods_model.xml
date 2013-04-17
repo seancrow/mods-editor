@@ -1140,6 +1140,9 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 							action-command="add-row" repeater="publishers">
 							<fd:label>New publisher</fd:label>
 						</fd:repeater-action>
+					   <!-- note that the form treats the various date elements as a single type
+					      distinguished by the temp_type attribute; they are converted into their
+					      proper MODS elements in the post-processing stage. -->
 						<fd:repeater id="dates" orderable="true">
 							<fd:label>date</fd:label>
 							<fd:widgets>
@@ -1260,6 +1263,10 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 						<fd:repeater id="frequencys" orderable="true">
 							<fd:label>frequency</fd:label>
 							<fd:widgets>
+							   <fd:field id="frequency">
+							      <fd:label>frequency</fd:label>
+							      <fd:datatype base="string"/>
+							   </fd:field>
 								<fd:new id="common-authority-elements-class"/>
 								<fd:new id="common-language-elements-class"/>
 								<fd:new id="common-controls-class"/>

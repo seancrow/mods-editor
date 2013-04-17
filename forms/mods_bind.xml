@@ -353,22 +353,39 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************************************-->
 	<fb:class id="originInfo-class">
 		<fb:repeater id="originInfos" row-path="mods_originInfo" parent-path=".">
+		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
 			<fb:repeater id="places" row-path="mods_place" parent-path=".">
+			   <fb:value id="supplied" path="@supplied" lenient="true"/>
 				<fb:repeater id="placeterms" row-path="mods_placeTerm" parent-path=".">
 					<fb:value id="places_placeterms_pubplace" path="."/>
-					<fb:value id="places_placeterms_type" path="@type"/>
-					<fb:value id="places_placeterms_authority" path="@authority"/>
+               <fb:new id="common-termType-elements-class"/>
+               <fb:new id="common-placeAuthority-elements-class"/>
+               <fb:new id="common-language-elements-class"/>
 				</fb:repeater>
 			</fb:repeater>
-			<fb:value id="publisher" path="mods_publisher"/>
-			<fb:repeater id="dates" row-path="temp_date" parent-path=".">
+         <fb:repeater id="publishers">
+            <fb:value id="publisher" path="mods_publisher"/>
+            <fb:value id="supplied" path="@supplied" lenient="true"/>
+            <fb:new id="common-language-elements-class"/>
+         </fb:repeater>
+		   <fb:repeater id="dates" row-path="temp_date" parent-path=".">
 				<fb:value id="dates_temp_type" path="@temp_type"/>
-				<fb:new id="common-subject-date-elements-class"/>
+				<!-- <fb:new id="common-subject-date-elements-class"/> removed by jh -->
 				<fb:new id="common-date-elements-class"/>
-			</fb:repeater>
-			<fb:value id="edition" path="mods_edition"/>
+		      <fb:new id="common-language-elements-class"/>
+		   </fb:repeater>
+		   <fb:repeater id="editions">
+		      <fb:value id="supplied" path="@supplied" lenient="true"/>
+		      <fb:value id="edition" path="mods_edition"/>
+		      <fb:new id="common-language-elements-class"/>
+		   </fb:repeater>
 			<fb:value id="issuance" path="mods_issuance"/>
-			<fb:value id="frequency" path="mods_frequency"/>
+		   <fb:repeater id="frequencys">
+		      <fb:value id="frequency" path="mods_frequency"/>
+		      <fb:new id="common-authority-elements-class"/>
+		      <fb:new id="common-language-elements-class"/>
+		   </fb:repeater>
 			<fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
