@@ -1048,9 +1048,9 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 							<fd:label>altRepGroup</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
-						<fd:new id="common-language-elements-class"/>
+					   <fd:new id="common-authority-elements-class"/>
+					   <fd:new id="common-language-elements-class"/>
 						<fd:new id="common-controls-class"/>
-						<fd:new id="common-authority-elements-class"/>
 					</fd:widgets>
 				</fd:repeater>
 			</fd:widgets>

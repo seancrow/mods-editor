@@ -777,6 +777,25 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 										<jx:out value="${divider}"/>
 										<ft:widget-label id="authority"/>
 										<ft:widget id="authority"/>
+									   <span class="setwidth">
+									      <ft:widget-label id="displayLabel"></ft:widget-label>
+									   </span>
+									   <ft:widget id="displayLabel">
+									      <fi:styling size="80"></fi:styling>
+									   </ft:widget>
+									   <span class="setwidth">
+									      <ft:widget-label id="usage"></ft:widget-label>
+									   </span>
+									   <ft:widget id="usage">
+									      <fi:styling size="80"></fi:styling>
+									   </ft:widget>
+									   <span class="setwidth">
+									      <ft:widget-label id="altRepGroup"></ft:widget-label>
+									   </span>
+									   <ft:widget id="altRepGroup">
+									      <fi:styling size="80"></fi:styling>
+									   </ft:widget>
+									   <ft:new id="common-authority-elements-class"/>
 										<ft:new id="common-language-elements-class"/>
 										<ft:new id="common-controls-class"/>
 									</div>
