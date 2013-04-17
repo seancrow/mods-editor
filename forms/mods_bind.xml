@@ -328,6 +328,9 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			<fb:value id="manuscript" path="@manuscript" lenient="true">
 				<fd:convertor datatype="boolean"/>
 			</fb:value>
+		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+		   <fb:value id="usage" path="@usage" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
 			<fb:value id="type" path="." lenient="true"/>
 		</fb:repeater>
 	</fb:class>
