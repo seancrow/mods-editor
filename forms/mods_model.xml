@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+jh<?xml version="1.0" encoding="UTF-8"?>
 <!--
 	Copyright 2005, 2007, 2008 University of Alberta Libraries  
 	
@@ -614,149 +614,127 @@
 				</fd:union>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="single-titleInfo-class">
-			<fd:widgets>
-				<!-- It is presumed that title, subTitle, partNumber, partName and nonSort
+      <fd:class id="single-titleInfo-class">
+         <fd:widgets>
+            <!-- It is presumed that title, subTitle, partNumber, partName and nonSort
 					are each allowed to appear only once per titleInfo element (because
 					altReptGroup is an attribute of that element, rather than the subelements).
 					However, the repeater structure was employed to group each subelement with
-					its attributes. jh -->
-				<fd:repeater id="nonSorts" orderable="true">
-					<fd:label>nonSorts</fd:label>
-					<fd:widgets>
-						<fd:field id="nonSort" whitespace="trim-start">
-							<fd:label>nonSort</fd:label>
-							<fd:hint> Use "+" to represent a space (otherwise
-								final spaces will be trimmed) </fd:hint>
-							<fd:datatype base="string"/>
-						</fd:field>
-						<fd:new id="common-language-elements-class"/>
-					</fd:widgets>
-				</fd:repeater>
-				<fd:repeater-action id="add-to-nonSorts"
-					action-command="add-row" repeater="nonSorts">
-					<fd:label>New nonSort</fd:label>
-				</fd:repeater-action>
-				<fd:repeater id="titles" orderable="true">
-					<fd:label>titles</fd:label>
-					<fd:widgets>
-						<fd:field id="title">
-							<fd:label>title</fd:label>
-							<fd:datatype base="string"/>
-						</fd:field>
-						<fd:new id="common-language-elements-class"/>
-					</fd:widgets>
-				</fd:repeater>
-				<fd:repeater-action id="add-to-titles" action-command="add-row"
-					repeater="titles">
-					<fd:label>New title</fd:label>
-				</fd:repeater-action>
-				<fd:repeater id="subTitles" orderable="true">
-					<fd:label>subTitles</fd:label>
-					<fd:widgets>
-						<fd:field id="subTitle">
-							<fd:label>subTitle</fd:label>
-							<fd:datatype base="string"/>
-						</fd:field>
-						<fd:new id="common-language-elements-class"/>
-					</fd:widgets>
-				</fd:repeater>
-				<fd:repeater-action id="add-to-subTitles"
-					action-command="add-row" repeater="subTitles">
-					<fd:label>New subTitle</fd:label>
-				</fd:repeater-action>
-				<fd:repeater id="partNumbers" orderable="true">
-					<fd:label>partNumbers</fd:label>
-					<fd:widgets>
-						<fd:field id="partNumber">
-							<fd:label>partNumber</fd:label>
-							<fd:datatype base="string"/>
-						</fd:field>
-						<fd:new id="common-language-elements-class"/>
-					</fd:widgets>
-				</fd:repeater>
-				<fd:repeater-action id="add-to-partNumbers"
-					action-command="add-row" repeater="partNumbers">
-					<fd:label>New partNumber</fd:label>
-				</fd:repeater-action>
-				<fd:repeater id="partNames" orderable="true">
-					<fd:label>partNames</fd:label>
-					<fd:widgets>
-						<fd:field id="partName">
-							<fd:label>partName</fd:label>
-							<fd:datatype base="string"/>
-						</fd:field>
-						<fd:new id="common-language-elements-class"/>
-					</fd:widgets>
-				</fd:repeater>
-				<fd:repeater-action id="add-to-partNames"
-					action-command="add-row" repeater="partNames">
-					<fd:label>New partName</fd:label>
-				</fd:repeater-action>
-				<fd:field id="type">
-					<fd:label>Type</fd:label>
-					<fd:datatype base="string"/>
-					<fd:selection-list>
-						<fd:item value="">
-							<fd:label>(none)</fd:label>
-						</fd:item>
-						<fd:item value="abbreviated">
-							<fd:label>abbreviated</fd:label>
-						</fd:item>
-						<fd:item value="translated">
-							<fd:label>translated</fd:label>
-						</fd:item>
-						<fd:item value="alternative">
-							<fd:label>alternative</fd:label>
-						</fd:item>
-						<fd:item value="uniform">
-							<fd:label>uniform</fd:label>
-						</fd:item>
-					</fd:selection-list>
-				</fd:field>
-				<fd:new id="common-authority-elements-class"/>
-				<fd:field id="displayLabel">
-					<fd:label>displayLabel</fd:label>
-					<fd:datatype base="string"/>
-				</fd:field>
-				<!-- When implementing supplied(yes) and shareable(no), I decided to use a
+					its attributes. jh - this isn't necessary: the binding will take care of that - pbinkley -->
+            <fd:group id="nonSort-group">
+               <fd:field id="nonSort" whitespace="trim-start">
+                  <fd:label>nonSort</fd:label>
+                  <fd:hint> Use "+" to represent a space (otherwise final spaces will be trimmed) </fd:hint>
+                  <fd:datatype base="string"/>
+               </fd:field>
+               <fd:new id="common-language-elements-class"/>
+            </fd:group>
+            <fd:group id="title-group">
+               <fd:field id="title">
+                  <fd:label>title</fd:label>
+                  <fd:datatype base="string"/>
+               </fd:field>
+               <fd:new id="common-language-elements-class"/>
+            </fd:group>
+            <fd:group id="subTitle-group">
+               <fd:field id="subTitle">
+                  <fd:label>subTitle</fd:label>
+                  <fd:datatype base="string"/>
+               </fd:field>
+               <fd:new id="common-language-elements-class"/>
+            </fd:group>
+            <fd:repeater id="partNumbers" orderable="true">
+               <fd:label>partNumbers</fd:label>
+               <fd:widgets>
+                  <fd:field id="partNumber">
+                     <fd:label>partNumber</fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:new id="common-language-elements-class"/>
+               </fd:widgets>
+            </fd:repeater>
+            <fd:repeater-action id="add-to-partNumbers" action-command="add-row" repeater="partNumbers">
+               <fd:label>New partNumber</fd:label>
+            </fd:repeater-action>
+
+            <fd:repeater id="partNames" orderable="true">
+               <fd:label>partNames</fd:label>
+               <fd:widgets>
+                  <fd:field id="partName">
+                     <fd:label>partName</fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:new id="common-language-elements-class"/>
+               </fd:widgets>
+            </fd:repeater>
+            <fd:repeater-action id="add-to-partNames" action-command="add-row" repeater="partNames">
+               <fd:label>New partName</fd:label>
+            </fd:repeater-action>
+
+            <fd:field id="type">
+               <fd:label>Type</fd:label>
+               <fd:datatype base="string"/>
+               <fd:selection-list>
+                  <fd:item value="">
+                     <fd:label>(none)</fd:label>
+                  </fd:item>
+                  <fd:item value="abbreviated">
+                     <fd:label>abbreviated</fd:label>
+                  </fd:item>
+                  <fd:item value="translated">
+                     <fd:label>translated</fd:label>
+                  </fd:item>
+                  <fd:item value="alternative">
+                     <fd:label>alternative</fd:label>
+                  </fd:item>
+                  <fd:item value="uniform">
+                     <fd:label>uniform</fd:label>
+                  </fd:item>
+               </fd:selection-list>
+            </fd:field>
+            <fd:new id="common-authority-elements-class"/>
+            <fd:field id="displayLabel">
+               <fd:label>displayLabel</fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <!-- When implementing supplied(yes) and shareable(no), I decided to use a
 					list rather than boolean, because only one value is supported - jh -->
-				<fd:field id="supplied">
-					<fd:label>supplied</fd:label>
-					<fd:datatype base="string"/>
-					<fd:selection-list>
-						<fd:item value="">
-							<fd:label>(none)</fd:label>
-						</fd:item>
-						<fd:item value="yes">
-							<fd:label>yes</fd:label>
-						</fd:item>
-					</fd:selection-list>
-				</fd:field>
-				<fd:field id="usage">
-					<fd:label>Usage</fd:label>
-					<fd:datatype base="string"/>
-					<fd:selection-list>
-						<fd:item value="">
-							<fd:label>(none)</fd:label>
-						</fd:item>
-						<fd:item value="primary">
-							<fd:label>primary</fd:label>
-						</fd:item>
-					</fd:selection-list>
-				</fd:field>
-				<fd:field id="altRepGroup">
-					<fd:label>altRepGroup</fd:label>
-					<fd:datatype base="string"/>
-				</fd:field>
-				<fd:field id="nameTitleGroup">
-					<fd:label>nameTitleGroup</fd:label>
-					<fd:datatype base="string"/>
-				</fd:field>
-				<fd:new id="common-language-elements-class"/>
-				<fd:new id="common-linking-elements-class"/>
-			</fd:widgets>
-		</fd:class>
+            <fd:field id="supplied">
+               <fd:label>supplied</fd:label>
+               <fd:datatype base="string"/>
+               <fd:selection-list>
+                  <fd:item value="">
+                     <fd:label>(none)</fd:label>
+                  </fd:item>
+                  <fd:item value="yes">
+                     <fd:label>yes</fd:label>
+                  </fd:item>
+               </fd:selection-list>
+            </fd:field>
+            <fd:field id="usage">
+               <fd:label>Usage</fd:label>
+               <fd:datatype base="string"/>
+               <fd:selection-list>
+                  <fd:item value="">
+                     <fd:label>(none)</fd:label>
+                  </fd:item>
+                  <fd:item value="primary">
+                     <fd:label>primary</fd:label>
+                  </fd:item>
+               </fd:selection-list>
+            </fd:field>
+            <fd:field id="altRepGroup">
+               <fd:label>altRepGroup</fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:field id="nameTitleGroup">
+               <fd:label>nameTitleGroup</fd:label>
+               <fd:datatype base="string"/>
+            </fd:field>
+            <fd:new id="common-language-elements-class"/>
+            <fd:new id="common-linking-elements-class"/>
+         </fd:widgets>
+      </fd:class>
 		<fd:class id="titleInfo-class">
 			<fd:widgets>
 				<fd:repeater id="titleInfos" orderable="true">

@@ -358,51 +358,139 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 					</ft:union>
 				</div>
 			</ft:class>
-			<ft:class id="single-titleInfo-class">
-				<span class="setwidth">
-					<ft:widget-label id="type"/>
-				</span>
-				<ft:widget id="type"/>
-				<br/>
-				<span class="setwidth">
-					<ft:widget-label id="nonsort"/>
-				</span>
-				<ft:widget id="nonsort">
-					<fi:styling size="10"/>
-				</ft:widget>
-				<span class="hint">Use "+" to represent a space (otherwise final spaces will be trimmed)</span>
-				<br/>
-				<span class="setwidth">
-					<ft:widget-label id="title"/>
-				</span>
-				<ft:widget id="title">
-					<fi:styling size="80"/>
-				</ft:widget>
-				<br/>
-				<span class="setwidth">
-					<ft:widget-label id="subtitle"/>
-				</span>
-				<ft:widget id="subtitle">
-					<fi:styling size="80"/>
-				</ft:widget>
-				<br/>
-				<span class="setwidth">
-					<ft:widget-label id="partnumber"/>
-				</span>
-				<ft:widget id="partnumber">
-					<fi:styling size="80"/>
-				</ft:widget>
-				<br/>
-				<span class="setwidth">
-					<ft:widget-label id="partname"/>
-				</span>
-				<ft:widget id="partname">
-					<fi:styling size="80"/>
-				</ft:widget>
-				<ft:new id="common-language-elements-class"/>
-				<ft:new id="common-linking-elements-class"/>
-			</ft:class>
-			<ft:class id="titleInfo-class">
+         <ft:class id="single-titleInfo-class">
+            <span class="setwidth">
+               <ft:widget-label id="type"></ft:widget-label>
+            </span>
+            <ft:widget id="type"></ft:widget>
+            <br />
+            <ft:group id="nonSort-group">
+               <span class="setwidth">
+                  <ft:widget-label id="nonsort"></ft:widget-label>
+               </span>
+               <ft:widget id="nonsort">
+                  <fi:styling size="10"></fi:styling>
+               </ft:widget>
+               <span class="hint">Use "+" to represent a space (otherwise final spaces will be trimmed)</span>
+               <ft:new id="common-language-elements-class"></ft:new>
+            </ft:group>
+            <br />
+            <ft:group id="title-group">
+               <span class="setwidth">
+                  <ft:widget-label id="title"></ft:widget-label>
+               </span>
+               <ft:widget id="title">
+                  <fi:styling size="80"></fi:styling>
+               </ft:widget>
+               <ft:new id="common-language-elements-class"></ft:new>
+            </ft:group>
+            <br />
+            <ft:group id="subTitle-group">
+               <span class="setwidth">
+                  <ft:widget-label id="subtitle"></ft:widget-label>
+               </span>
+               <ft:widget id="subtitle">
+                  <fi:styling size="80"></fi:styling>
+               </ft:widget>
+               <ft:new id="common-language-elements-class"></ft:new>
+            </ft:group>
+            <br />
+            
+            <ft:repeater id="partNumbers">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../partNumbers"/>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel partNumber">
+                              <h5>
+                                 <ft:widget-label id="../../partNumbers"/>
+                                 <jx:out value="${repeaterLoop.index + 1}"/>
+                              </h5>
+                              <span class="setwidth">
+                                 <ft:widget-label id="partnumber"></ft:widget-label>
+                              </span>
+                              <ft:widget id="partnumber">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <ft:new id="common-language-elements-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                     <ft:widget id="../add-to-names"/>
+               </div>
+            </ft:repeater>
+            
+            <ft:repeater id="partNames">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../partNames"/>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel partName">
+                              <h5>
+                                 <ft:widget-label id="../../partNames"/>
+                                 <jx:out value="${repeaterLoop.index + 1}"/>
+                              </h5>
+                              <span class="setwidth">
+                                 <ft:widget-label id="partname"></ft:widget-label>
+                              </span>
+                              <ft:widget id="partname">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <ft:new id="common-language-elements-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <ft:widget id="../add-to-names"/>
+               </div>
+            </ft:repeater>
+            
+            <ft:new id="common-authority-elements-class"/>
+            
+            <span class="setwidth">
+               <ft:widget-label id="displayLabel"></ft:widget-label>
+            </span>
+            <ft:widget id="displayLabel">
+               <fi:styling size="80"></fi:styling>
+            </ft:widget>
+            <span class="setwidth">
+               <ft:widget-label id="supplied"></ft:widget-label>
+            </span>
+            <ft:widget id="supplied">
+               <fi:styling size="80"></fi:styling>
+            </ft:widget>
+            <span class="setwidth">
+               <ft:widget-label id="usage"></ft:widget-label>
+            </span>
+            <ft:widget id="usage">
+               <fi:styling size="80"></fi:styling>
+            </ft:widget>
+            <span class="setwidth">
+               <ft:widget-label id="altRepGroup"></ft:widget-label>
+            </span>
+            <ft:widget id="altRepGroup">
+               <fi:styling size="80"></fi:styling>
+            </ft:widget>
+            <span class="setwidth">
+               <ft:widget-label id="nameTitleGroup"></ft:widget-label>
+            </span>
+            <ft:widget id="nameTitleGroup">
+               <fi:styling size="80"></fi:styling>
+            </ft:widget>
+            
+            
+            
+            <ft:new id="common-language-elements-class"></ft:new>
+            <ft:new id="common-linking-elements-class"></ft:new>
+         </ft:class>
+		   <ft:class id="titleInfo-class">
 				<ft:repeater id="titleInfos">
 					<div class="block empty-block-${repeater.getSize() == 0}">
 						<h4>

@@ -239,16 +239,37 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 	<!-- **********************************************************************
 		mods:titleInfo
 	***************************************************************************-->
-	<fb:class id="single-titleInfo-class">
-		<fb:value id="title" path="mods_title" lenient="true"/>
-		<fb:value id="subtitle" path="mods_subTitle" lenient="true"/>
-		<fb:value id="partnumber" path="mods_partNumber" lenient="true"/>
-		<fb:value id="partname" path="mods_partName" lenient="true"/>
-		<fb:value id="nonsort" path="mods_nonSort" lenient="true"/>
-		<fb:value id="type" path="@type" lenient="true"/>
-		<fb:new id="common-language-elements-class"/>
-		<fb:new id="common-linking-elements-class"/>
-	</fb:class>
+   <fb:class id="single-titleInfo-class">
+      <fb:group id="title-group">
+         <fb:value id="title" path="mods_title" lenient="true"/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:group>
+      <fb:group id="subTitle-group">
+         <fb:value id="subtitle" path="mods_subTitle" lenient="true"/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:group>
+      <fb:repeater id="partNumbers" row-path="mods_partNumber" parent-path=".">
+         <fb:value id="partnumber" path="mods_partNumber" lenient="true"/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:repeater>
+      <fb:repeater id="partNames" row-path="mods_partName" parent-path=".">
+         <fb:value id="partname" path="mods_partName" lenient="true"/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:repeater>
+      <fb:group id="nonSort-group">
+         <fb:value id="nonsort" path="mods_nonSort" lenient="true"/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:group>
+      <fb:value id="type" path="@type" lenient="true"/>
+      <fb:new id="common-authority-elements-class"/>
+      <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+      <fb:value id="supplied" path="@supplied" lenient="true"/>
+      <fb:value id="usage" path="@usage" lenient="true"/>
+      <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+      <fb:value id="nameTitleGroup" path="@nameTitleGroup" lenient="true"/>
+      <fb:new id="common-language-elements-class"/>
+      <fb:new id="common-linking-elements-class"/>
+   </fb:class>
 	<fb:class id="titleInfo-class">
 		<fb:repeater id="titleInfos" row-path="mods_titleInfo" parent-path=".">
 			<fb:new id="single-titleInfo-class"/>
