@@ -285,10 +285,25 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 	</fb:class>
 	<fb:class id="single-name-class">
 	   <fb:value id="type" path="@type"/>
+	   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+	   <fb:value id="usage" path="@usage" lenient="true"/>
+	   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+	   <fb:value id="nameTitleGroup" path="@nameTitleGroup" lenient="true"/>
+	   
 	   <fb:repeater id="nameparts" row-path="mods_namePart" parent-path=".">
 			<fb:value id="value" path="."/>
 			<fb:value id="type" path="@type"/>
 		</fb:repeater>
+	   
+	   <fb:repeater id="displayforms" row-path="mods_displayForm" parent-path=".">
+	      <fb:value id="value" path="."/>
+	      <fb:new id="common-language-elements-class"/>
+	   </fb:repeater>
+	   <fb:repeater id="affiliations" row-path="mods_affiliation" parent-path=".">
+	      <fb:value id="value" path="."/>
+	      <fb:new id="common-language-elements-class"/>
+	   </fb:repeater>
+	   
 	   <fb:repeater id="roles" row-path="mods_role" parent-path=".">
 	      <fb:repeater id="roleterms" row-path="mods_roleTerm" parent-path=".">
 	         <fb:value id="roles_roleterms_value" path="."/>
@@ -297,6 +312,8 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 	      </fb:repeater>
 	   </fb:repeater>
 		<fb:value id="description" path="mods_description" lenient="true"/>
+	   <fb:new id="common-authority-elements-class"/>
+	   
 		<fb:new id="common-language-elements-class"/>
 		<fb:new id="common-linking-elements-class"/>
 	</fb:class>
