@@ -450,6 +450,9 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************-->
 	<fb:class id="abstract-class">
 		<fb:repeater id="abstracts" row-path="mods_abstract" parent-path=".">
+		   <fb:value id="shareable" path="@shareable" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+		   
 			<fb:new id="common-textfield-class"/>
 			<fb:new id="common-language-elements-class"/>
 		</fb:repeater>
