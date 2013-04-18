@@ -428,7 +428,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			</fb:repeater>
 			<fb:value id="reformattingquality" path="mods_reformattingQuality"/>
 			<fb:repeater id="internetmediatypes" row-path="mods_internetMediaType" parent-path=".">
-			   <fb:field id="internetMediatype" path="mods_internetMediaType"/>
+			   <fb:field id="internetMediatype" path="."/>
 			   <fb:new id="common-language-elements-class"/>
 			</fb:repeater>
 		   <fb:repeater id="extents" orderable="true" parent-path=".">

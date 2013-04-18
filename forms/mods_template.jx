@@ -1074,7 +1074,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 									               <div class="row subrepeater script-scriptTerm">
 									                  <h6>
 									                     <ft:widget-label id="../../scriptterms"/>
-									                     <jx:out value="${repaterLoop.index + 1}"/>
+									                     <jx:out value="${repeaterLoop.index + 1}"/>
 									                  </h6>
 									                  <span class="setwidth">
 									                     <ft:widget-label id="scriptterms_script"/>
@@ -1121,63 +1121,131 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 							<div class="repeater">
 								<ft:repeater-rows>
 									<div class="row toplevel physicalDescription">
-										<h5>
-											<ft:widget-label id="../../physicalDescriptions"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<span class="setwidth">
-											<ft:widget-label id="form"/>
-										</span>
-										<ft:widget id="form">
-											<fi:styling size="40"/>
-										</ft:widget>
-										<ft:widget-label id="formauthority"/>
-										<ft:widget id="formauthority">
-											<fi:styling size="10"/>
-										</ft:widget>
-										<br/>
-										<span class="setwidth-wide">
-											<ft:widget-label id="reformattingquality"/>
-										</span>
-										<ft:widget id="reformattingquality"/>
-										<br/>
-										<span class="setwidth-wide">
-											<ft:widget-label id="internetmediatype"/>
-										</span>
-										<ft:widget id="internetmediatype">
-											<fi:styling size="40"/>
-										</ft:widget>
-										<br/>
-										<span class="setwidth">
-											<ft:widget-label id="extent"/>
-										</span>
-										<ft:widget id="extent">
-											<fi:styling size="40"/>
-										</ft:widget>
-										<ft:widget-label id="digitalorigin"/>
-										<ft:widget id="digitalorigin"/>
-										<!-- notes repeater -->
-										<div class="block">
-											<ft:repeater id="notes">
-												<div class="block empty-repeater-${repeater.getSize() == 0}">
-													<ft:repeater-rows>
-														<div class="row subrepeater physicalDescription-note">
-															<h6>
-																<ft:widget-label id="../../notes"/>
-																<jx:out value="${repeaterLoop.index + 1}"/>
-															</h6>
-															<ft:new id="common-textfield-class"/>
-															<ft:new id="common-controls-class"/>
-														</div>
-													</ft:repeater-rows>
-												</div>
-											</ft:repeater>
-										</div>
-										<ft:widget id="add-to-notes"/>
-										<!-- end of notes repeater -->
-										<ft:new id="common-language-elements-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
+                              <h5>
+                                 <ft:widget-label id="../../physicalDescriptions"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <ft:widget id="displayLabel">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <span class="setwidth">
+                                 <ft:widget-label id="altRepGroup"></ft:widget-label>
+                              </span>
+                              <ft:widget id="altRepGroup">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <div class="block">
+                                 <ft:repeater id="forms">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater physicalDescript-form">
+                                             <h6>
+                                                <ft:widget-label id="../../form"></ft:widget-label>
+                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <span class="setwidth">
+                                                <ft:widget-label id="physicaldescription_form"></ft:widget-label>
+                                             </span>
+                                             <ft:widget id="physicaldescription_form">
+                                                <fi:styling size="40"></fi:styling>
+                                             </ft:widget>
+                                             <span class="setwidth">
+                                                <ft:widget-label id="physicaldescription_type"></ft:widget-label>
+                                             </span>
+                                             <ft:widget id="physicaldescription_type">
+                                                <fi:styling size="40"></fi:styling>
+                                             </ft:widget>
+                                             <ft:new id="common-authority-elements-class"/>
+                                             <ft:new id="common-language-elements-class"/>
+                                          </div>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                              </div>
+									   
+                              <span class="setwidth-wide">
+                                 <ft:widget-label id="reformattingquality"></ft:widget-label>
+                              </span>
+                              <ft:widget id="reformattingquality"></ft:widget>
+
+									   <div class="block">
+									      <ft:repeater id="internetmediatypes">
+									         <div class="block empty-repeater-${repeater.getSize() == 0}">
+									            <ft:repeater-rows>
+									               <div
+                                             class="row subrepeater physicaldescription-internetmediatype">
+                                             <h6>
+                                                <ft:widget-label id="../../extent"></ft:widget-label>
+                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <span class="setwidth-wide">
+                                                <ft:widget-label id="physicaldescription-internetmediatype"></ft:widget-label>
+                                             </span>
+                                             <ft:widget id="physicaldescription-internetmediatype">
+                                                <fi:styling size="40"></fi:styling>
+                                             </ft:widget>
+									                  <ft:new id="common-language-elements-class"></ft:new>
+                                          </div>
+									            </ft:repeater-rows>
+									         </div>
+									      </ft:repeater>
+									   </div>
+
+									   <div class="block">
+									      <ft:repeater id="extents">
+									         <div class="block empty-repeater-${repeater.getSize() == 0}">
+									            <ft:repeater-rows>
+									               <div
+									                  class="row subrepeater physicaldescription-extent">
+									                  <h6>
+									                     <ft:widget-label id="../../extent"></ft:widget-label>
+									                     <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+									                  </h6>
+									                  <span class="setwidth-wide">
+									                     <ft:widget-label id="physicaldescription-extent"></ft:widget-label>
+									                  </span>
+									                  <ft:widget id="physicaldescription-extent">
+									                     <fi:styling size="40"></fi:styling>
+									                  </ft:widget>
+									                  <span class="setwidth-wide">
+									                     <ft:widget-label id="physicaldescription-supplied"></ft:widget-label>
+									                  </span>
+									                  <ft:widget id="physicaldescription-supplied">
+									                     <fi:styling size="40"></fi:styling>
+									                  </ft:widget>
+									                  <ft:new id="common-language-elements-class"></ft:new>
+									               </div>
+									            </ft:repeater-rows>
+									         </div>
+									      </ft:repeater>
+									   </div>
+									   
+									   <span class="setwidth-wide"><ft:widget-label id="digitalorigin"></ft:widget-label></span>
+									   <ft:widget id="digitalorigin"><fi:styling size="40"></fi:styling></ft:widget>
+                              <!-- notes repeater -->
+                              <div class="block">
+                                 <ft:repeater id="notes">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater physicalDescription-note">
+                                             <h6>
+                                                <ft:widget-label id="../../notes"></ft:widget-label>
+                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <span class="setwidth-wide"><ft:widget-label id="modsID"></ft:widget-label></span>
+                                             <ft:widget id="modsID"><fi:styling size="40"></fi:styling></ft:widget>
+                                             <ft:new id="common-textfield-elements-class"></ft:new>
+                                             <ft:new id="common-controls-class"></ft:new>
+                                          </div>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                              </div>
+                              <ft:widget id="add-to-notes"></ft:widget>
+                              <!-- end of notes repeater -->
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
 								</ft:repeater-rows>
 							</div>
 						</jx:if>
