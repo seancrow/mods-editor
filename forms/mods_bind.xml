@@ -452,9 +452,8 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		<fb:repeater id="abstracts" row-path="mods_abstract" parent-path=".">
 		   <fb:value id="shareable" path="@shareable" lenient="true"/>
 		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
-		   
-			<fb:new id="common-textfield-class"/>
-			<fb:new id="common-language-elements-class"/>
+		   <fd:new id="common-textfield-elements-class"/>
+		   <fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
 	<!-- ************************************************
@@ -462,8 +461,10 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************-->
 	<fb:class id="tableOfContents-class">
 		<fb:repeater id="tableOfContentss" row-path="mods_tableOfContents" parent-path=".">
-			<fb:new id="common-textfield-class"/>
-			<fb:new id="common-language-elements-class"/>
+		   <fb:value id="shareable" path="@shareable" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+		   <fd:new id="common-textfield-elements-class"/>
+		   <fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
 	<!-- ************************************************

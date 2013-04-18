@@ -1491,10 +1491,6 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-
-
-
-
 		<fd:class id="abstract-class">
 			<fd:widgets>
 				<fd:repeater id="abstracts" orderable="true">
