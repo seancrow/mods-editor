@@ -1009,6 +1009,30 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 											<ft:widget-label id="../../languages"/>
 											<jx:out value="${repeaterLoop.index + 1}"/>
 										</h5>
+									   <span class="setwidth">
+									      <ft:widget-label id="objectPart"></ft:widget-label>
+									   </span>
+									   <ft:widget id="objectPart">
+									      <fi:styling size="80"></fi:styling>
+									   </ft:widget>
+									   <span class="setwidth">
+									      <ft:widget-label id="displayLabel"></ft:widget-label>
+									   </span>
+									   <ft:widget id="usage">
+									      <fi:styling size="80"></fi:styling>
+									   </ft:widget>
+									   <span class="setwidth">
+									      <ft:widget-label id="usage"></ft:widget-label>
+									   </span>
+									   <ft:widget id="displayLabel">
+									      <fi:styling size="80"></fi:styling>
+									   </ft:widget>
+									   <span class="setwidth">
+									      <ft:widget-label id="altRepGroup"></ft:widget-label>
+									   </span>
+									   <ft:widget id="altRepGroup">
+									      <fi:styling size="80"></fi:styling>
+									   </ft:widget>
 										<!-- languageterms repeater -->
 										<div class="block">
 											<ft:repeater id="languageterms">
@@ -1031,6 +1055,9 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 															<jx:out value="${divider}"/>
 															<ft:widget-label id="languageterms_authority"/>
 															<ft:widget id="languageterms_authority"/>
+														   <ft:new id="common-termType-elements-class"/>
+														   <ft:new id="common-languageAuthority-elements-class"/>
+														   <ft:new id="common-language-elements-class"/>
 															<ft:new id="common-controls-class"/>
 														</div>
 													</ft:repeater-rows>
@@ -1039,7 +1066,41 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 											<ft:widget id="add-to-languageTerms"/>
 										</div>
 										<!-- end of languageterms repeater -->
-										<ft:new id="common-controls-class"/>
+									   <!-- scriptterms repeater -->
+									   <div class="block">
+									      <ft:repeater id="scriptterms">
+									         <div class="block empty-repeater-${repeater.getSize() == 0}">
+									            <ft:repeater-rows>
+									               <div class="row subrepeater script-scriptTerm">
+									                  <h6>
+									                     <ft:widget-label id="../../scriptterms"/>
+									                     <jx:out value="${repaterLoop.index + 1}"/>
+									                  </h6>
+									                  <span class="setwidth">
+									                     <ft:widget-label id="scriptterms_script"/>
+									                  </span>
+									                  <ft:widget id="scriptterms_script">
+									                     <fi:styling size="40"/>
+									                  </ft:widget>
+									                  <br/>
+									                  <ft:widget-label id="scriptterms_type"/>
+									                  <ft:widget id="scriptterms_type"/>
+									                  <jx:out value="${divider}"/>
+									                  <ft:widget-label id="scriptterms_authority"/>
+									                  <ft:widget id="scriptterms_authority"/>
+									                  <ft:new id="common-termType-elements-class"/>
+									                  <ft:new id="common-Authority-elements-class"/>
+									                  <ft:new id="common-script-elements-class"/>
+									                  <ft:new id="common-controls-class"/>
+									               </div>
+									            </ft:repeater-rows>
+									         </div>
+									      </ft:repeater>
+									      <ft:widget id="add-to-scriptTerms"/>
+									   </div>
+									   <!-- end of scriptterms repeater -->
+									   <ft:new id="common-language-elements-class"/>
+									   <ft:new id="common-controls-class"/>
 									</div>
 								</ft:repeater-rows>
 							</div>
