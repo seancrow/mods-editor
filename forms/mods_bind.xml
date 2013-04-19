@@ -528,6 +528,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			<fb:value id="type" path="@type"/>
 			<fb:value id="displayLabel" path="@displayLabel"/>
 			<fb:value id="invalid" path="@invalid"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
 			<fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>

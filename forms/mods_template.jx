@@ -1477,7 +1477,11 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 					</div>
 				</ft:repeater>
 			</ft:class>
-			<ft:class id="xidentifier-class">
+		   <!-- **********************************************************************
+			   identifier
+   		***************************************************************************-->
+		   <!-- note: id="identifiers" doesn't work, seems to be reserved word -->
+		   <ft:class id="xidentifier-class">
 				<ft:repeater id="xidentifiers">
 					<div class="block empty-block-${repeater.getSize() == 0}">
 						<h4>
@@ -1497,6 +1501,10 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 										<ft:widget-label id="displayLabel"/>
 										<ft:widget id="displayLabel"/>
 										<jx:out value="${divider}"/>
+									   <span class="setwidth-wide"><ft:widget-label id="invalid"></ft:widget-label></span>
+									   <ft:widget id="invalid"><fi:styling size="40"></fi:styling></ft:widget>
+									   <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+									   <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
 										<br/>
 										<ft:widget-label id="value"/>
 										<ft:widget id="value">
