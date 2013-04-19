@@ -1432,6 +1432,9 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 					</div>
 				</ft:repeater>
 			</ft:class>
+		   <!-- **********************************************************************
+   			classification
+	     	***************************************************************************-->
 			<ft:class id="classification-class">
 				<ft:repeater id="classifications">
 					<div class="block empty-block-${repeater.getSize() == 0}">
@@ -1446,8 +1449,13 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 											<ft:widget-label id="../../classifications"/>
 											<jx:out value="${repeaterLoop.index + 1}"/>
 										</h5>
-										<ft:widget-label id="authority"/>
-										<ft:widget id="authority"/>
+									   <span class="setwidth-wide"><ft:widget-label id="displayLabel"></ft:widget-label></span>
+									   <ft:widget id="displayLabel"><fi:styling size="40"></fi:styling></ft:widget>
+									   <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+									   <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+									   <span class="setwidth-wide"><ft:widget-label id="usage"></ft:widget-label></span>
+									   <ft:widget id="usage"><fi:styling size="40"></fi:styling></ft:widget>
+									   <br/>
 										<jx:out value="${divider}"/>
 										<ft:widget-label id="edition"/>
 										<ft:widget id="edition"/>
@@ -1456,7 +1464,8 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 										<ft:widget id="value">
 											<fi:styling size="80"/>
 										</ft:widget>
-										<ft:new id="common-language-elements-class"/>
+									   <ft:new id="common-authority-elements-class"/>
+									   <ft:new id="common-language-elements-class"/>
 										<ft:new id="common-controls-class"/>
 									</div>
 								</ft:repeater-rows>
