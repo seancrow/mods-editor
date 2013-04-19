@@ -1214,12 +1214,11 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 									                     <fi:styling size="40"></fi:styling>
 									                  </ft:widget>
 									                  <ft:new id="common-language-elements-class"></ft:new>
-									               </div>
+                                          </div>
 									            </ft:repeater-rows>
 									         </div>
 									      </ft:repeater>
 									   </div>
-									   
 									   <span class="setwidth-wide"><ft:widget-label id="digitalorigin"></ft:widget-label></span>
 									   <ft:widget id="digitalorigin"><fi:styling size="40"></fi:styling></ft:widget>
                               <!-- notes repeater -->
