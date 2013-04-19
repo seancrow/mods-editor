@@ -484,7 +484,9 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************-->
 	<fb:class id="note-class">
 		<fb:repeater id="notes" row-path="mods_note" parent-path=".">
-			<fb:new id="common-textfield-class"/>
+		   <fb:field name="modsID" path="@modsID"/>
+		   <fb:field name="altRepGroup" path="@altRepGroup"/>
+			<fb:new id="common-textfield-elements-class"/>
 			<fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
