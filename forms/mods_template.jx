@@ -1320,7 +1320,10 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 					</div>
 				</ft:repeater>
 			</ft:class>
-			<ft:class id="targetAudience-class">
+		   <!-- ************************************************
+			   mods:targetAudience
+		    ***************************************************-->
+		   <ft:class id="targetAudience-class">
 				<ft:repeater id="targetAudiences">
 					<div class="block empty-block-${repeater.getSize() == 0}">
 						<h4>
@@ -1338,9 +1341,12 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 										<ft:widget id="value">
 											<fi:styling size="40"/>
 										</ft:widget>
-										<ft:widget-label id="authority"/>
-										<ft:widget id="authority"/>
-										<ft:new id="common-language-elements-class"/>
+									   <span class="setwidth-wide"><ft:widget-label id="displayLabel"></ft:widget-label></span>
+									   <ft:widget id="displayLabel"><fi:styling size="40"></fi:styling></ft:widget>
+									   <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+									   <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+									   <ft:new id="common-authority-elements-class"/>
+									   <ft:new id="common-language-elements-class"/>
 										<ft:new id="common-controls-class"/>
 									</div>
 								</ft:repeater-rows>
