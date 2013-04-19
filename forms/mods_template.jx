@@ -1286,7 +1286,10 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 					</div>
 				</ft:repeater>
 			</ft:class>
-			<ft:class id="tableOfContents-class">
+		   <!-- ************************************************
+			   mods:tableOfContents
+		    ***************************************************-->
+		   <ft:class id="tableOfContents-class">
 				<ft:repeater id="tableOfContentss">
 					<div class="block empty-block-${repeater.getSize() == 0}">
 						<h4>
@@ -1300,7 +1303,11 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 											<ft:widget-label id="../../tableOfContentss"/>
 											<jx:out value="${repeaterLoop.index + 1}"/>
 										</h5>
-										<ft:new id="common-textfield-class"/>
+									   <span class="setwidth-wide"><ft:widget-label id="shareable"></ft:widget-label></span>
+									   <ft:widget id="shareable"><fi:styling size="40"></fi:styling></ft:widget>
+									   <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+									   <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+										<ft:new id="common-textfield-elements-class"/>
 										<ft:new id="common-language-elements-class"/>
 										<ft:new id="common-controls-class"/>
 									</div>
