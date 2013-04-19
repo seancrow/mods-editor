@@ -1392,7 +1392,10 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 					</div>
 				</ft:repeater>
 			</ft:class>
-			<ft:class id="subject-class">
+		   <!-- ************************************************
+			   mods:subject
+		    ***************************************************-->
+		   <ft:class id="subject-class">
 				<ft:repeater id="subjects">
 					<div class="block empty-block-${repeater.getSize() == 0}">
 						<h4>
@@ -1406,13 +1409,18 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 											<ft:widget-label id="../../subjects"/>
 											<jx:out value="${repeaterLoop.index + 1}"/>
 										</h5>
-										<ft:widget-label id="authority"/>
-										<ft:widget id="authority"/>
-										<br/>
+									   <span class="setwidth-wide"><ft:widget-label id="displayLabel"></ft:widget-label></span>
+									   <ft:widget id="displayLabel"><fi:styling size="40"></fi:styling></ft:widget>
+									   <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+									   <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+									   <span class="setwidth-wide"><ft:widget-label id="usage"></ft:widget-label></span>
+									   <ft:widget id="usage"><fi:styling size="40"></fi:styling></ft:widget>
+									   <br/>
 										<div class="block">
 											<ft:new id="subject-widgets-class"/>
 										</div>
-										<ft:new id="common-language-elements-class"/>
+									   <ft:new id="common-authority-elements-class"/>
+									   <ft:new id="common-language-elements-class"/>
 										<ft:new id="common-linking-elements-class"/>
 										<ft:new id="common-controls-class"/>
 									</div>

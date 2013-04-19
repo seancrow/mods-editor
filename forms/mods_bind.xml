@@ -495,9 +495,12 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************-->
 	<fb:class id="subject-class">
 		<fb:repeater id="subjects" row-path="mods_subject" parent-path=".">
+		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+		   <fb:value id="usage" path="@usage" lenient="true"/>
 			<fb:new id="subject-widgets-class"/>
-			<fb:value id="authority" path="@authority"/>
-			<fb:new id="common-language-elements-class"/>
+		   <fb:new id="common-authority-elements-class"/>
+		   <fb:new id="common-language-elements-class"/>
 			<fb:new id="common-linking-elements-class"/>
 		</fb:repeater>
 	</fb:class>
