@@ -1800,6 +1800,8 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                               <jx:out value="${divider}"></jx:out>
                               <ft:widget-label id="displayLabel"></ft:widget-label>
                               <ft:widget id="displayLabel"></ft:widget>
+                              <ft:widget-label id="altRepGroup"></ft:widget-label>
+                              <ft:widget id="altRepGroup"></ft:widget>
                               <br />
                               <ft:widget-label id="value"></ft:widget-label>
                               <ft:widget id="value">
