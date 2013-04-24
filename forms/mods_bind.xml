@@ -537,22 +537,67 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************************************-->
 	<fb:class id="location-class">
 		<fb:repeater id="locations" row-path="mods_location" parent-path=".">
-			<fb:context path="mods_physicalLocation">
+		   <fb:value id="displayLabel" path="@displayLabel"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+			<fb:repeater id="physicalLocations" row-path="mods_physicalLocation" parent-path=".">
 				<fb:value id="physicalLocation" path="."/>
-				<fb:value id="authority" path="@authority"/>
-				<fb:value id="phys-displayLabel" path="@displayLabel"/>
-				<fb:new id="common-language-elements-class"/>
-			</fb:context>
+			   <fb:value id="physicalLocation-type" path="@type"/>
+				<fb:value id="physicalLocation-displayLabel" path="@displayLabel"/>
+			   <fb:new id="common-authority-elements-class"/>
+			   <fb:new id="common-language-elements-class"/>
+			</fb:repeater>
+		   <fb:repeater id="shelfLocators" row-path="mods_shelfLocator" parent-path=".">
+		      <fb:value id="shelfLocator" path="."/>
+		      <fb:new id="common-language-elements-class"/>
+		   </fb:repeater>
 			<fb:repeater id="urls" row-path="mods_url" parent-path=".">
 				<fb:value id="url" path="."/>
 				<fb:value id="access" path="@access"/>
 				<fb:value id="usage" path="@usage"/>
-				<fb:value id="note" path="@note"/>
+				<fb:value id="url-note" path="@note"/>
 				<fb:value id="url-displayLabel" path="@displayLabel"/>
 				<fb:value id="dateLastAccessed" path="@dateLastAccessed"/>
 			</fb:repeater>
+		   <!-- read-only, to display images -->
 			<fb:value id="fullsize" path="mods_url[@access='raw object']" direction="load"/>
 			<fb:value id="thumbnail" path="mods_url[@access='preview']" direction="load"/>
+		   <fb:context id="holdingSimples" path="mods_holdingSimples">
+		      <fb:repeater id="copyInformations">
+		         <fb:context id="form">
+		            <!-- TODO figure out path for context -->
+		            <fb:value id="form" path="."/>
+		            <fb:value id="form-type" path="@type"/>
+		            <fb:new id="common-authority-elements-class"/>
+		            <fb:new id="common-linking-elements-class"/>
+		            <fb:new id="common-language-elements-class"/>
+		         </fb:context>
+		         <fb:repeater id="subLocations" orderable="true" parent-path=".">
+		            <fb:value id="subLocation" path="."/>
+		            <fb:new id="common-language-elements-class"/>
+		         </fb:repeater>
+		         <fb:repeater id="copyInformation-shelfLocators" orderable="true" parent-path=".">
+		            <fb:value id="selfLocator" path="."/>
+		            <fb:new id="common-language-elements-class"/>
+		         </fb:repeater>
+		         <fb:repeater id="electronicLocators" orderable="true" parent-path=".">
+		            <fb:value id="electronicLocator" path="."/>
+		         </fb:repeater>
+		         <fb:repeater id="notes" orderable="true" parent-path=".">
+		            <fb:value id="note" path="."/>
+		            <fb:value id="displayLabel" path="@displayLabel"/>
+		            <fb:value id="type" path="@type"/>
+		            <fb:new id="common-linking-elements-class"/>
+		            <fb:new id="common-language-elements-class"/>
+		         </fb:repeater>
+               <fb:repeater id="enumerationAndChronologys" orderable="true" parent-path=".">
+                  <fb:value id="enumerationAndChronology" path="."/>
+                  <fb:value id="unitType" path="@unitType"/>
+                  <fb:new id="common-language-elements-class"/>
+               </fb:repeater>
+		      </fb:repeater>
+		   </fb:context>
+		   <!-- holdingExternal not implemented - jh -->
+		   <fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
 	<!-- **********************************************************************

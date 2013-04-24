@@ -1714,7 +1714,10 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="location-class">
+	   <!-- **********************************************************************
+			location
+		***************************************************************************-->
+	   <fd:class id="location-class">
 			<fd:widgets>
 				<fd:repeater id="locations" orderable="true">
 					<fd:label>mods:location</fd:label>
@@ -1833,23 +1836,25 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 							<fd:label>full-size</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
-						<fd:repeater id="holdingSimples" orderable="true">
+						<fd:context id="holdingSimple">
 							<fd:label>holdingSimples</fd:label>
 							<fd:widgets>
 								<fd:repeater id="copyInformations" orderable="true">
 									<fd:label>copyInformations</fd:label>
 									<fd:widgets>
 										<!-- form is not repeatable - jh -->
-										<fd:field id="form">
-											<fd:label>form</fd:label>
-										</fd:field>
-										<fd:field id="form-type">
-											<fd:label>type</fd:label>
-										</fd:field>
-										<!-- the following three element classes are attributes of form - jh -->
-										<fd:new id="common-authority-elements-class"/>
-										<fd:new id="common-linking-elements-class"/>
-										<fd:new id="common-language-elements-class"/>
+                              <fd:context id="form">
+                                 <fd:field id="form">
+                                    <fd:label>form</fd:label>
+                                 </fd:field>
+                                 <fd:field id="form-type">
+                                    <fd:label>type</fd:label>
+                                 </fd:field>
+                                 <!-- the following three element classes are attributes of form - jh -->
+                                 <fd:new id="common-authority-elements-class"/>
+                                 <fd:new id="common-linking-elements-class"/>
+                                 <fd:new id="common-language-elements-class"/>
+                              </fd:context>
 										<fd:repeater id="subLocations" orderable="true">
 											<fd:label>subLocations</fd:label>
 											<fd:widgets>
@@ -1952,7 +1957,7 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 								</fd:repeater-action>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
-						</fd:repeater>
+						</fd:context>
 						<!-- holdingSimple is not repeatable. Not sure if this is the best way to
 							implement, but repeater-action has been commented out. - jh
 						<fd:repeater-action id="add-to-holdingSimples"

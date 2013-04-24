@@ -55,309 +55,308 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
         </script>
 	</head>
 	<body>
-		<ft:form-template action="../#{$cocoon/continuation/id}.continue" method="POST" name="mainform" ajax="true">
-			<!-- *************************************************************
+      <ft:form-template action="../#{$cocoon/continuation/id}.continue" method="POST" name="mainform" ajax="true">
+         <!-- *************************************************************
 				Classes
 			***************************************************************** -->
-			<ft:class id="common-subject-date-elements-class">
-				<ft:widget id="value">
-					<fi:styling size="15"/>
-				</ft:widget>
-				<ft:widget id="encoding"/>
-				<ft:widget id="point"/>
-				<ft:widget id="keydate"/>
-			</ft:class>
-			<ft:class id="common-date-elements-class">
-				<ft:widget id="qualifier"/>
-			</ft:class>
-			<ft:class id="common-language-elements-class">
-				<div class="common-language-elements">
-					<ft:widget-label id="lang"/>
-					<ft:widget id="lang">
-						<fi:styling size="3"/>
-					</ft:widget>
-					<jx:out value="${divider}"/>
-					<ft:widget-label id="xml-lang"/>
-					<ft:widget id="xml-lang">
-						<fi:styling size="3"/>
-					</ft:widget>
-					<jx:out value="${divider}"/>
-					<ft:widget-label id="script"/>
-					<ft:widget id="script">
-						<fi:styling size="10"/>
-					</ft:widget>
-					<jx:out value="${divider}"/>
-					<ft:widget-label id="transliteration"/>
-					<ft:widget id="transliteration">
-						<fi:styling size="10"/>
-					</ft:widget>
-				</div>
-			</ft:class>
-			<ft:class id="common-linking-elements-class">
-				<div class="common-linking-elements">
-					<ft:widget-label id="modsID"/>
-					<ft:widget id="modsID">
-						<fi:styling size="15"/>
-					</ft:widget>
-					<jx:out value="${divider}"/>
-					<ft:widget-label id="xlink"/>
-					<ft:widget id="xlink">
-						<fi:styling size="50"/>
-					</ft:widget>
-				</div>
-			</ft:class>
-			<ft:class id="common-controls-class">
-				<div class="common-controls">
-					<ft:widget id="deleteWidget"/>
-					<!-- Don't display the "move up" button on the first row or the "move down" button on the last row -->
-					<jx:choose>
-						<jx:when test="${repeater.getSize() == 1}"/>
-						<jx:when test="${repeaterLoop.first}">
-							<ft:widget id="moveDown"/>
-						</jx:when>
-						<jx:when test="${repeaterLoop.last}">
-							<ft:widget id="moveUp"/>
-						</jx:when>
-						<jx:otherwise>
-							<ft:widget id="moveDown"/>
-							<ft:widget id="moveUp"/>
-						</jx:otherwise>
-					</jx:choose>
-					<ft:widget id="insertWidget"/>
-				</div>
-				<div class="clear"/>
-			</ft:class>
-			<ft:class id="common-textfield-elements-class">
-				<span class="setwidth">
-					<ft:widget-label id="type"/>
-				</span>
-				<ft:widget id="type">
-					<fi:styling size="20"/>
-				</ft:widget>
-				<ft:widget-label id="displaylabel"/>
-				<ft:widget id="displaylabel">
-					<fi:styling size="20"/>
-				</ft:widget>
-				<br/>
-				<ft:widget-label id="value"/>
-				<br/>
-				<ft:widget id="value">
-					<fi:styling type="textarea" rows="4" cols="60"/>
-				</ft:widget>
-				<br/>
-				<ft:widget-label id="xlink"/>
-				<ft:widget id="xlink">
-					<fi:styling size="50"/>
-				</ft:widget>
-			</ft:class>
-		   <ft:class id="common-authorityURIAndValueURI-elements-class">
-		      <ft:widget-label id="authorityURI"/>
-		      <ft:widget id="authorityURI">
-		         <fi:styling size="20"/>
-		      </ft:widget>
-		      <ft:widget-label id="authorityURI"/>
-		      <ft:widget id="authorityURI">
-		         <fi:styling size="20"/>
-		      </ft:widget>
-		   </ft:class>
-		   <ft:class id="common-authority-elements-class">
-		      <ft:widget-label id="authority"/>
-		      <ft:widget id="authority">
-		         <fi:styling size="20"/>
-		      </ft:widget>
-		      <ft:new id="common-authorityURIAndValueURI-elements-class"/>
-		   </ft:class>
-		   <ft:class id="common-placeAuthority-elements-class">
-		      <ft:new id="common-authority-elements-class"/>
-		   </ft:class>
-		   <ft:class id="common-languageAuthority-elements-class">
-		      <ft:new id="common-authority-elements-class"/>
-		   </ft:class>
-		   <ft:class id="common-termType-elements-class">
-		      <ft:widget-label id="termType"/>
-		      <ft:widget id="termType">
-		         <fi:styling size="20"/>
-		      </ft:widget>
-		   </ft:class>
-		      
-		   
-		   
-			<ft:class id="subject-widgets-class">
-				<ft:repeater id="subject-widgets">
-					<jx:if test="${repeater.getSize() &gt; 0}">
-						<div class="repeater">
-							<ft:repeater-rows>
-								<ft:new id="subject-widget-row-class"/>
-							</ft:repeater-rows>
-						</div>
-					</jx:if>
-				</ft:repeater>
-				<!--				<jx:if test="${repeater.getSize() == 0}">
+         <ft:class id="common-subject-date-elements-class">
+            <ft:widget id="value">
+               <fi:styling size="15"></fi:styling>
+            </ft:widget>
+            <ft:widget id="encoding"></ft:widget>
+            <ft:widget id="point"></ft:widget>
+            <ft:widget id="keydate"></ft:widget>
+         </ft:class>
+         <ft:class id="common-date-elements-class">
+            <ft:widget id="qualifier"></ft:widget>
+         </ft:class>
+         <ft:class id="common-language-elements-class">
+            <div class="common-language-elements">
+               <ft:widget-label id="lang"></ft:widget-label>
+               <ft:widget id="lang">
+                  <fi:styling size="3"></fi:styling>
+               </ft:widget>
+               <jx:out value="${divider}"></jx:out>
+               <ft:widget-label id="xml-lang"></ft:widget-label>
+               <ft:widget id="xml-lang">
+                  <fi:styling size="3"></fi:styling>
+               </ft:widget>
+               <jx:out value="${divider}"></jx:out>
+               <ft:widget-label id="script"></ft:widget-label>
+               <ft:widget id="script">
+                  <fi:styling size="10"></fi:styling>
+               </ft:widget>
+               <jx:out value="${divider}"></jx:out>
+               <ft:widget-label id="transliteration"></ft:widget-label>
+               <ft:widget id="transliteration">
+                  <fi:styling size="10"></fi:styling>
+               </ft:widget>
+            </div>
+         </ft:class>
+         <ft:class id="common-linking-elements-class">
+            <div class="common-linking-elements">
+               <ft:widget-label id="modsID"></ft:widget-label>
+               <ft:widget id="modsID">
+                  <fi:styling size="15"></fi:styling>
+               </ft:widget>
+               <jx:out value="${divider}"></jx:out>
+               <ft:widget-label id="xlink"></ft:widget-label>
+               <ft:widget id="xlink">
+                  <fi:styling size="50"></fi:styling>
+               </ft:widget>
+            </div>
+         </ft:class>
+         <ft:class id="common-controls-class">
+            <div class="common-controls">
+               <ft:widget id="deleteWidget"></ft:widget>
+               <!-- Don't display the "move up" button on the first row or the "move down" button on the last row -->
+               <jx:choose>
+                  <jx:when test="${repeater.getSize() == 1}"></jx:when>
+                  <jx:when test="${repeaterLoop.first}">
+                     <ft:widget id="moveDown"></ft:widget>
+                  </jx:when>
+                  <jx:when test="${repeaterLoop.last}">
+                     <ft:widget id="moveUp"></ft:widget>
+                  </jx:when>
+                  <jx:otherwise>
+                     <ft:widget id="moveDown"></ft:widget>
+                     <ft:widget id="moveUp"></ft:widget>
+                  </jx:otherwise>
+               </jx:choose>
+               <ft:widget id="insertWidget"></ft:widget>
+            </div>
+            <div class="clear"></div>
+         </ft:class>
+         <ft:class id="common-textfield-elements-class">
+            <span class="setwidth">
+               <ft:widget-label id="type"></ft:widget-label>
+            </span>
+            <ft:widget id="type">
+               <fi:styling size="20"></fi:styling>
+            </ft:widget>
+            <ft:widget-label id="displaylabel"></ft:widget-label>
+            <ft:widget id="displaylabel">
+               <fi:styling size="20"></fi:styling>
+            </ft:widget>
+            <br />
+            <ft:widget-label id="value"></ft:widget-label>
+            <br />
+            <ft:widget id="value">
+               <fi:styling type="textarea" rows="4" cols="60"></fi:styling>
+            </ft:widget>
+            <br />
+            <ft:widget-label id="xlink"></ft:widget-label>
+            <ft:widget id="xlink">
+               <fi:styling size="50"></fi:styling>
+            </ft:widget>
+         </ft:class>
+         <ft:class id="common-authorityURIAndValueURI-elements-class">
+            <ft:widget-label id="authorityURI"></ft:widget-label>
+            <ft:widget id="authorityURI">
+               <fi:styling size="20"></fi:styling>
+            </ft:widget>
+            <ft:widget-label id="authorityURI"></ft:widget-label>
+            <ft:widget id="authorityURI">
+               <fi:styling size="20"></fi:styling>
+            </ft:widget>
+         </ft:class>
+         <ft:class id="common-authority-elements-class">
+            <ft:widget-label id="authority"></ft:widget-label>
+            <ft:widget id="authority">
+               <fi:styling size="20"></fi:styling>
+            </ft:widget>
+            <ft:new id="common-authorityURIAndValueURI-elements-class"></ft:new>
+         </ft:class>
+         <ft:class id="common-placeAuthority-elements-class">
+            <ft:new id="common-authority-elements-class"></ft:new>
+         </ft:class>
+         <ft:class id="common-languageAuthority-elements-class">
+            <ft:new id="common-authority-elements-class"></ft:new>
+         </ft:class>
+         <ft:class id="common-termType-elements-class">
+            <ft:widget-label id="termType"></ft:widget-label>
+            <ft:widget id="termType">
+               <fi:styling size="20"></fi:styling>
+            </ft:widget>
+         </ft:class>
+
+
+
+         <ft:class id="subject-widgets-class">
+            <ft:repeater id="subject-widgets">
+               <jx:if test="${repeater.getSize() &gt; 0}">
+                  <div class="repeater">
+                     <ft:repeater-rows>
+                        <ft:new id="subject-widget-row-class"></ft:new>
+                     </ft:repeater-rows>
+                  </div>
+               </jx:if>
+            </ft:repeater>
+            <!--				<jx:if test="${repeater.getSize() == 0}">
 					<ft:widget id="add-to-subjects"/>
 				</jx:if>-->
-				<ft:widget id="add-to-subject-widgets"/>
-			</ft:class>
-			<ft:class id="subject-widget-row-class">
-				<!-- note: when the user changes the subject type, only the part within the fd:group element gets rewritten
+            <ft:widget id="add-to-subject-widgets"></ft:widget>
+         </ft:class>
+         <ft:class id="subject-widget-row-class">
+            <!-- note: when the user changes the subject type, only the part within the fd:group element gets rewritten
 					so any formatting that depends on the subject type must be wrapped in there -->
-				<div class="row subrepeater">
-					<h6>Subject widgets ${repeaterLoop.index + 1}</h6>
-					<ft:widget-label id="type"/>:
-					<ft:widget id="type">
-						<fi:styling list-type="dropdown" submit-on-change="true"/>
-					</ft:widget>
-					<ft:union id="union">
-						<ft:case id="">
-							<div class="subject-type">Choose a type.</div>
-						</ft:case>
-						<ft:case id="mods_topic">
-							<ft:group id="mods_topic">
-								<div class="subject-type subject-type-topic">
-									<ft:widget id="value">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<ft:new id="common-controls-class"/>
-								</div>
-							</ft:group>
-						</ft:case>
-						<ft:case id="mods_geographic">
-							<ft:group id="mods_geographic">
-								<div class="subject-type subject-type-geographic">
-									<ft:widget id="value">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<ft:new id="common-controls-class"/>
-								</div>
-							</ft:group>
-						</ft:case>
-						<ft:case id="mods_temporal">
-							<ft:group id="mods_temporal">
-								<div class="subject-type subject-type-temporal">
-									<ft:new id="common-subject-date-elements-class"/>
-									<ft:new id="common-controls-class"/>
-								</div>
-							</ft:group>
-						</ft:case>
-						<ft:case id="mods_titleInfo">
-							<ft:group id="mods_titleInfo">
-								<div class="subject-type subject-type-titleInfo">
-									<ft:new id="single-titleInfo-class"/>
-									<ft:new id="common-controls-class"/>
-								</div>
-							</ft:group>
-						</ft:case>
-						<ft:case id="mods_name">
-							<ft:group id="mods_name">
-								<div class="subject-type subject-type-name">
-									<ft:new id="single-name-class"/>
-									<ft:new id="common-controls-class"/>
-								</div>
-							</ft:group>
-						</ft:case>
-						<ft:case id="mods_hierarchicalGeographic">
-							<ft:group id="mods_hierarchicalGeographic">
-								<div class="subject-type subject-type-hierarchicalGeographic">
-									<ft:widget-label id="continent"/>
-									<ft:widget id="continent">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:widget-label id="country"/>
-									<ft:widget id="country">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:widget-label id="province"/>
-									<ft:widget id="province">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:widget-label id="region"/>
-									<ft:widget id="region">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:widget-label id="state"/>
-									<ft:widget id="state">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:widget-label id="territory"/>
-									<ft:widget id="territory">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:widget-label id="county"/>
-									<ft:widget id="county">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:widget-label id="city"/>
-									<ft:widget id="city">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:widget-label id="island"/>
-									<ft:widget id="island">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:widget-label id="area"/>
-									<ft:widget id="area">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:new id="common-controls-class"/>
-								</div>
-							</ft:group>
-						</ft:case>
-						<ft:case id="mods_cartographics">
-							<ft:group id="mods_cartographics">
-								<div class="subject-type subject-type-cartographics">
-									<ft:widget-label id="coordinates"/>
-									<ft:widget id="coordinates">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:widget-label id="scale"/>
-									<ft:widget id="scale">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:widget-label id="projection"/>
-									<ft:widget id="projection">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<ft:new id="common-controls-class"/>
-								</div>
-							</ft:group>
-						</ft:case>
-						<ft:case id="mods_geographicCode">
-							<ft:group id="mods_geographicCode">
-								<div class="subject-type subject-type-geographicCode">
-									<ft:widget id="value">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<br/>
-									<ft:widget-label id="authority"/>
-									<ft:widget id="authority"/>
-									<ft:new id="common-controls-class"/>
-								</div>
-							</ft:group>
-						</ft:case>
-						<ft:case id="mods_occupation">
-							<ft:group id="mods_occupation">
-								<div class="subject-type subject-type-occupation">
-									<ft:widget id="value">
-										<fi:styling size="60"/>
-									</ft:widget>
-									<ft:new id="common-controls-class"/>
-								</div>
-							</ft:group>
-						</ft:case>
-					</ft:union>
-				</div>
-			</ft:class>
+            <div class="row subrepeater">
+               <h6>Subject widgets ${repeaterLoop.index + 1}</h6>
+               <ft:widget-label id="type"></ft:widget-label>: <ft:widget id="type">
+                  <fi:styling list-type="dropdown" submit-on-change="true"></fi:styling>
+               </ft:widget>
+               <ft:union id="union">
+                  <ft:case id="">
+                     <div class="subject-type">Choose a type.</div>
+                  </ft:case>
+                  <ft:case id="mods_topic">
+                     <ft:group id="mods_topic">
+                        <div class="subject-type subject-type-topic">
+                           <ft:widget id="value">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <ft:new id="common-controls-class"></ft:new>
+                        </div>
+                     </ft:group>
+                  </ft:case>
+                  <ft:case id="mods_geographic">
+                     <ft:group id="mods_geographic">
+                        <div class="subject-type subject-type-geographic">
+                           <ft:widget id="value">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <ft:new id="common-controls-class"></ft:new>
+                        </div>
+                     </ft:group>
+                  </ft:case>
+                  <ft:case id="mods_temporal">
+                     <ft:group id="mods_temporal">
+                        <div class="subject-type subject-type-temporal">
+                           <ft:new id="common-subject-date-elements-class"></ft:new>
+                           <ft:new id="common-controls-class"></ft:new>
+                        </div>
+                     </ft:group>
+                  </ft:case>
+                  <ft:case id="mods_titleInfo">
+                     <ft:group id="mods_titleInfo">
+                        <div class="subject-type subject-type-titleInfo">
+                           <ft:new id="single-titleInfo-class"></ft:new>
+                           <ft:new id="common-controls-class"></ft:new>
+                        </div>
+                     </ft:group>
+                  </ft:case>
+                  <ft:case id="mods_name">
+                     <ft:group id="mods_name">
+                        <div class="subject-type subject-type-name">
+                           <ft:new id="single-name-class"></ft:new>
+                           <ft:new id="common-controls-class"></ft:new>
+                        </div>
+                     </ft:group>
+                  </ft:case>
+                  <ft:case id="mods_hierarchicalGeographic">
+                     <ft:group id="mods_hierarchicalGeographic">
+                        <div class="subject-type subject-type-hierarchicalGeographic">
+                           <ft:widget-label id="continent"></ft:widget-label>
+                           <ft:widget id="continent">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:widget-label id="country"></ft:widget-label>
+                           <ft:widget id="country">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:widget-label id="province"></ft:widget-label>
+                           <ft:widget id="province">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:widget-label id="region"></ft:widget-label>
+                           <ft:widget id="region">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:widget-label id="state"></ft:widget-label>
+                           <ft:widget id="state">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:widget-label id="territory"></ft:widget-label>
+                           <ft:widget id="territory">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:widget-label id="county"></ft:widget-label>
+                           <ft:widget id="county">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:widget-label id="city"></ft:widget-label>
+                           <ft:widget id="city">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:widget-label id="island"></ft:widget-label>
+                           <ft:widget id="island">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:widget-label id="area"></ft:widget-label>
+                           <ft:widget id="area">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:new id="common-controls-class"></ft:new>
+                        </div>
+                     </ft:group>
+                  </ft:case>
+                  <ft:case id="mods_cartographics">
+                     <ft:group id="mods_cartographics">
+                        <div class="subject-type subject-type-cartographics">
+                           <ft:widget-label id="coordinates"></ft:widget-label>
+                           <ft:widget id="coordinates">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:widget-label id="scale"></ft:widget-label>
+                           <ft:widget id="scale">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:widget-label id="projection"></ft:widget-label>
+                           <ft:widget id="projection">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <ft:new id="common-controls-class"></ft:new>
+                        </div>
+                     </ft:group>
+                  </ft:case>
+                  <ft:case id="mods_geographicCode">
+                     <ft:group id="mods_geographicCode">
+                        <div class="subject-type subject-type-geographicCode">
+                           <ft:widget id="value">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <br />
+                           <ft:widget-label id="authority"></ft:widget-label>
+                           <ft:widget id="authority"></ft:widget>
+                           <ft:new id="common-controls-class"></ft:new>
+                        </div>
+                     </ft:group>
+                  </ft:case>
+                  <ft:case id="mods_occupation">
+                     <ft:group id="mods_occupation">
+                        <div class="subject-type subject-type-occupation">
+                           <ft:widget id="value">
+                              <fi:styling size="60"></fi:styling>
+                           </ft:widget>
+                           <ft:new id="common-controls-class"></ft:new>
+                        </div>
+                     </ft:group>
+                  </ft:case>
+               </ft:union>
+            </div>
+         </ft:class>
          <ft:class id="single-titleInfo-class">
             <span class="setwidth">
                <ft:widget-label id="type"></ft:widget-label>
@@ -395,19 +394,19 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                <ft:new id="common-language-elements-class"></ft:new>
             </ft:group>
             <br />
-            
+
             <ft:repeater id="partNumbers">
                <div class="block empty-block-${repeater.getSize() == 0}">
                   <h4>
-                     <ft:widget-label id="../partNumbers"/>
+                     <ft:widget-label id="../partNumbers"></ft:widget-label>
                   </h4>
                   <jx:if test="${repeater.getSize() &gt; 0}">
                      <div class="repeater">
                         <ft:repeater-rows>
                            <div class="row toplevel partNumber">
                               <h5>
-                                 <ft:widget-label id="../../partNumbers"/>
-                                 <jx:out value="${repeaterLoop.index + 1}"/>
+                                 <ft:widget-label id="../../partNumbers"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
                               </h5>
                               <span class="setwidth">
                                  <ft:widget-label id="partnumber"></ft:widget-label>
@@ -420,22 +419,22 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                         </ft:repeater-rows>
                      </div>
                   </jx:if>
-                     <ft:widget id="../add-to-names"/>
+                  <ft:widget id="../add-to-names"></ft:widget>
                </div>
             </ft:repeater>
-            
+
             <ft:repeater id="partNames">
                <div class="block empty-block-${repeater.getSize() == 0}">
                   <h4>
-                     <ft:widget-label id="../partNames"/>
+                     <ft:widget-label id="../partNames"></ft:widget-label>
                   </h4>
                   <jx:if test="${repeater.getSize() &gt; 0}">
                      <div class="repeater">
                         <ft:repeater-rows>
                            <div class="row toplevel partName">
                               <h5>
-                                 <ft:widget-label id="../../partNames"/>
-                                 <jx:out value="${repeaterLoop.index + 1}"/>
+                                 <ft:widget-label id="../../partNames"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
                               </h5>
                               <span class="setwidth">
                                  <ft:widget-label id="partname"></ft:widget-label>
@@ -448,12 +447,12 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                         </ft:repeater-rows>
                      </div>
                   </jx:if>
-                  <ft:widget id="../add-to-names"/>
+                  <ft:widget id="../add-to-names"></ft:widget>
                </div>
             </ft:repeater>
-            
-            <ft:new id="common-authority-elements-class"/>
-            
+
+            <ft:new id="common-authority-elements-class"></ft:new>
+
             <span class="setwidth">
                <ft:widget-label id="displayLabel"></ft:widget-label>
             </span>
@@ -484,332 +483,332 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
             <ft:widget id="nameTitleGroup">
                <fi:styling size="80"></fi:styling>
             </ft:widget>
-            
-            
-            
+
+
+
             <ft:new id="common-language-elements-class"></ft:new>
             <ft:new id="common-linking-elements-class"></ft:new>
          </ft:class>
-		   <ft:class id="titleInfo-class">
-				<ft:repeater id="titleInfos">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../titleInfos"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel titleInfo">
-										<h5>
-											<ft:widget-label id="../../titleInfos"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<ft:new id="single-titleInfo-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-titleInfos"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-			<ft:class id="single-name-class">
-				<div class="block">
-					<ft:repeater id="nameparts">
-						<div class="repeater empty-repeater-${repeater.getSize() == 0}">
-							<ft:repeater-rows>
-								<div class="row subrepeater name-namePart">
-									<h6>
-										<ft:widget-label id="../../nameparts"/>
-										<jx:out value="${repeaterLoop.index + 1}"/>
-									</h6>
-									<ft:widget id="type"/>
-									<ft:widget id="value">
-										<fi:styling size="50"/>
-									</ft:widget>
-									<ft:new id="common-controls-class"/>
-								</div>
-							</ft:repeater-rows>
-						</div>
-					</ft:repeater>
-					<!--					<jx:if test="${repeater.getSize() == 0}">-->
-					<ft:widget id="add-to-nameParts"/>
-					<!--					</jx:if>-->
-				</div>
+         <ft:class id="titleInfo-class">
+            <ft:repeater id="titleInfos">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../titleInfos"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel titleInfo">
+                              <h5>
+                                 <ft:widget-label id="../../titleInfos"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <ft:new id="single-titleInfo-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-titleInfos"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <ft:class id="single-name-class">
+            <div class="block">
+               <ft:repeater id="nameparts">
+                  <div class="repeater empty-repeater-${repeater.getSize() == 0}">
+                     <ft:repeater-rows>
+                        <div class="row subrepeater name-namePart">
+                           <h6>
+                              <ft:widget-label id="../../nameparts"></ft:widget-label>
+                              <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                           </h6>
+                           <ft:widget id="type"></ft:widget>
+                           <ft:widget id="value">
+                              <fi:styling size="50"></fi:styling>
+                           </ft:widget>
+                           <ft:new id="common-controls-class"></ft:new>
+                        </div>
+                     </ft:repeater-rows>
+                  </div>
+               </ft:repeater>
+               <!--					<jx:if test="${repeater.getSize() == 0}">-->
+               <ft:widget id="add-to-nameParts"></ft:widget>
+               <!--					</jx:if>-->
+            </div>
 
-			   <!-- roles repeater -->
-			   <div class="block empty-block-${repeater.getSize() == 0}">
-			      <ft:repeater id="roles">
-			         <div class="block empty-repeater-${repeater.getSize() == 0}">
-			            <ft:repeater-rows>
-			               <div class="row subrepeater name-role">
-			                  <h6>
-			                     <ft:widget-label id="../../roles"/>
-			                     <jx:out value="${repeaterLoop.index + 1}"/>
-			                  </h6>
-			                  <!-- roleTerms repeater -->
-			                  <div class="block">
-			                     <ft:repeater id="roleterms">
-			                        <div class="block empty-repeater-${repeater.getSize() == 0}">
-			                           <ft:repeater-rows>
-			                              <div class="row subsubrepeater name-role-roleTerm">
-			                                 <h6>
-			                                    <ft:widget-label id="../../roleterms"/>
-			                                    <jx:out value="${repeaterLoop.index + 1}"/>
-			                                 </h6>
-			                                 <span class="setwidth">
-			                                    <ft:widget-label id="roles_roleterms_value"/>
-			                                 </span>
-			                                 <ft:widget id="roles_roleterms_value">
-			                                    <fi:styling size="40"/>
-			                                 </ft:widget>
-			                                 <br/>
-			                                 <ft:widget-label id="roles_roleterms_type"/>
-			                                 <ft:widget id="roles_roleterms_type"/>
-			                                 <jx:out value="${divider}"/>
-			                                 <ft:widget-label id="roles_roleterms_authority"/>
-			                                 <ft:widget id="roles_roleterms_authority"/>
-			                                 <ft:new id="common-controls-class"/>
-			                              </div>
-			                           </ft:repeater-rows>
-			                        </div>
-			                     </ft:repeater>
-			                     <ft:widget id="roles_add-to-roleTerms"/>
-			                     <ft:new id="common-controls-class"/>
-			                  </div>
-			                  <!-- end of roleTerms repeater -->
-			               </div>
-			            </ft:repeater-rows>
-			         </div>
-			      </ft:repeater>
-			      <ft:widget id="add-to-roles"/>
-			   </div>
-			   <!-- end of roles repeater -->
-			   
-			   <span class="setwidth">
-					<ft:widget-label id="type"/>
-				</span>
-				<ft:widget id="type"/>
-				<br/>
-				<ft:widget-label id="description"/>
-				<br/>
-				<ft:widget id="description">
-					<fi:styling type="textarea" rows="8" cols="60"/>
-				</ft:widget>
-			   
-			   
-			   <span class="setwidth">
-			      <ft:widget-label id="displayLabel"></ft:widget-label>
-			   </span>
-			   <ft:widget id="displayLabel">
-			      <fi:styling size="80"></fi:styling>
-			   </ft:widget>
-			   <span class="setwidth">
-			      <ft:widget-label id="usage"></ft:widget-label>
-			   </span>
-			   <ft:widget id="usage">
-			      <fi:styling size="80"></fi:styling>
-			   </ft:widget>
-			   <span class="setwidth">
-			      <ft:widget-label id="altRepGroup"></ft:widget-label>
-			   </span>
-			   <ft:widget id="altRepGroup">
-			      <fi:styling size="80"></fi:styling>
-			   </ft:widget>
-			   <span class="setwidth">
-			      <ft:widget-label id="nameTitleGroup"></ft:widget-label>
-			   </span>
-			   <ft:widget id="nameTitleGroup">
-			      <fi:styling size="80"></fi:styling>
-			   </ft:widget>
-			   <div class="block">
-			      <ft:repeater id="displayforms">
-			         <div class="repeater empty-repeater-${repeater.getSize() == 0}">
-			            <ft:repeater-rows>
-			               <div class="row subrepeater name-displayForm">
-			                  <h6>
-			                     <ft:widget-label id="../../displayforms"/>
-			                     <jx:out value="${repeaterLoop.index + 1}"/>
-			                  </h6>
-			                  <ft:widget id="type"/>
-			                  <ft:widget id="value">
-			                     <fi:styling size="50"/>
-			                  </ft:widget>
-			                  <ft:new id="common-language-elements-class"/>
-			                  <ft:new id="common-controls-class"/>
-			               </div>
-			            </ft:repeater-rows>
-			         </div>
-			      </ft:repeater>
-			      <!--					<jx:if test="${repeater.getSize() == 0}">-->
-			      <ft:widget id="add-to-displayForms"/>
-			      <!--					</jx:if>-->
-			   </div>
-			   <div class="block">
-			      <ft:repeater id="affiliations">
-			         <div class="repeater empty-repeater-${repeater.getSize() == 0}">
-			            <ft:repeater-rows>
-			               <div class="row subrepeater name-affiliations">
-			                  <h6>
-			                     <ft:widget-label id="../../affiliations"/>
-			                     <jx:out value="${repeaterLoop.index + 1}"/>
-			                  </h6>
-			                  <ft:widget id="type"/>
-			                  <ft:widget id="value">
-			                     <fi:styling size="50"/>
-			                  </ft:widget>
-			                  <ft:new id="common-language-elements-class"/>
-			                  <ft:new id="common-controls-class"/>
-			               </div>
-			            </ft:repeater-rows>
-			         </div>
-			      </ft:repeater>
-			      <!--					<jx:if test="${repeater.getSize() == 0}">-->
-			      <ft:widget id="add-to-affiliations"/>
-			      <!--					</jx:if>-->
-			   </div>
-			   <ft:new id="common-authority-elements-class"/>
-				<ft:new id="common-language-elements-class"/>
-				<ft:new id="common-linking-elements-class"/>
-			</ft:class>
-			<ft:class id="name-class">
-				<ft:repeater id="names">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../names"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel name">
-										<h5>
-											<ft:widget-label id="../../names"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<ft:new id="single-name-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-names"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-			<ft:class id="typeOfResource-class">
-				<ft:repeater id="typeOfResources">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../typeOfResources"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel typeOfResource">
-										<h5>
-											<ft:widget-label id="../../typeOfResources"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<ft:widget-label id="type"/>
-										<ft:widget id="type"/>
-										<jx:out value="${divider}"/>
-										<ft:widget-label id="collection"/>
-										<ft:widget id="collection">
-											<fi:styling type="checkbox"/>
-										</ft:widget>
-										<jx:out value="${divider}"/>
-										<ft:widget-label id="manuscript"/>
-										<ft:widget id="manuscript">
-											<fi:styling type="checkbox"/>
-										</ft:widget>
-									   <span class="setwidth">
-									      <ft:widget-label id="displayLabel"></ft:widget-label>
-									   </span>
-									   <ft:widget id="displayLabel">
-									      <fi:styling size="80"></fi:styling>
-									   </ft:widget>
-									   <span class="setwidth">
-									      <ft:widget-label id="usage"></ft:widget-label>
-									   </span>
-									   <ft:widget id="usage">
-									      <fi:styling size="80"></fi:styling>
-									   </ft:widget>
-									   <span class="setwidth">
-									      <ft:widget-label id="altRepGroup"></ft:widget-label>
-									   </span>
-									   <ft:widget id="altRepGroup">
-									      <fi:styling size="80"></fi:styling>
-									   </ft:widget>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-typeOfResources"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-			<ft:class id="genre-class">
-				<ft:repeater id="genres">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../genres"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel genre">
-										<h5>
-											<ft:widget-label id="../../genres"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<ft:widget-label id="genre"/>
-										<ft:widget id="genre">
-											<fi:styling size="80"/>
-										</ft:widget>
-										<jx:out value="${divider}"/>
-										<ft:widget-label id="authority"/>
-										<ft:widget id="authority"/>
-									   <span class="setwidth">
-									      <ft:widget-label id="displayLabel"></ft:widget-label>
-									   </span>
-									   <ft:widget id="displayLabel">
-									      <fi:styling size="80"></fi:styling>
-									   </ft:widget>
-									   <span class="setwidth">
-									      <ft:widget-label id="usage"></ft:widget-label>
-									   </span>
-									   <ft:widget id="usage">
-									      <fi:styling size="80"></fi:styling>
-									   </ft:widget>
-									   <span class="setwidth">
-									      <ft:widget-label id="altRepGroup"></ft:widget-label>
-									   </span>
-									   <ft:widget id="altRepGroup">
-									      <fi:styling size="80"></fi:styling>
-									   </ft:widget>
-									   <ft:new id="common-authority-elements-class"/>
-										<ft:new id="common-language-elements-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-genres"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-			<ft:class id="originInfo-class">
-				<ft:repeater id="originInfos">
+            <!-- roles repeater -->
+            <div class="block empty-block-${repeater.getSize() == 0}">
+               <ft:repeater id="roles">
+                  <div class="block empty-repeater-${repeater.getSize() == 0}">
+                     <ft:repeater-rows>
+                        <div class="row subrepeater name-role">
+                           <h6>
+                              <ft:widget-label id="../../roles"></ft:widget-label>
+                              <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                           </h6>
+                           <!-- roleTerms repeater -->
+                           <div class="block">
+                              <ft:repeater id="roleterms">
+                                 <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                    <ft:repeater-rows>
+                                       <div class="row subsubrepeater name-role-roleTerm">
+                                          <h6>
+                                             <ft:widget-label id="../../roleterms"></ft:widget-label>
+                                             <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                          </h6>
+                                          <span class="setwidth">
+                                             <ft:widget-label id="roles_roleterms_value"></ft:widget-label>
+                                          </span>
+                                          <ft:widget id="roles_roleterms_value">
+                                             <fi:styling size="40"></fi:styling>
+                                          </ft:widget>
+                                          <br />
+                                          <ft:widget-label id="roles_roleterms_type"></ft:widget-label>
+                                          <ft:widget id="roles_roleterms_type"></ft:widget>
+                                          <jx:out value="${divider}"></jx:out>
+                                          <ft:widget-label id="roles_roleterms_authority"></ft:widget-label>
+                                          <ft:widget id="roles_roleterms_authority"></ft:widget>
+                                          <ft:new id="common-controls-class"></ft:new>
+                                       </div>
+                                    </ft:repeater-rows>
+                                 </div>
+                              </ft:repeater>
+                              <ft:widget id="roles_add-to-roleTerms"></ft:widget>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                           <!-- end of roleTerms repeater -->
+                        </div>
+                     </ft:repeater-rows>
+                  </div>
+               </ft:repeater>
+               <ft:widget id="add-to-roles"></ft:widget>
+            </div>
+            <!-- end of roles repeater -->
+
+            <span class="setwidth">
+               <ft:widget-label id="type"></ft:widget-label>
+            </span>
+            <ft:widget id="type"></ft:widget>
+            <br />
+            <ft:widget-label id="description"></ft:widget-label>
+            <br />
+            <ft:widget id="description">
+               <fi:styling type="textarea" rows="8" cols="60"></fi:styling>
+            </ft:widget>
+
+
+            <span class="setwidth">
+               <ft:widget-label id="displayLabel"></ft:widget-label>
+            </span>
+            <ft:widget id="displayLabel">
+               <fi:styling size="80"></fi:styling>
+            </ft:widget>
+            <span class="setwidth">
+               <ft:widget-label id="usage"></ft:widget-label>
+            </span>
+            <ft:widget id="usage">
+               <fi:styling size="80"></fi:styling>
+            </ft:widget>
+            <span class="setwidth">
+               <ft:widget-label id="altRepGroup"></ft:widget-label>
+            </span>
+            <ft:widget id="altRepGroup">
+               <fi:styling size="80"></fi:styling>
+            </ft:widget>
+            <span class="setwidth">
+               <ft:widget-label id="nameTitleGroup"></ft:widget-label>
+            </span>
+            <ft:widget id="nameTitleGroup">
+               <fi:styling size="80"></fi:styling>
+            </ft:widget>
+            <div class="block">
+               <ft:repeater id="displayforms">
+                  <div class="repeater empty-repeater-${repeater.getSize() == 0}">
+                     <ft:repeater-rows>
+                        <div class="row subrepeater name-displayForm">
+                           <h6>
+                              <ft:widget-label id="../../displayforms"></ft:widget-label>
+                              <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                           </h6>
+                           <ft:widget id="type"></ft:widget>
+                           <ft:widget id="value">
+                              <fi:styling size="50"></fi:styling>
+                           </ft:widget>
+                           <ft:new id="common-language-elements-class"></ft:new>
+                           <ft:new id="common-controls-class"></ft:new>
+                        </div>
+                     </ft:repeater-rows>
+                  </div>
+               </ft:repeater>
+               <!--					<jx:if test="${repeater.getSize() == 0}">-->
+               <ft:widget id="add-to-displayForms"></ft:widget>
+               <!--					</jx:if>-->
+            </div>
+            <div class="block">
+               <ft:repeater id="affiliations">
+                  <div class="repeater empty-repeater-${repeater.getSize() == 0}">
+                     <ft:repeater-rows>
+                        <div class="row subrepeater name-affiliations">
+                           <h6>
+                              <ft:widget-label id="../../affiliations"></ft:widget-label>
+                              <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                           </h6>
+                           <ft:widget id="type"></ft:widget>
+                           <ft:widget id="value">
+                              <fi:styling size="50"></fi:styling>
+                           </ft:widget>
+                           <ft:new id="common-language-elements-class"></ft:new>
+                           <ft:new id="common-controls-class"></ft:new>
+                        </div>
+                     </ft:repeater-rows>
+                  </div>
+               </ft:repeater>
+               <!--					<jx:if test="${repeater.getSize() == 0}">-->
+               <ft:widget id="add-to-affiliations"></ft:widget>
+               <!--					</jx:if>-->
+            </div>
+            <ft:new id="common-authority-elements-class"></ft:new>
+            <ft:new id="common-language-elements-class"></ft:new>
+            <ft:new id="common-linking-elements-class"></ft:new>
+         </ft:class>
+         <ft:class id="name-class">
+            <ft:repeater id="names">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../names"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel name">
+                              <h5>
+                                 <ft:widget-label id="../../names"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <ft:new id="single-name-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-names"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <ft:class id="typeOfResource-class">
+            <ft:repeater id="typeOfResources">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../typeOfResources"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel typeOfResource">
+                              <h5>
+                                 <ft:widget-label id="../../typeOfResources"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <ft:widget-label id="type"></ft:widget-label>
+                              <ft:widget id="type"></ft:widget>
+                              <jx:out value="${divider}"></jx:out>
+                              <ft:widget-label id="collection"></ft:widget-label>
+                              <ft:widget id="collection">
+                                 <fi:styling type="checkbox"></fi:styling>
+                              </ft:widget>
+                              <jx:out value="${divider}"></jx:out>
+                              <ft:widget-label id="manuscript"></ft:widget-label>
+                              <ft:widget id="manuscript">
+                                 <fi:styling type="checkbox"></fi:styling>
+                              </ft:widget>
+                              <span class="setwidth">
+                                 <ft:widget-label id="displayLabel"></ft:widget-label>
+                              </span>
+                              <ft:widget id="displayLabel">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <span class="setwidth">
+                                 <ft:widget-label id="usage"></ft:widget-label>
+                              </span>
+                              <ft:widget id="usage">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <span class="setwidth">
+                                 <ft:widget-label id="altRepGroup"></ft:widget-label>
+                              </span>
+                              <ft:widget id="altRepGroup">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-typeOfResources"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <ft:class id="genre-class">
+            <ft:repeater id="genres">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../genres"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel genre">
+                              <h5>
+                                 <ft:widget-label id="../../genres"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <ft:widget-label id="genre"></ft:widget-label>
+                              <ft:widget id="genre">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <jx:out value="${divider}"></jx:out>
+                              <ft:widget-label id="authority"></ft:widget-label>
+                              <ft:widget id="authority"></ft:widget>
+                              <span class="setwidth">
+                                 <ft:widget-label id="displayLabel"></ft:widget-label>
+                              </span>
+                              <ft:widget id="displayLabel">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <span class="setwidth">
+                                 <ft:widget-label id="usage"></ft:widget-label>
+                              </span>
+                              <ft:widget id="usage">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <span class="setwidth">
+                                 <ft:widget-label id="altRepGroup"></ft:widget-label>
+                              </span>
+                              <ft:widget id="altRepGroup">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <ft:new id="common-authority-elements-class"></ft:new>
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-genres"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <ft:class id="originInfo-class">
+            <ft:repeater id="originInfos">
                <div class="block empty-block-${repeater.getSize() == 0}">
                   <h4>
                      <ft:widget-label id="../originInfos"></ft:widget-label>
@@ -974,7 +973,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                                              <ft:widget id="edition">
                                                 <fi:styling size="40"></fi:styling>
                                              </ft:widget>
-                                             <fb:new id="common-authority-elements-class"></fb:new>
+                                             <ft:new id="common-authority-elements-class"></ft:new>
                                              <ft:new id="common-language-elements-class"></ft:new>
                                              <ft:new id="common-controls-class"></ft:new>
                                           </div>
@@ -992,135 +991,135 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                   </jx:if>
                   <ft:widget id="../add-to-originInfos"></ft:widget>
                </div>
-				   <ft:new id="common-language-elements-class"/>
-				</ft:repeater>
-			</ft:class>
-			<ft:class id="language-class">
-				<ft:repeater id="languages">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../languages"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel language">
-										<h5>
-											<ft:widget-label id="../../languages"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-									   <span class="setwidth">
-									      <ft:widget-label id="objectPart"></ft:widget-label>
-									   </span>
-									   <ft:widget id="objectPart">
-									      <fi:styling size="80"></fi:styling>
-									   </ft:widget>
-									   <span class="setwidth">
-									      <ft:widget-label id="displayLabel"></ft:widget-label>
-									   </span>
-									   <ft:widget id="usage">
-									      <fi:styling size="80"></fi:styling>
-									   </ft:widget>
-									   <span class="setwidth">
-									      <ft:widget-label id="usage"></ft:widget-label>
-									   </span>
-									   <ft:widget id="displayLabel">
-									      <fi:styling size="80"></fi:styling>
-									   </ft:widget>
-									   <span class="setwidth">
-									      <ft:widget-label id="altRepGroup"></ft:widget-label>
-									   </span>
-									   <ft:widget id="altRepGroup">
-									      <fi:styling size="80"></fi:styling>
-									   </ft:widget>
-										<!-- languageterms repeater -->
-										<div class="block">
-											<ft:repeater id="languageterms">
-												<div class="block empty-repeater-${repeater.getSize() == 0}">
-													<ft:repeater-rows>
-														<div class="row subrepeater language-languageTerm">
-															<h6>
-																<ft:widget-label id="../../languageterms"/>
-																<jx:out value="${repaterLoop.index + 1}"/>
-															</h6>
-															<span class="setwidth">
-																<ft:widget-label id="languageterms_language"/>
-															</span>
-															<ft:widget id="languageterms_language">
-																<fi:styling size="40"/>
-															</ft:widget>
-															<br/>
-															<ft:widget-label id="languageterms_type"/>
-															<ft:widget id="languageterms_type"/>
-															<jx:out value="${divider}"/>
-															<ft:widget-label id="languageterms_authority"/>
-															<ft:widget id="languageterms_authority"/>
-														   <ft:new id="common-termType-elements-class"/>
-														   <ft:new id="common-languageAuthority-elements-class"/>
-														   <ft:new id="common-language-elements-class"/>
-															<ft:new id="common-controls-class"/>
-														</div>
-													</ft:repeater-rows>
-												</div>
-											</ft:repeater>
-											<ft:widget id="add-to-languageTerms"/>
-										</div>
-										<!-- end of languageterms repeater -->
-									   <!-- scriptterms repeater -->
-									   <div class="block">
-									      <ft:repeater id="scriptterms">
-									         <div class="block empty-repeater-${repeater.getSize() == 0}">
-									            <ft:repeater-rows>
-									               <div class="row subrepeater script-scriptTerm">
-									                  <h6>
-									                     <ft:widget-label id="../../scriptterms"/>
-									                     <jx:out value="${repeaterLoop.index + 1}"/>
-									                  </h6>
-									                  <span class="setwidth">
-									                     <ft:widget-label id="scriptterms_script"/>
-									                  </span>
-									                  <ft:widget id="scriptterms_script">
-									                     <fi:styling size="40"/>
-									                  </ft:widget>
-									                  <br/>
-									                  <ft:widget-label id="scriptterms_type"/>
-									                  <ft:widget id="scriptterms_type"/>
-									                  <jx:out value="${divider}"/>
-									                  <ft:widget-label id="scriptterms_authority"/>
-									                  <ft:widget id="scriptterms_authority"/>
-									                  <ft:new id="common-termType-elements-class"/>
-									                  <ft:new id="common-Authority-elements-class"/>
-									                  <ft:new id="common-script-elements-class"/>
-									                  <ft:new id="common-controls-class"/>
-									               </div>
-									            </ft:repeater-rows>
-									         </div>
-									      </ft:repeater>
-									      <ft:widget id="add-to-scriptTerms"/>
-									   </div>
-									   <!-- end of scriptterms repeater -->
-									   <ft:new id="common-language-elements-class"/>
-									   <ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-languages"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-			<ft:class id="physicalDescription-class">
-				<ft:repeater id="physicalDescriptions">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../physicalDescriptions"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel physicalDescription">
+               <ft:new id="common-language-elements-class"></ft:new>
+            </ft:repeater>
+         </ft:class>
+         <ft:class id="language-class">
+            <ft:repeater id="languages">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../languages"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel language">
+                              <h5>
+                                 <ft:widget-label id="../../languages"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <span class="setwidth">
+                                 <ft:widget-label id="objectPart"></ft:widget-label>
+                              </span>
+                              <ft:widget id="objectPart">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <span class="setwidth">
+                                 <ft:widget-label id="displayLabel"></ft:widget-label>
+                              </span>
+                              <ft:widget id="usage">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <span class="setwidth">
+                                 <ft:widget-label id="usage"></ft:widget-label>
+                              </span>
+                              <ft:widget id="displayLabel">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <span class="setwidth">
+                                 <ft:widget-label id="altRepGroup"></ft:widget-label>
+                              </span>
+                              <ft:widget id="altRepGroup">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <!-- languageterms repeater -->
+                              <div class="block">
+                                 <ft:repeater id="languageterms">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater language-languageTerm">
+                                             <h6>
+                                                <ft:widget-label id="../../languageterms"></ft:widget-label>
+                                                <jx:out value="${repaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <span class="setwidth">
+                                                <ft:widget-label id="languageterms_language"></ft:widget-label>
+                                             </span>
+                                             <ft:widget id="languageterms_language">
+                                                <fi:styling size="40"></fi:styling>
+                                             </ft:widget>
+                                             <br />
+                                             <ft:widget-label id="languageterms_type"></ft:widget-label>
+                                             <ft:widget id="languageterms_type"></ft:widget>
+                                             <jx:out value="${divider}"></jx:out>
+                                             <ft:widget-label id="languageterms_authority"></ft:widget-label>
+                                             <ft:widget id="languageterms_authority"></ft:widget>
+                                             <ft:new id="common-termType-elements-class"></ft:new>
+                                             <ft:new id="common-languageAuthority-elements-class"></ft:new>
+                                             <ft:new id="common-language-elements-class"></ft:new>
+                                             <ft:new id="common-controls-class"></ft:new>
+                                          </div>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                                 <ft:widget id="add-to-languageTerms"></ft:widget>
+                              </div>
+                              <!-- end of languageterms repeater -->
+                              <!-- scriptterms repeater -->
+                              <div class="block">
+                                 <ft:repeater id="scriptterms">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater script-scriptTerm">
+                                             <h6>
+                                                <ft:widget-label id="../../scriptterms"></ft:widget-label>
+                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <span class="setwidth">
+                                                <ft:widget-label id="scriptterms_script"></ft:widget-label>
+                                             </span>
+                                             <ft:widget id="scriptterms_script">
+                                                <fi:styling size="40"></fi:styling>
+                                             </ft:widget>
+                                             <br />
+                                             <ft:widget-label id="scriptterms_type"></ft:widget-label>
+                                             <ft:widget id="scriptterms_type"></ft:widget>
+                                             <jx:out value="${divider}"></jx:out>
+                                             <ft:widget-label id="scriptterms_authority"></ft:widget-label>
+                                             <ft:widget id="scriptterms_authority"></ft:widget>
+                                             <ft:new id="common-termType-elements-class"></ft:new>
+                                             <ft:new id="common-Authority-elements-class"></ft:new>
+                                             <ft:new id="common-script-elements-class"></ft:new>
+                                             <ft:new id="common-controls-class"></ft:new>
+                                          </div>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                                 <ft:widget id="add-to-scriptTerms"></ft:widget>
+                              </div>
+                              <!-- end of scriptterms repeater -->
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-languages"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <ft:class id="physicalDescription-class">
+            <ft:repeater id="physicalDescriptions">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../physicalDescriptions"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel physicalDescription">
                               <h5>
                                  <ft:widget-label id="../../physicalDescriptions"></ft:widget-label>
                                  <jx:out value="${repeaterLoop.index + 1}"></jx:out>
@@ -1155,25 +1154,22 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                                              <ft:widget id="physicaldescription_type">
                                                 <fi:styling size="40"></fi:styling>
                                              </ft:widget>
-                                             <ft:new id="common-authority-elements-class"/>
-                                             <ft:new id="common-language-elements-class"/>
+                                             <ft:new id="common-authority-elements-class"></ft:new>
+                                             <ft:new id="common-language-elements-class"></ft:new>
                                           </div>
                                        </ft:repeater-rows>
                                     </div>
                                  </ft:repeater>
                               </div>
-									   
                               <span class="setwidth-wide">
                                  <ft:widget-label id="reformattingquality"></ft:widget-label>
                               </span>
                               <ft:widget id="reformattingquality"></ft:widget>
-
-									   <div class="block">
-									      <ft:repeater id="internetmediatypes">
-									         <div class="block empty-repeater-${repeater.getSize() == 0}">
-									            <ft:repeater-rows>
-									               <div
-                                             class="row subrepeater physicaldescription-internetmediatype">
+                              <div class="block">
+                                 <ft:repeater id="internetmediatypes">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater physicaldescription-internetmediatype">
                                              <h6>
                                                 <ft:widget-label id="../../extent"></ft:widget-label>
                                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
@@ -1184,43 +1180,41 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                                              <ft:widget id="physicaldescription-internetmediatype">
                                                 <fi:styling size="40"></fi:styling>
                                              </ft:widget>
-									                  <ft:new id="common-language-elements-class"></ft:new>
+                                             <ft:new id="common-language-elements-class"></ft:new>
                                           </div>
-									            </ft:repeater-rows>
-									         </div>
-									      </ft:repeater>
-									   </div>
-
-									   <div class="block">
-									      <ft:repeater id="extents">
-									         <div class="block empty-repeater-${repeater.getSize() == 0}">
-									            <ft:repeater-rows>
-									               <div
-									                  class="row subrepeater physicaldescription-extent">
-									                  <h6>
-									                     <ft:widget-label id="../../extent"></ft:widget-label>
-									                     <jx:out value="${repeaterLoop.index + 1}"></jx:out>
-									                  </h6>
-									                  <span class="setwidth-wide">
-									                     <ft:widget-label id="physicaldescription-extent"></ft:widget-label>
-									                  </span>
-									                  <ft:widget id="physicaldescription-extent">
-									                     <fi:styling size="40"></fi:styling>
-									                  </ft:widget>
-									                  <span class="setwidth-wide">
-									                     <ft:widget-label id="physicaldescription-supplied"></ft:widget-label>
-									                  </span>
-									                  <ft:widget id="physicaldescription-supplied">
-									                     <fi:styling size="40"></fi:styling>
-									                  </ft:widget>
-									                  <ft:new id="common-language-elements-class"></ft:new>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                              </div>
+                              <div class="block">
+                                 <ft:repeater id="extents">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater physicaldescription-extent">
+                                             <h6>
+                                                <ft:widget-label id="../../extent"></ft:widget-label>
+                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <span class="setwidth-wide">
+                                                <ft:widget-label id="physicaldescription-extent"></ft:widget-label>
+                                             </span>
+                                             <ft:widget id="physicaldescription-extent">
+                                                <fi:styling size="40"></fi:styling>
+                                             </ft:widget>
+                                             <span class="setwidth-wide">
+                                                <ft:widget-label id="physicaldescription-supplied"></ft:widget-label>
+                                             </span>
+                                             <ft:widget id="physicaldescription-supplied">
+                                                <fi:styling size="40"></fi:styling>
+                                             </ft:widget>
+                                             <ft:new id="common-language-elements-class"></ft:new>
                                           </div>
-									            </ft:repeater-rows>
-									         </div>
-									      </ft:repeater>
-									   </div>
-									   <span class="setwidth-wide"><ft:widget-label id="digitalorigin"></ft:widget-label></span>
-									   <ft:widget id="digitalorigin"><fi:styling size="40"></fi:styling></ft:widget>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                              </div>
+                              <span class="setwidth-wide"><ft:widget-label id="digitalorigin"></ft:widget-label></span>
+                              <ft:widget id="digitalorigin"><fi:styling size="40"></fi:styling></ft:widget>
                               <!-- notes repeater -->
                               <div class="block">
                                  <ft:repeater id="notes">
@@ -1245,1066 +1239,1244 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                               <ft:new id="common-language-elements-class"></ft:new>
                               <ft:new id="common-controls-class"></ft:new>
                            </div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-physicalDescriptions"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-			<ft:class id="abstract-class">
-				<ft:repeater id="abstracts">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../abstracts"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel abstract">
-										<h5>
-											<ft:widget-label id="../../abstracts"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-									   <span class="setwidth-wide"><ft:widget-label id="shareable"></ft:widget-label></span>
-									   <ft:widget id="shareable"><fi:styling size="40"></fi:styling></ft:widget>
-									   <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
-									   <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
-										<ft:new id="common-textfield-elements-class"/>
-										<ft:new id="common-language-elements-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-abstracts"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-		   <!-- ************************************************
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-physicalDescriptions"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <ft:class id="abstract-class">
+            <ft:repeater id="abstracts">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../abstracts"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel abstract">
+                              <h5>
+                                 <ft:widget-label id="../../abstracts"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <span class="setwidth-wide"><ft:widget-label id="shareable"></ft:widget-label></span>
+                              <ft:widget id="shareable"><fi:styling size="40"></fi:styling></ft:widget>
+                              <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+                              <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+                              <ft:new id="common-textfield-elements-class"></ft:new>
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-abstracts"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <!-- ************************************************
 			   mods:tableOfContents
 		    ***************************************************-->
-		   <ft:class id="tableOfContents-class">
-				<ft:repeater id="tableOfContentss">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../tableOfContentss"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel tableOfContents">
-										<h5>
-											<ft:widget-label id="../../tableOfContentss"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-									   <span class="setwidth-wide"><ft:widget-label id="shareable"></ft:widget-label></span>
-									   <ft:widget id="shareable"><fi:styling size="40"></fi:styling></ft:widget>
-									   <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
-									   <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
-										<ft:new id="common-textfield-elements-class"/>
-										<ft:new id="common-language-elements-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-tableOfContentss"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-		   <!-- ************************************************
+         <ft:class id="tableOfContents-class">
+            <ft:repeater id="tableOfContentss">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../tableOfContentss"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel tableOfContents">
+                              <h5>
+                                 <ft:widget-label id="../../tableOfContentss"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <span class="setwidth-wide"><ft:widget-label id="shareable"></ft:widget-label></span>
+                              <ft:widget id="shareable"><fi:styling size="40"></fi:styling></ft:widget>
+                              <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+                              <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+                              <ft:new id="common-textfield-elements-class"></ft:new>
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-tableOfContentss"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <!-- ************************************************
 			   mods:targetAudience
 		    ***************************************************-->
-		   <ft:class id="targetAudience-class">
-				<ft:repeater id="targetAudiences">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../targetAudiences"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel targetAudience">
-										<h5>
-											<ft:widget-label id="../../targetAudiences"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<ft:widget-label id="value"/>
-										<ft:widget id="value">
-											<fi:styling size="40"/>
-										</ft:widget>
-									   <span class="setwidth-wide"><ft:widget-label id="displayLabel"></ft:widget-label></span>
-									   <ft:widget id="displayLabel"><fi:styling size="40"></fi:styling></ft:widget>
-									   <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
-									   <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
-									   <ft:new id="common-authority-elements-class"/>
-									   <ft:new id="common-language-elements-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-targetAudiences"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-		   <!-- ************************************************
+         <ft:class id="targetAudience-class">
+            <ft:repeater id="targetAudiences">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../targetAudiences"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel targetAudience">
+                              <h5>
+                                 <ft:widget-label id="../../targetAudiences"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <ft:widget-label id="value"></ft:widget-label>
+                              <ft:widget id="value">
+                                 <fi:styling size="40"></fi:styling>
+                              </ft:widget>
+                              <span class="setwidth-wide"><ft:widget-label id="displayLabel"></ft:widget-label></span>
+                              <ft:widget id="displayLabel"><fi:styling size="40"></fi:styling></ft:widget>
+                              <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+                              <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+                              <ft:new id="common-authority-elements-class"></ft:new>
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-targetAudiences"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <!-- ************************************************
 			   mods:note
 		    ***************************************************-->
-		   <ft:class id="note-class">
-				<ft:repeater id="notes">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../notes"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel note">
-										<h5>
-											<ft:widget-label id="../../notes"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-									   <span class="setwidth-wide"><ft:widget-label id="modsID"></ft:widget-label></span>
-									   <ft:widget id="modsID"><fi:styling size="40"></fi:styling></ft:widget>
-									   <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
-									   <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
-										<ft:new id="common-textfield-elements-class"/>
-										<ft:new id="common-language-elements-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-notes"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-		   <!-- ************************************************
+         <ft:class id="note-class">
+            <ft:repeater id="notes">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../notes"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel note">
+                              <h5>
+                                 <ft:widget-label id="../../notes"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <span class="setwidth-wide"><ft:widget-label id="modsID"></ft:widget-label></span>
+                              <ft:widget id="modsID"><fi:styling size="40"></fi:styling></ft:widget>
+                              <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+                              <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+                              <ft:new id="common-textfield-elements-class"></ft:new>
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-notes"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <!-- ************************************************
 			   mods:subject
 		    ***************************************************-->
-		   <ft:class id="subject-class">
-				<ft:repeater id="subjects">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../subjects"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel subject">
-										<h5>
-											<ft:widget-label id="../../subjects"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-									   <span class="setwidth-wide"><ft:widget-label id="displayLabel"></ft:widget-label></span>
-									   <ft:widget id="displayLabel"><fi:styling size="40"></fi:styling></ft:widget>
-									   <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
-									   <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
-									   <span class="setwidth-wide"><ft:widget-label id="usage"></ft:widget-label></span>
-									   <ft:widget id="usage"><fi:styling size="40"></fi:styling></ft:widget>
-									   <br/>
-										<div class="block">
-											<ft:new id="subject-widgets-class"/>
-										</div>
-									   <ft:new id="common-authority-elements-class"/>
-									   <ft:new id="common-language-elements-class"/>
-										<ft:new id="common-linking-elements-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-subjects"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-		   <!-- **********************************************************************
+         <ft:class id="subject-class">
+            <ft:repeater id="subjects">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../subjects"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel subject">
+                              <h5>
+                                 <ft:widget-label id="../../subjects"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <span class="setwidth-wide"><ft:widget-label id="displayLabel"></ft:widget-label></span>
+                              <ft:widget id="displayLabel"><fi:styling size="40"></fi:styling></ft:widget>
+                              <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+                              <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+                              <span class="setwidth-wide"><ft:widget-label id="usage"></ft:widget-label></span>
+                              <ft:widget id="usage"><fi:styling size="40"></fi:styling></ft:widget>
+                              <br />
+                              <div class="block">
+                                 <ft:new id="subject-widgets-class"></ft:new>
+                              </div>
+                              <ft:new id="common-authority-elements-class"></ft:new>
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-linking-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-subjects"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <!-- **********************************************************************
    			classification
 	     	***************************************************************************-->
-			<ft:class id="classification-class">
-				<ft:repeater id="classifications">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../classifications"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel classification">
-										<h5>
-											<ft:widget-label id="../../classifications"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-									   <span class="setwidth-wide"><ft:widget-label id="displayLabel"></ft:widget-label></span>
-									   <ft:widget id="displayLabel"><fi:styling size="40"></fi:styling></ft:widget>
-									   <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
-									   <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
-									   <span class="setwidth-wide"><ft:widget-label id="usage"></ft:widget-label></span>
-									   <ft:widget id="usage"><fi:styling size="40"></fi:styling></ft:widget>
-									   <br/>
-										<jx:out value="${divider}"/>
-										<ft:widget-label id="edition"/>
-										<ft:widget id="edition"/>
-										<br/>
-										<ft:widget-label id="value"/>
-										<ft:widget id="value">
-											<fi:styling size="80"/>
-										</ft:widget>
-									   <ft:new id="common-authority-elements-class"/>
-									   <ft:new id="common-language-elements-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-classifications"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-		   <!-- **********************************************************************
+         <ft:class id="classification-class">
+            <ft:repeater id="classifications">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../classifications"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel classification">
+                              <h5>
+                                 <ft:widget-label id="../../classifications"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <span class="setwidth-wide"><ft:widget-label id="displayLabel"></ft:widget-label></span>
+                              <ft:widget id="displayLabel"><fi:styling size="40"></fi:styling></ft:widget>
+                              <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+                              <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+                              <span class="setwidth-wide"><ft:widget-label id="usage"></ft:widget-label></span>
+                              <ft:widget id="usage"><fi:styling size="40"></fi:styling></ft:widget>
+                              <br />
+                              <jx:out value="${divider}"></jx:out>
+                              <ft:widget-label id="edition"></ft:widget-label>
+                              <ft:widget id="edition"></ft:widget>
+                              <br />
+                              <ft:widget-label id="value"></ft:widget-label>
+                              <ft:widget id="value">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <ft:new id="common-authority-elements-class"></ft:new>
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-classifications"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <!-- **********************************************************************
 			   identifier
    		***************************************************************************-->
-		   <!-- note: id="identifiers" doesn't work, seems to be reserved word -->
-		   <ft:class id="xidentifier-class">
-				<ft:repeater id="xidentifiers">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../xidentifiers"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel identifier">
-										<h5>
-											<ft:widget-label id="../../xidentifiers"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<ft:widget-label id="type"/>
-										<ft:widget id="type"/>
-										<jx:out value="${divider}"/>
-										<ft:widget-label id="displayLabel"/>
-										<ft:widget id="displayLabel"/>
-										<jx:out value="${divider}"/>
-									   <span class="setwidth-wide"><ft:widget-label id="invalid"></ft:widget-label></span>
-									   <ft:widget id="invalid"><fi:styling size="40"></fi:styling></ft:widget>
-									   <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
-									   <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
-										<br/>
-										<ft:widget-label id="value"/>
-										<ft:widget id="value">
-											<fi:styling size="80"/>
-										</ft:widget>
-										<ft:new id="common-language-elements-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-xidentifiers"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-			<ft:class id="location-class">
-				<ft:repeater id="locations">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../locations"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel location">
-										<h5>
-											<ft:widget-label id="../../locations"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<div class="block">
-											<ft:widget-label id="physicalLocation"/>
-											<ft:widget id="physicalLocation">
-												<fi:styling type="textarea" rows="3" cols="80"/>
-											</ft:widget>
-											<br/>
-											<!-- urls repeater -->
-											<div class="block">
-												<ft:repeater id="urls">
-													<div class="block empty-repeater-${repeater.getSize() == 0}">
-														<ft:repeater-rows>
-															<div class="row subrepeater recordInfo-url">
-																<h6>
-																	<ft:widget-label id="../../urls"/>
-																	<jx:out value="${repeaterLoop.index + 1}"/>
-																</h6>
-																<ft:widget-label id="url"/>
-																<ft:widget id="url">
-																	<fi:styling size="80"/>
-																</ft:widget>
-																<br/>
-																<ft:widget-label id="access"/>
-																<ft:widget id="access"/>
-																<jx:out value="${divider}"/>
-																<ft:widget-label id="usage"/>
-																<ft:widget id="usage"/>
-																<br/>
-																<ft:widget-label id="note"/>
-																<ft:widget id="note">
-																	<fi:styling size="80"/>
-																</ft:widget>
-																<br/>
-																
-																
-																<ft:widget-label id="dateLastAccessed"/>
-																<ft:widget id="dateLastAccessed"/>
-																<jx:out value="${divider}"/>
-																<ft:widget-label id="url-displayLabel"/>
-																<ft:widget id="url-displayLabel"/>
-																<ft:new id="common-controls-class"/>
-															</div>
-														</ft:repeater-rows>
-													</div>
-												</ft:repeater>
-												<ft:widget id="add-to-urls"/>
-
-							
-													<ft:widget id="fullsize">
-														<fi:styling type="imglink"/>
-													</ft:widget>
-													<ft:widget id="thumbnail">
-														<fi:styling type="img"/>
-													</ft:widget>
-
-											</div>
-											<ft:widget-label id="authority"/>
-											<ft:widget id="authority"/>
-											<jx:out value="${divider}"/>
-											<ft:widget-label id="phys-displayLabel"/>
-											<ft:widget id="phys-displayLabel"/>
-											<ft:new id="common-language-elements-class"/>
-										</div>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-locations"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-			<ft:class id="accessCondition-class">
-				<ft:repeater id="accessConditions">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../accessConditions"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel accessCondition">
-										<h5>
-											<ft:widget-label id="../../accessConditions"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<ft:widget-label id="type"/>
-										<ft:widget id="type"/>
-										<jx:out value="${divider}"/>
-										<ft:widget-label id="displayLabel"/>
-										<ft:widget id="displayLabel"/>
-										<br/>
-										<ft:widget-label id="value"/>
-										<ft:widget id="value">
-											<fi:styling size="80"/>
-										</ft:widget>
-										<br/>
-										<ft:widget-label id="xlink"/>
-										<ft:widget id="xlink">
-											<fi:styling size="50"/>
-										</ft:widget>
-										<ft:new id="common-language-elements-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-accessConditions"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-			<ft:class id="recordInfo-class">
-				<ft:repeater id="recordInfos">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../recordInfos"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel recordInfo">
-										<h5>
-											<ft:widget-label id="../../recordInfos"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<!-- recordcontentsources repeater -->
-										<div class="block">
-											<ft:repeater id="recordContentSources">
-												<div class="block empty-repeater-${repeater.getSize() == 0}">
-													<ft:repeater-rows>
-														<div class="row subrepeater recordInfo-recordContentSource">
-															<h6>
-																<ft:widget-label id="../../recordContentSources"/>
-																<jx:out value="${repeaterLoop.index + 1}"/>
-															</h6>
-															<ft:widget-label id="recordContentSources_value"/>
-															<ft:widget id="recordContentSources_value">
-																<fi:styling size="15"/>
-															</ft:widget>
-															<ft:widget-label id="recordContentSources_authority"/>
-															<ft:widget id="recordContentSources_authority">
-																<fi:styling size="15"/>
-															</ft:widget>
-															<ft:new id="common-controls-class"/>
-														</div>
-													</ft:repeater-rows>
-												</div>
-											</ft:repeater>
-											<ft:widget id="add-to-recordContentSources"/>
-										</div>
-										<!-- end of recordcontentsources repeater -->
-										<!-- recordCreationDate repeater -->
-										<div class="block">
-											<ft:repeater id="recordCreationDates">
-												<div class="block empty-repeater-${repeater.getSize() == 0}">
-													<ft:repeater-rows>
-														<div class="row subrepeater recordInfo-recordCreationDate">
-															<h6>
-																<ft:widget-label id="../../recordCreationDates"/>
-																<jx:out value="${repeaterLoop.index + 1}"/>
-															</h6>
-															<ft:new id="common-subject-date-elements-class"/>
-															<ft:new id="common-date-elements-class"/>
-															<ft:new id="common-controls-class"/>
-														</div>
-													</ft:repeater-rows>
-												</div>
-											</ft:repeater>
-											<ft:widget id="add-to-recordCreationDates"/>
-										</div>
-										<!-- end of recordCreationDate repeater -->
-										<!--  recordChangeDate repeater -->
-										<div class="block">
-											<ft:repeater id="recordChangeDates">
-												<div class="block empty-repeater-${repeater.getSize() == 0}">
-													<ft:repeater-rows>
-														<div class="row subrepeater recordInfo-recordChangeDate">
-															<h6>
-																<ft:widget-label id="../../recordChangeDates"/>
-																<jx:out value="${repeaterLoop.index + 1}"/>
-															</h6>
-															<ft:new id="common-subject-date-elements-class"/>
-															<ft:new id="common-date-elements-class"/>
-															<ft:new id="common-controls-class"/>
-														</div>
-													</ft:repeater-rows>
-												</div>
-											</ft:repeater>
-											<ft:widget id="add-to-recordChangeDates"/>
-										</div>
-										<!--  end of recordChangeDate repeater -->
-										<!-- recordIdentifier repeater -->
-										<div class="block">
-											<ft:repeater id="recordIdentifiers">
-												<div class="block empty-repeater-${repeater.getSize() == 0}">
-													<ft:repeater-rows>
-														<div class="row subrepeater recordInfo-recordIdentifier">
-															<h6>
-																<ft:widget-label id="../../recordIdentifiers"/>
-																<jx:out value="${repeaterLoop.index + 1}"/>
-															</h6>
-															<ft:widget id="recordIdentifiers_recordIdentifier">
-																<!--<fi:styling readonly="readonly" size="30"/>-->
-															    <!-- 2012-05-31 removed readonly constraint, to allow recordIdentifiers 
+         <!-- note: id="identifiers" doesn't work, seems to be reserved word -->
+         <ft:class id="xidentifier-class">
+            <ft:repeater id="xidentifiers">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../xidentifiers"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel identifier">
+                              <h5>
+                                 <ft:widget-label id="../../xidentifiers"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <ft:widget-label id="type"></ft:widget-label>
+                              <ft:widget id="type"></ft:widget>
+                              <jx:out value="${divider}"></jx:out>
+                              <ft:widget-label id="displayLabel"></ft:widget-label>
+                              <ft:widget id="displayLabel"></ft:widget>
+                              <jx:out value="${divider}"></jx:out>
+                              <span class="setwidth-wide"><ft:widget-label id="invalid"></ft:widget-label></span>
+                              <ft:widget id="invalid"><fi:styling size="40"></fi:styling></ft:widget>
+                              <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+                              <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+                              <br />
+                              <ft:widget-label id="value"></ft:widget-label>
+                              <ft:widget id="value">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-xidentifiers"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <ft:class id="location-class">
+            <ft:repeater id="locations">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../locations"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel location">
+                              <h5>
+                                 <ft:widget-label id="../../locations"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <span class="setwidth-wide"><ft:widget-label id="displayLabel"></ft:widget-label></span>
+                              <ft:widget id="displayLabel"><fi:styling size="40"></fi:styling></ft:widget>
+                              <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+                              <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+                              <!-- physicalLocation repeater -->
+                              <div class="block">
+                                 <ft:repeater id="physicalLocations">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater physicalLocation">
+                                             <h6>
+                                                <ft:widget-label id="../../physicalLocations"></ft:widget-label>
+                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <ft:widget-label id="physicalLocation"></ft:widget-label>
+                                             <ft:widget id="physicalLocation">
+                                                <fi:styling type="textarea" rows="3" cols="80"></fi:styling>
+                                             </ft:widget>
+                                             <br />
+                                             <ft:widget-label id="physicalLocation-type"></ft:widget-label>
+                                             <ft:widget id="physicalLocation-type"></ft:widget>
+                                             <jx:out value="${divider}"></jx:out>
+                                             <ft:widget-label id="physicalLocation-displayLabel"></ft:widget-label>
+                                             <ft:widget id="physicalLocation-displayLabel"></ft:widget>
+                                             <ft:new id="common-authority-elements-class"></ft:new>
+                                             <ft:new id="common-language-elements-class"></ft:new>
+                                          </div>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                                 <ft:widget id="add-to-physicalLocations"></ft:widget>
+                                 <ft:new id="common-controls-class"></ft:new>
+                              </div>
+                              <!-- shelfLocation repeater -->
+                              <div class="block">
+                                 <ft:repeater id="shelfLocators">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater shelfLocator">
+                                             <h6>
+                                                <ft:widget-label id="../../shelfLocators"></ft:widget-label>
+                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <ft:widget-label id="shelfLocator"></ft:widget-label>
+                                             <ft:widget id="shelfLocator">
+                                                <fi:styling type="textarea" rows="3" cols="80"></fi:styling>
+                                             </ft:widget>
+                                             <ft:new id="common-language-elements-class"></ft:new>
+                                          </div>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                                 <ft:widget id="add-to-shelfLocators"></ft:widget>
+                                 <ft:new id="common-controls-class"></ft:new>
+                              </div>
+                              <!-- urls repeater -->
+                              <div class="block">
+                                 <ft:repeater id="urls">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater url">
+                                             <h6>
+                                                <ft:widget-label id="../../urls"></ft:widget-label>
+                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <ft:widget-label id="url"></ft:widget-label>
+                                             <ft:widget id="url">
+                                                <fi:styling size="80"></fi:styling>
+                                             </ft:widget>
+                                             <br />
+                                             <ft:widget-label id="access"></ft:widget-label>
+                                             <ft:widget id="access"></ft:widget>
+                                             <jx:out value="${divider}"></jx:out>
+                                             <ft:widget-label id="usage"></ft:widget-label>
+                                             <ft:widget id="usage"></ft:widget>
+                                             <br />
+                                             <ft:widget-label id="url-note"></ft:widget-label>
+                                             <ft:widget id="note">
+                                                <fi:styling size="80"></fi:styling>
+                                             </ft:widget>
+                                             <br />
+                                             <ft:widget-label id="dateLastAccessed"></ft:widget-label>
+                                             <ft:widget id="dateLastAccessed"></ft:widget>
+                                             <jx:out value="${divider}"></jx:out>
+                                             <ft:widget-label id="url-displayLabel"></ft:widget-label>
+                                             <ft:widget id="url-displayLabel"></ft:widget>
+                                             <ft:new id="common-controls-class"></ft:new>
+                                          </div>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                                 <ft:widget id="add-to-urls"></ft:widget>
+                                 <ft:widget id="fullsize">
+                                    <fi:styling type="imglink"></fi:styling>
+                                 </ft:widget>
+                                 <ft:widget id="thumbnail">
+                                    <fi:styling type="img"></fi:styling>
+                                 </ft:widget>
+                              </div>
+                           </div>
+                           <!-- holdingSimple -->
+                           <div class="block">
+                              <ft:repeater id="holdingSimples">
+                                 <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                    <ft:repeater-rows>
+                                       <div class="row subrepeater holdingSimples">
+                                          <h6>
+                                             <ft:widget-label id="../../holdingSimples"></ft:widget-label>
+                                             <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                          </h6>
+                                          <div class="block">
+                                             <ft:repeater id="copyInformations">
+                                                <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                                   <ft:repeater-rows>
+                                                      <div class="row subrepeater copyInformations">
+                                                         <h6>
+                                                            <ft:widget-label id="../../copyInformations"></ft:widget-label>
+                                                            <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                         </h6>
+                                                         <ft:context id="form">
+                                                            <ft:widget-label id="form"></ft:widget-label>
+                                                            <ft:widget id="form"></ft:widget>
+                                                            <ft:widget-label id="form-type"></ft:widget-label>
+                                                            <ft:widget id="form-type"></ft:widget>
+                                                            <ft:new id="common-authority-elements-class"></ft:new>
+                                                            <ft:new id="common-linking-elements-class"></ft:new>
+                                                            <ft:new id="common-language-elements-class"></ft:new>
+                                                         </ft:context>
+                                                         <div class="block">
+                                                            <ft:repeater id="subLocations">
+                                                               <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                                                  <ft:repeater-rows>
+                                                                     <div class="row subrepeater subLocations">
+                                                                        <h6>
+                                                                           <ft:widget-label id="../../subLocations"></ft:widget-label>
+                                                                           <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                                        </h6>
+                                                                        <ft:widget-label id="subLocation"></ft:widget-label>
+                                                                        <ft:widget id="subLocation"></ft:widget>
+                                                                        <ft:new id="common-language-elements-class"></ft:new>
+                                                                     </div>
+                                                                  </ft:repeater-rows>
+                                                               </div>
+                                                            </ft:repeater>
+                                                            <ft:widget id="add-to-subLocations"></ft:widget>
+                                                            <ft:new id="common-controls-class"></ft:new>
+                                                         </div>
+                                                         <div class="block">
+                                                            <ft:repeater id="copyInformation-shelfLocators">
+                                                               <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                                                  <ft:repeater-rows>
+                                                                     <div class="row subrepeater copyInformation-shelfLocators">
+                                                                        <h6>
+                                                                           <ft:widget-label id="../../copyInformation-shelfLocators"></ft:widget-label>
+                                                                           <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                                        </h6>
+                                                                        <ft:widget-label id="selfLocator"></ft:widget-label>
+                                                                        <ft:widget id="selfLocator"></ft:widget>
+                                                                        <ft:new id="common-language-elements-class"></ft:new>
+                                                                     </div>
+                                                                  </ft:repeater-rows>
+                                                               </div>
+                                                            </ft:repeater>
+                                                            <ft:widget id="add-to-copyInformation-shelfLocators"></ft:widget>
+                                                            <ft:new id="common-controls-class"></ft:new>
+                                                         </div>
+                                                         <div class="block">
+                                                            <ft:repeater id="electronicLocators">
+                                                               <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                                                  <ft:repeater-rows>
+                                                                     <div class="row subrepeater electronicLocators">
+                                                                        <h6>
+                                                                           <ft:widget-label id="../../electronicLocators"></ft:widget-label>
+                                                                           <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                                        </h6>
+                                                                        <ft:widget-label id="electronicLocator"></ft:widget-label>
+                                                                        <ft:widget id="electronicLocator"></ft:widget>
+                                                                     </div>
+                                                                  </ft:repeater-rows>
+                                                               </div>
+                                                            </ft:repeater>
+                                                            <ft:widget id="add-to-electronicLocators"></ft:widget>
+                                                            <ft:new id="common-controls-class"></ft:new>
+                                                         </div>
+                                                         <div class="block">
+                                                            <ft:repeater id="notes">
+                                                               <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                                                  <ft:repeater-rows>
+                                                                     <div class="row subrepeater notes">
+                                                                        <h6>
+                                                                           <ft:widget-label id="../../notes"></ft:widget-label>
+                                                                           <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                                        </h6>
+                                                                        <ft:widget-label id="note"></ft:widget-label>
+                                                                        <ft:widget id="note"></ft:widget>
+                                                                        <ft:widget-label id="displayLabel"></ft:widget-label>
+                                                                        <ft:widget id="displayLabel"></ft:widget>
+                                                                        <ft:widget-label id="type"></ft:widget-label>
+                                                                        <ft:widget id="type"></ft:widget>
+                                                                        <ft:new id="common-linking-elements-class"></ft:new>
+                                                                        <ft:new id="common-language-elements-class"></ft:new>
+                                                                     </div>
+                                                                  </ft:repeater-rows>
+                                                               </div>
+                                                            </ft:repeater>
+                                                            <ft:widget id="add-to-notes"></ft:widget>
+                                                            <ft:new id="common-controls-class"></ft:new>
+                                                         </div>
+                                                         <div class="block">
+                                                            <ft:repeater id="enumerationAndChronologys">
+                                                               <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                                                  <ft:repeater-rows>
+                                                                     <div class="row subrepeater enumerationAndChronologys">
+                                                                        <h6>
+                                                                           <ft:widget-label id="../../enumerationAndChronologys"></ft:widget-label>
+                                                                           <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                                        </h6>
+                                                                        <ft:widget-label id="enumerationAndChronology"></ft:widget-label>
+                                                                        <ft:widget id="enumerationAndChronology"></ft:widget>
+                                                                        <ft:widget-label id="unitType"></ft:widget-label>
+                                                                        <ft:widget id="unitType"></ft:widget>
+                                                                        <ft:new id="common-language-elements-class"></ft:new>
+                                                                     </div>
+                                                                  </ft:repeater-rows>
+                                                               </div>
+                                                            </ft:repeater>
+                                                            <ft:widget id="add-to-enumerationAndChronologys"></ft:widget>
+                                                            <ft:new id="common-controls-class"></ft:new>
+                                                         </div>
+                                                      </div>
+                                                   </ft:repeater-rows>
+                                                </div>
+                                             </ft:repeater>
+                                             <ft:widget id="add-to-copyInformations"></ft:widget>
+                                             <ft:new id="common-controls-class"></ft:new>
+                                          </div>
+                                       </div>
+                                    </ft:repeater-rows>
+                                 </div>
+                              </ft:repeater>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                     <ft:new id="common-language-elements-class"></ft:new>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-locations"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <ft:class id="accessCondition-class">
+            <ft:repeater id="accessConditions">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../accessConditions"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel accessCondition">
+                              <h5>
+                                 <ft:widget-label id="../../accessConditions"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <ft:widget-label id="type"></ft:widget-label>
+                              <ft:widget id="type"></ft:widget>
+                              <jx:out value="${divider}"></jx:out>
+                              <ft:widget-label id="displayLabel"></ft:widget-label>
+                              <ft:widget id="displayLabel"></ft:widget>
+                              <br />
+                              <ft:widget-label id="value"></ft:widget-label>
+                              <ft:widget id="value">
+                                 <fi:styling size="80"></fi:styling>
+                              </ft:widget>
+                              <br />
+                              <ft:widget-label id="xlink"></ft:widget-label>
+                              <ft:widget id="xlink">
+                                 <fi:styling size="50"></fi:styling>
+                              </ft:widget>
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-accessConditions"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <ft:class id="recordInfo-class">
+            <ft:repeater id="recordInfos">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../recordInfos"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel recordInfo">
+                              <h5>
+                                 <ft:widget-label id="../../recordInfos"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <!-- recordcontentsources repeater -->
+                              <div class="block">
+                                 <ft:repeater id="recordContentSources">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater recordInfo-recordContentSource">
+                                             <h6>
+                                                <ft:widget-label id="../../recordContentSources"></ft:widget-label>
+                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <ft:widget-label id="recordContentSources_value"></ft:widget-label>
+                                             <ft:widget id="recordContentSources_value">
+                                                <fi:styling size="15"></fi:styling>
+                                             </ft:widget>
+                                             <ft:widget-label id="recordContentSources_authority"></ft:widget-label>
+                                             <ft:widget id="recordContentSources_authority">
+                                                <fi:styling size="15"></fi:styling>
+                                             </ft:widget>
+                                             <ft:new id="common-controls-class"></ft:new>
+                                          </div>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                                 <ft:widget id="add-to-recordContentSources"></ft:widget>
+                              </div>
+                              <!-- end of recordcontentsources repeater -->
+                              <!-- recordCreationDate repeater -->
+                              <div class="block">
+                                 <ft:repeater id="recordCreationDates">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater recordInfo-recordCreationDate">
+                                             <h6>
+                                                <ft:widget-label id="../../recordCreationDates"></ft:widget-label>
+                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <ft:new id="common-subject-date-elements-class"></ft:new>
+                                             <ft:new id="common-date-elements-class"></ft:new>
+                                             <ft:new id="common-controls-class"></ft:new>
+                                          </div>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                                 <ft:widget id="add-to-recordCreationDates"></ft:widget>
+                              </div>
+                              <!-- end of recordCreationDate repeater -->
+                              <!--  recordChangeDate repeater -->
+                              <div class="block">
+                                 <ft:repeater id="recordChangeDates">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater recordInfo-recordChangeDate">
+                                             <h6>
+                                                <ft:widget-label id="../../recordChangeDates"></ft:widget-label>
+                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <ft:new id="common-subject-date-elements-class"></ft:new>
+                                             <ft:new id="common-date-elements-class"></ft:new>
+                                             <ft:new id="common-controls-class"></ft:new>
+                                          </div>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                                 <ft:widget id="add-to-recordChangeDates"></ft:widget>
+                              </div>
+                              <!--  end of recordChangeDate repeater -->
+                              <!-- recordIdentifier repeater -->
+                              <div class="block">
+                                 <ft:repeater id="recordIdentifiers">
+                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                       <ft:repeater-rows>
+                                          <div class="row subrepeater recordInfo-recordIdentifier">
+                                             <h6>
+                                                <ft:widget-label id="../../recordIdentifiers"></ft:widget-label>
+                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                             </h6>
+                                             <ft:widget id="recordIdentifiers_recordIdentifier">
+                                                <!--<fi:styling readonly="readonly" size="30"/>-->
+                                                <!-- 2012-05-31 removed readonly constraint, to allow recordIdentifiers 
 															        in related items to be changed - pbinkley -->
-															    <fi:styling size="30"/>
-															</ft:widget>
-															<jx:out value="${divider}"/>
-															<ft:widget-label id="recordIdentifiers_recordIdentifierSource"/>
-															<ft:widget id="recordIdentifiers_recordIdentifierSource"/>
-															<ft:new id="common-controls-class"/>
-														</div>
-													</ft:repeater-rows>
-												</div>
-											</ft:repeater>
-											<ft:widget id="add-to-recordIdentifiers"/>
-										</div>
-										<!-- recordIdentifier repeater -->
-										<ft:new id="common-language-elements-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-recordInfos"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-			<ft:class id="relatedItem-class">
-				<ft:repeater id="relatedItems">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../relatedItems"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel relatedItem">
-										<h5>
-											<ft:widget-label id="../../relatedItems"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<ft:new id="common-linking-elements-class"/>
-										<ft:widget-label id="type"/>
-										<ft:widget id="type"/>
-										<jx:out value="${divider}"/>
-										<ft:widget-label id="displayLabel"/>
-										<ft:widget id="displayLabel"/>
-										<jx:out value="${divider}"/>
-<!--										<ft:widget-label id="relatedItem_ID"/>
+                                                <fi:styling size="30"></fi:styling>
+                                             </ft:widget>
+                                             <jx:out value="${divider}"></jx:out>
+                                             <ft:widget-label id="recordIdentifiers_recordIdentifierSource"></ft:widget-label>
+                                             <ft:widget id="recordIdentifiers_recordIdentifierSource"></ft:widget>
+                                             <ft:new id="common-controls-class"></ft:new>
+                                          </div>
+                                       </ft:repeater-rows>
+                                    </div>
+                                 </ft:repeater>
+                                 <ft:widget id="add-to-recordIdentifiers"></ft:widget>
+                              </div>
+                              <!-- recordIdentifier repeater -->
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-recordInfos"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <ft:class id="relatedItem-class">
+            <ft:repeater id="relatedItems">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../relatedItems"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel relatedItem">
+                              <h5>
+                                 <ft:widget-label id="../../relatedItems"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <ft:new id="common-linking-elements-class"></ft:new>
+                              <ft:widget-label id="type"></ft:widget-label>
+                              <ft:widget id="type"></ft:widget>
+                              <jx:out value="${divider}"></jx:out>
+                              <ft:widget-label id="displayLabel"></ft:widget-label>
+                              <ft:widget id="displayLabel"></ft:widget>
+                              <jx:out value="${divider}"></jx:out>
+                              <!--										<ft:widget-label id="relatedItem_ID"/>
 										<ft:widget id="relatedItem_ID">
 											<fi:styling size="8"/>
 										</ft:widget>-->
-										<br/>
-										<br/>
-										<!--<ft:new id="part-class"/>-->
-										<ft:new id="titleInfo-class"/>
-										<ft:new id="name-class"/>
-										<ft:new id="typeOfResource-class"/>
-										<ft:new id="genre-class"/>
-										<ft:new id="originInfo-class"/>
-										<ft:new id="language-class"/>
-										<ft:new id="physicalDescription-class"/>
-										<ft:new id="abstract-class"/>
-										<ft:new id="tableOfContents-class"/>
-										<ft:new id="targetAudience-class"/>
-										<ft:new id="note-class"/>
-										<ft:new id="subject-class"/>
-										<ft:new id="classification-class"/>
-										<ft:new id="part-class"/>
-										<ft:new id="xidentifier-class"/>
-										<ft:new id="location-class"/>
-										<ft:new id="accessCondition-class"/>
-									   <ft:new id="sub-relatedItem-class"/>
-										<ft:new id="recordInfo-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-relatedItems"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-		   <ft:class id="sub-relatedItem-class">
-		      <ft:repeater id="relatedItems">
-		         <div class="block empty-block-${repeater.getSize() == 0}">
-		            <h4>
-		               <ft:widget-label id="../relatedItems"/>
-		            </h4>
-		            <jx:if test="${repeater.getSize() &gt; 0}">
-		               <div class="repeater">
-		                  <ft:repeater-rows>
-		                     <div class="row toplevel relatedItem">
-		                        <h5>
-		                           <ft:widget-label id="../../relatedItems"/>
-		                           <jx:out value="${repeaterLoop.index + 1}"/>
-		                        </h5>
-		                        <ft:new id="common-linking-elements-class"/>
-		                        <ft:widget-label id="type"/>
-		                        <ft:widget id="type"/>
-		                        <jx:out value="${divider}"/>
-		                        <ft:widget-label id="displayLabel"/>
-		                        <ft:widget id="displayLabel"/>
-		                        <jx:out value="${divider}"/>
-		                        <!--										<ft:widget-label id="relatedItem_ID"/>
+                              <br />
+                              <br />
+                              <!--<ft:new id="part-class"/>-->
+                              <ft:new id="titleInfo-class"></ft:new>
+                              <ft:new id="name-class"></ft:new>
+                              <ft:new id="typeOfResource-class"></ft:new>
+                              <ft:new id="genre-class"></ft:new>
+                              <ft:new id="originInfo-class"></ft:new>
+                              <ft:new id="language-class"></ft:new>
+                              <ft:new id="physicalDescription-class"></ft:new>
+                              <ft:new id="abstract-class"></ft:new>
+                              <ft:new id="tableOfContents-class"></ft:new>
+                              <ft:new id="targetAudience-class"></ft:new>
+                              <ft:new id="note-class"></ft:new>
+                              <ft:new id="subject-class"></ft:new>
+                              <ft:new id="classification-class"></ft:new>
+                              <ft:new id="part-class"></ft:new>
+                              <ft:new id="xidentifier-class"></ft:new>
+                              <ft:new id="location-class"></ft:new>
+                              <ft:new id="accessCondition-class"></ft:new>
+                              <ft:new id="sub-relatedItem-class"></ft:new>
+                              <ft:new id="recordInfo-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-relatedItems"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <ft:class id="sub-relatedItem-class">
+            <ft:repeater id="relatedItems">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../relatedItems"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel relatedItem">
+                              <h5>
+                                 <ft:widget-label id="../../relatedItems"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <ft:new id="common-linking-elements-class"></ft:new>
+                              <ft:widget-label id="type"></ft:widget-label>
+                              <ft:widget id="type"></ft:widget>
+                              <jx:out value="${divider}"></jx:out>
+                              <ft:widget-label id="displayLabel"></ft:widget-label>
+                              <ft:widget id="displayLabel"></ft:widget>
+                              <jx:out value="${divider}"></jx:out>
+                              <!--										<ft:widget-label id="relatedItem_ID"/>
 										<ft:widget id="relatedItem_ID">
 											<fi:styling size="8"/>
 										</ft:widget>-->
-		                        <br/>
-		                        <br/>
-		                        <!--<ft:new id="part-class"/>-->
-		                        <ft:new id="titleInfo-class"/>
-		                        <ft:new id="name-class"/>
-		                        <ft:new id="typeOfResource-class"/>
-		                        <ft:new id="genre-class"/>
-		                        <ft:new id="originInfo-class"/>
-		                        <ft:new id="language-class"/>
-		                        <ft:new id="physicalDescription-class"/>
-		                        <ft:new id="abstract-class"/>
-		                        <ft:new id="tableOfContents-class"/>
-		                        <ft:new id="targetAudience-class"/>
-		                        <ft:new id="note-class"/>
-		                        <ft:new id="subject-class"/>
-		                        <ft:new id="classification-class"/>
-		                        <ft:new id="part-class"/>
-		                        <ft:new id="xidentifier-class"/>
-		                        <ft:new id="location-class"/>
-		                        <ft:new id="accessCondition-class"/>
-		                        <ft:new id="recordInfo-class"/>
-		                        <ft:new id="common-controls-class"/>
-		                     </div>
-		                  </ft:repeater-rows>
-		               </div>
-		            </jx:if>
-		            <jx:if test="${repeater.getSize() == 0}">
-		               <ft:widget id="../add-to-relatedItems"/>
-		            </jx:if>
-		         </div>
-		      </ft:repeater>
-		   </ft:class>
-		   <!-- START PATCH -->
-			<ft:class id="relatedItemConstituent-class">
-				<ft:repeater id="relatedItemConstituents">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../relatedItemConstituents"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel relatedItem">
-										<h5>
-											<ft:widget-label id="../../relatedItemConstituents"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<ft:new id="common-linking-elements-class"/>
-										<ft:widget-label id="type"/>
-										<ft:widget id="type"/>
-										<jx:out value="${divider}"/>
-										<ft:widget-label id="displayLabel"/>
-										<ft:widget id="displayLabel"/>
-										<jx:out value="${divider}"/>
-										<!--										<ft:widget-label id="relatedItem_ID"/>
+                              <br />
+                              <br />
+                              <!--<ft:new id="part-class"/>-->
+                              <ft:new id="titleInfo-class"></ft:new>
+                              <ft:new id="name-class"></ft:new>
+                              <ft:new id="typeOfResource-class"></ft:new>
+                              <ft:new id="genre-class"></ft:new>
+                              <ft:new id="originInfo-class"></ft:new>
+                              <ft:new id="language-class"></ft:new>
+                              <ft:new id="physicalDescription-class"></ft:new>
+                              <ft:new id="abstract-class"></ft:new>
+                              <ft:new id="tableOfContents-class"></ft:new>
+                              <ft:new id="targetAudience-class"></ft:new>
+                              <ft:new id="note-class"></ft:new>
+                              <ft:new id="subject-class"></ft:new>
+                              <ft:new id="classification-class"></ft:new>
+                              <ft:new id="part-class"></ft:new>
+                              <ft:new id="xidentifier-class"></ft:new>
+                              <ft:new id="location-class"></ft:new>
+                              <ft:new id="accessCondition-class"></ft:new>
+                              <ft:new id="recordInfo-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-relatedItems"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <!-- START PATCH -->
+         <ft:class id="relatedItemConstituent-class">
+            <ft:repeater id="relatedItemConstituents">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../relatedItemConstituents"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel relatedItem">
+                              <h5>
+                                 <ft:widget-label id="../../relatedItemConstituents"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <ft:new id="common-linking-elements-class"></ft:new>
+                              <ft:widget-label id="type"></ft:widget-label>
+                              <ft:widget id="type"></ft:widget>
+                              <jx:out value="${divider}"></jx:out>
+                              <ft:widget-label id="displayLabel"></ft:widget-label>
+                              <ft:widget id="displayLabel"></ft:widget>
+                              <jx:out value="${divider}"></jx:out>
+                              <!--										<ft:widget-label id="relatedItem_ID"/>
 											<ft:widget id="relatedItem_ID">
 											<fi:styling size="8"/>
 											</ft:widget>-->
-										<br/>
-										<br/>
-										<!--<ft:new id="part-class"/>-->
-										<ft:new id="titleInfo-class"/>
-										<ft:new id="name-class"/>
-										<ft:new id="typeOfResource-class"/>
-										<ft:new id="genre-class"/>
-										<ft:new id="originInfo-class"/>
-										<ft:new id="language-class"/>
-										<ft:new id="physicalDescription-class"/>
-										<ft:new id="abstract-class"/>
-										<ft:new id="tableOfContents-class"/>
-										<ft:new id="targetAudience-class"/>
-										<ft:new id="note-class"/>
-										<ft:new id="subject-class"/>
-										<ft:new id="classification-class"/>
-										<ft:new id="part-class"/>
-										<ft:new id="xidentifier-class"/>
-										<ft:new id="location-class"/>
-										<ft:new id="accessCondition-class"/>
-									   <ft:new id="sub-relatedItem-class"/>
-										<ft:new id="recordInfo-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-relatedItemConstituents"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-			
-			<!-- END PATCH -->
-			
-			
-			<ft:class id="part-class">
-				<ft:repeater id="parts">
-					<div class="block empty-block-${repeater.getSize() == 0}">
-						<h4>
-							<ft:widget-label id="../parts"/>
-						</h4>
-						<jx:if test="${repeater.getSize() &gt; 0}">
-							<div class="repeater">
-								<ft:repeater-rows>
-									<div class="row toplevel part">
-										<h5>
-											<ft:widget-label id="../../parts"/>
-											<jx:out value="${repeaterLoop.index + 1}"/>
-										</h5>
-										<!-- details repeater -->
-										<ft:repeater id="details">
-											<div class="block empty-repeater-${repeater.getSize() == 0}">
-												<ft:repeater-rows>
-													<div class="row subrepeater relatedItem-part-detail">
-														<h6>
-															<ft:widget-label id="../../details"/>
-															<jx:out value="${repeaterLoop.index + 1}"/>
-														</h6>
-														<ft:widget-label id="details_type"/>
-														<ft:widget id="details_type"/>
-														<jx:out value="${divider}"/>
-														<ft:widget-label id="details_number"/>
-														<ft:widget id="details_number"/>
-														<jx:out value="${divider}"/>
-														<ft:widget-label id="details_caption"/>
-														<ft:widget id="details_caption"/>
-														<jx:out value="${divider}"/>
-														<ft:widget-label id="details_title"/>
-														<ft:widget id="details_title"/>
-														<ft:new id="common-controls-class"/>
-													</div>
-												</ft:repeater-rows>
-											</div>
-										</ft:repeater>
-										<ft:widget id="add-to-details"/>
-										<!-- end of details repeater -->
-										<div class="block">
-											<h6>extent</h6>
-											<ft:widget-label id="extent-start"/>
-											<ft:widget id="extent-start"/>
-											<jx:out value="${divider}"/>
-											<ft:widget-label id="extent-end"/>
-											<ft:widget id="extent-end"/>
-											<jx:out value="${divider}"/>
-											<ft:widget-label id="extent-total"/>
-											<ft:widget id="extent-total"/>
-											<jx:out value="${divider}"/>
-											<ft:widget-label id="extent-list"/>
-											<ft:widget id="extent-list"/>
-											<jx:out value="${divider}"/>
-											<ft:widget-label id="extent-unit"/>
-											<ft:widget id="extent-unit"/>
-										</div>
-										<!-- dates repeater -->
-										<ft:repeater id="dates">
-											<div class="block empty-repeater-${repeater.getSize() == 0}">
-												<ft:repeater-rows>
-													<div class="row subrepeater relatedItem-part-date">
-														<h6>
-															<ft:widget-label id="../../dates"/>
-															<jx:out value="${repeaterLoop.index + 1}"/>
-														</h6>
-														<ft:new id="common-subject-date-elements-class"/>
-														<ft:new id="common-date-elements-class"/>
-														<ft:new id="common-controls-class"/>
-													</div>
-												</ft:repeater-rows>
-											</div>
-										</ft:repeater>
-										<ft:widget id="add-to-dates"/>
-										<!-- end of dates repeater -->
-										<!-- texts repeater -->
-										<ft:repeater id="texts">
-											<div class="block empty-repeater-${repeater.getSize() == 0}">
-												<ft:repeater-rows>
-													<div class="row subrepeater relatedItem-part-text">
-														<h6>
-															<ft:widget-label id="../../texts"/>
-															<jx:out value="${repeaterLoop.index + 1}"/>
-														</h6>
-														<ft:new id="common-textfield-class"/>
-														<ft:new id="common-controls-class"/>
-													</div>
-												</ft:repeater-rows>
-											</div>
-										</ft:repeater>
-										<ft:widget id="add-to-texts"/>
-										<!-- end of texts repeater -->
-										<ft:new id="common-language-elements-class"/>
-										<ft:new id="common-linking-elements-class"/>
-										<ft:new id="common-controls-class"/>
-									</div>
-								</ft:repeater-rows>
-							</div>
-						</jx:if>
-						<jx:if test="${repeater.getSize() == 0}">
-							<ft:widget id="../add-to-parts"/>
-						</jx:if>
-					</div>
-				</ft:repeater>
-			</ft:class>
-			<!-- *************************************************************
+                              <br />
+                              <br />
+                              <!--<ft:new id="part-class"/>-->
+                              <ft:new id="titleInfo-class"></ft:new>
+                              <ft:new id="name-class"></ft:new>
+                              <ft:new id="typeOfResource-class"></ft:new>
+                              <ft:new id="genre-class"></ft:new>
+                              <ft:new id="originInfo-class"></ft:new>
+                              <ft:new id="language-class"></ft:new>
+                              <ft:new id="physicalDescription-class"></ft:new>
+                              <ft:new id="abstract-class"></ft:new>
+                              <ft:new id="tableOfContents-class"></ft:new>
+                              <ft:new id="targetAudience-class"></ft:new>
+                              <ft:new id="note-class"></ft:new>
+                              <ft:new id="subject-class"></ft:new>
+                              <ft:new id="classification-class"></ft:new>
+                              <ft:new id="part-class"></ft:new>
+                              <ft:new id="xidentifier-class"></ft:new>
+                              <ft:new id="location-class"></ft:new>
+                              <ft:new id="accessCondition-class"></ft:new>
+                              <ft:new id="sub-relatedItem-class"></ft:new>
+                              <ft:new id="recordInfo-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-relatedItemConstituents"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+
+         <!-- END PATCH -->
+
+
+         <ft:class id="part-class">
+            <ft:repeater id="parts">
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../parts"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel part">
+                              <h5>
+                                 <ft:widget-label id="../../parts"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <!-- details repeater -->
+                              <ft:repeater id="details">
+                                 <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                    <ft:repeater-rows>
+                                       <div class="row subrepeater relatedItem-part-detail">
+                                          <h6>
+                                             <ft:widget-label id="../../details"></ft:widget-label>
+                                             <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                          </h6>
+                                          <ft:widget-label id="details_type"></ft:widget-label>
+                                          <ft:widget id="details_type"></ft:widget>
+                                          <jx:out value="${divider}"></jx:out>
+                                          <ft:widget-label id="details_number"></ft:widget-label>
+                                          <ft:widget id="details_number"></ft:widget>
+                                          <jx:out value="${divider}"></jx:out>
+                                          <ft:widget-label id="details_caption"></ft:widget-label>
+                                          <ft:widget id="details_caption"></ft:widget>
+                                          <jx:out value="${divider}"></jx:out>
+                                          <ft:widget-label id="details_title"></ft:widget-label>
+                                          <ft:widget id="details_title"></ft:widget>
+                                          <ft:new id="common-controls-class"></ft:new>
+                                       </div>
+                                    </ft:repeater-rows>
+                                 </div>
+                              </ft:repeater>
+                              <ft:widget id="add-to-details"></ft:widget>
+                              <!-- end of details repeater -->
+                              <div class="block">
+                                 <h6>extent</h6>
+                                 <ft:widget-label id="extent-start"></ft:widget-label>
+                                 <ft:widget id="extent-start"></ft:widget>
+                                 <jx:out value="${divider}"></jx:out>
+                                 <ft:widget-label id="extent-end"></ft:widget-label>
+                                 <ft:widget id="extent-end"></ft:widget>
+                                 <jx:out value="${divider}"></jx:out>
+                                 <ft:widget-label id="extent-total"></ft:widget-label>
+                                 <ft:widget id="extent-total"></ft:widget>
+                                 <jx:out value="${divider}"></jx:out>
+                                 <ft:widget-label id="extent-list"></ft:widget-label>
+                                 <ft:widget id="extent-list"></ft:widget>
+                                 <jx:out value="${divider}"></jx:out>
+                                 <ft:widget-label id="extent-unit"></ft:widget-label>
+                                 <ft:widget id="extent-unit"></ft:widget>
+                              </div>
+                              <!-- dates repeater -->
+                              <ft:repeater id="dates">
+                                 <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                    <ft:repeater-rows>
+                                       <div class="row subrepeater relatedItem-part-date">
+                                          <h6>
+                                             <ft:widget-label id="../../dates"></ft:widget-label>
+                                             <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                          </h6>
+                                          <ft:new id="common-subject-date-elements-class"></ft:new>
+                                          <ft:new id="common-date-elements-class"></ft:new>
+                                          <ft:new id="common-controls-class"></ft:new>
+                                       </div>
+                                    </ft:repeater-rows>
+                                 </div>
+                              </ft:repeater>
+                              <ft:widget id="add-to-dates"></ft:widget>
+                              <!-- end of dates repeater -->
+                              <!-- texts repeater -->
+                              <ft:repeater id="texts">
+                                 <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                    <ft:repeater-rows>
+                                       <div class="row subrepeater relatedItem-part-text">
+                                          <h6>
+                                             <ft:widget-label id="../../texts"></ft:widget-label>
+                                             <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                          </h6>
+                                          <ft:new id="common-textfield-class"></ft:new>
+                                          <ft:new id="common-controls-class"></ft:new>
+                                       </div>
+                                    </ft:repeater-rows>
+                                 </div>
+                              </ft:repeater>
+                              <ft:widget id="add-to-texts"></ft:widget>
+                              <!-- end of texts repeater -->
+                              <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-linking-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-parts"></ft:widget>
+                  </jx:if>
+               </div>
+            </ft:repeater>
+         </ft:class>
+         <!-- *************************************************************
 				Widgets
 			***************************************************************** -->
-			<div class="header">
-				<h2>Record <ft:widget id="id"/>
-				</h2>
-			</div>
-			<!-- all ajax requests must include the localizer, so put it here -->
-			<input type="hidden" name="localizer" value="${cocoon.request.getParameter('localizer')}"/>
-			<!-- group with tabs. Each of the children of <items> will constitute a tab -->
-			<fi:group>
-				<fi:styling type="tabs"/>
-				<fi:label>Choose a panel: </fi:label>
-				<fi:state>
-					<ft:widget id="tab-state"/>
-				</fi:state>
-				<fi:items>
-					<!-- **********************************************************************
+         <div class="header">
+            <h2>Record <ft:widget id="id"></ft:widget>
+            </h2>
+         </div>
+         <!-- all ajax requests must include the localizer, so put it here -->
+         <input type="hidden" name="localizer" value="${cocoon.request.getParameter('localizer')}" />
+         <!-- group with tabs. Each of the children of <items> will constitute a tab -->
+         <fi:group>
+            <fi:styling type="tabs"></fi:styling>
+            <fi:label>Choose a panel: </fi:label>
+            <fi:state>
+               <ft:widget id="tab-state"></ft:widget>
+            </fi:state>
+            <fi:items>
+               <!-- **********************************************************************
 						mods:titleInfo
 					***************************************************************************-->
-					<fi:group id="titleInfo-group">
-						<fi:label>
-							<countdiv name="titleInfos"/>Title</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="titleInfo-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- **********************************************************************
+               <fi:group id="titleInfo-group">
+                  <fi:label>
+                     <countdiv name="titleInfos"></countdiv>Title</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="titleInfo-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- **********************************************************************
 						mods:name
 					***************************************************************************-->
-					<fi:group id="name-group">
-						<fi:label>
-							<countdiv name="names"/>Author</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="name-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- **********************************************************************
+               <fi:group id="name-group">
+                  <fi:label>
+                     <countdiv name="names"></countdiv>Author</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="name-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- **********************************************************************
 						mods:typeOfResource
 					***************************************************************************-->
-					<fi:group id="typeOfResource-group">
-						<fi:label>
-							<countdiv name="typeOfResources"/>Type</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="typeOfResource-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- **********************************************************************
+               <fi:group id="typeOfResource-group">
+                  <fi:label>
+                     <countdiv name="typeOfResources"></countdiv>Type</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="typeOfResource-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- **********************************************************************
 						genre
 					***************************************************************************-->
-					<fi:group id="genre-group">
-						<fi:label>
-							<countdiv name="genres"/>Genre</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="genre-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- **********************************************************************
+               <fi:group id="genre-group">
+                  <fi:label>
+                     <countdiv name="genres"></countdiv>Genre</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="genre-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- **********************************************************************
 						originInfo
 					***************************************************************************-->
-					<fi:group id="originInfo-group">
-						<fi:label>
-							<countdiv name="originInfos"/>Origin</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="originInfo-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- **********************************************************************
+               <fi:group id="originInfo-group">
+                  <fi:label>
+                     <countdiv name="originInfos"></countdiv>Origin</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="originInfo-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- **********************************************************************
 						languages
 					***************************************************************************-->
-					<fi:group id="language-group">
-						<fi:label>
-							<countdiv name="languages"/>Language</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="language-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- ****************************************************
+               <fi:group id="language-group">
+                  <fi:label>
+                     <countdiv name="languages"></countdiv>Language</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="language-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- ****************************************************
 						physicalDescription
 					********************************************************-->
-					<fi:group id="physicalDescription-group">
-						<fi:label>
-							<countdiv name="physicalDescriptions"/>Physical</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="physicalDescription-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- ****************************************************
+               <fi:group id="physicalDescription-group">
+                  <fi:label>
+                     <countdiv name="physicalDescriptions"></countdiv>Physical</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="physicalDescription-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- ****************************************************
 						mods:abstract
 					********************************************************-->
-					<fi:group id="abstract-group">
-						<fi:label>
-							<countdiv name="abstracts"/>Abstract</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="abstract-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- ****************************************************
+               <fi:group id="abstract-group">
+                  <fi:label>
+                     <countdiv name="abstracts"></countdiv>Abstract</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="abstract-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- ****************************************************
 						mods:tableOfContents
 					********************************************************-->
-					<fi:group id="tableOfContents-group">
-						<fi:label>
-							<countdiv name="tableOfContentss"/>TOC</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="tableOfContents-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- ****************************************************
+               <fi:group id="tableOfContents-group">
+                  <fi:label>
+                     <countdiv name="tableOfContentss"></countdiv>TOC</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="tableOfContents-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- ****************************************************
 						mods:targetAudience
 					********************************************************-->
-					<fi:group id="targetAudience-group">
-						<fi:label>
-							<countdiv name="targetAudiences"/>Audience</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="targetAudience-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- ****************************************************
+               <fi:group id="targetAudience-group">
+                  <fi:label>
+                     <countdiv name="targetAudiences"></countdiv>Audience</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="targetAudience-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- ****************************************************
 						mods:note
 					********************************************************-->
-					<fi:group id="note-group">
-						<fi:label>
-							<countdiv name="notes"/>Note</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="note-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- ************************************************
+               <fi:group id="note-group">
+                  <fi:label>
+                     <countdiv name="notes"></countdiv>Note</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="note-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- ************************************************
 						mods:subject
 					***************************************************-->
-					<fi:group id="subject-group">
-						<fi:label>
-							<countdiv name="subjects"/>Subject</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="subject-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- **********************************************************************
+               <fi:group id="subject-group">
+                  <fi:label>
+                     <countdiv name="subjects"></countdiv>Subject</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="subject-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- **********************************************************************
 						classification
 					***************************************************************************-->
-					<fi:group id="classification-group">
-						<fi:label>
-							<countdiv name="classifications"/>Classification</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="classification-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- **********************************************************************
+               <fi:group id="classification-group">
+                  <fi:label>
+                     <countdiv name="classifications"></countdiv>Classification</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="classification-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- **********************************************************************
 						part
 					***************************************************************************-->
-					<fi:group id="part-group">
-						<fi:label>
-							<countdiv name="parts"/>Part</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="part-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- ****************************************************
+               <fi:group id="part-group">
+                  <fi:label>
+                     <countdiv name="parts"></countdiv>Part</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="part-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- ****************************************************
 						mods:identifier
 					********************************************************-->
-					<fi:group id="xidentifier-group">
-						<fi:label>
-							<countdiv name="xidentifiers"/>Identifier</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="xidentifier-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- ****************************************************
+               <fi:group id="xidentifier-group">
+                  <fi:label>
+                     <countdiv name="xidentifiers"></countdiv>Identifier</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="xidentifier-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- ****************************************************
 						mods:location
 					********************************************************-->
-					<fi:group id="location-group">
-						<fi:label>
-							<countdiv name="locations"/>Location</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="location-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- ****************************************************
+               <fi:group id="location-group">
+                  <fi:label>
+                     <countdiv name="locations"></countdiv>Location</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="location-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- ****************************************************
 						mods:accessCondition
 					********************************************************-->
-					<fi:group id="accessCondition-group">
-						<fi:label>
-							<countdiv name="accessConditions"/>Access</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="accessCondition-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- ****************************************************
+               <fi:group id="accessCondition-group">
+                  <fi:label>
+                     <countdiv name="accessConditions"></countdiv>Access</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="accessCondition-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- ****************************************************
 						mods:relatedItem
 					********************************************************-->
-					<fi:group id="relatedItem-group">
-						<fi:label>
-							<countdiv name="relatedItems"/>Related</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="relatedItem-class"/>
-						</fi:items>
-					</fi:group>
-<!-- START PATCH -->
-					<!-- ****************************************************
+               <fi:group id="relatedItem-group">
+                  <fi:label>
+                     <countdiv name="relatedItems"></countdiv>Related</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="relatedItem-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- START PATCH -->
+               <!-- ****************************************************
 						mods:relatedItemConstituent
 						********************************************************-->
-					<fi:group id="relatedItemConstituent-group">
-						<fi:label>
-							<countdiv name="relatedItemConstituents"/>Related (const)</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="relatedItemConstituent-class"/>
-						</fi:items>
-					</fi:group>
-					<!-- END PATCH -->
-					
-					
-					
-					<!-- ****************************************************
+               <fi:group id="relatedItemConstituent-group">
+                  <fi:label>
+                     <countdiv name="relatedItemConstituents"></countdiv>Related (const)</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="relatedItemConstituent-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+               <!-- END PATCH -->
+
+
+
+               <!-- ****************************************************
 						mods:recordInfo
 					********************************************************-->
-					<fi:group id="recordInfo-group">
-						<fi:label>
-							<countdiv name="recordInfos"/>Record</fi:label>
-						<fi:styling layout="columns"/>
-						<fi:items>
-							<ft:new id="recordInfo-class"/>
-						</fi:items>
-					</fi:group>
-				</fi:items>
-			</fi:group>
-			<!-- ************************************************
+               <fi:group id="recordInfo-group">
+                  <fi:label>
+                     <countdiv name="recordInfos"></countdiv>Record</fi:label>
+                  <fi:styling layout="columns"></fi:styling>
+                  <fi:items>
+                     <ft:new id="recordInfo-class"></ft:new>
+                  </fi:items>
+               </fi:group>
+            </fi:items>
+         </fi:group>
+         <!-- ************************************************
 			Submit button
 		***************************************************-->
-			<div class="datacontainer">
-				<div class="submit">
-					<ft:widget id="success"/>
-				</div>
-			</div>
-		</ft:form-template>
+         <div class="datacontainer">
+            <div class="submit">
+               <ft:widget id="success"></ft:widget>
+            </div>
+         </div>
+      </ft:form-template>
 	</body>
 </html>
