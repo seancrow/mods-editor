@@ -613,69 +613,102 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			<fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
-	<!-- **********************************************************************
-			recordInfo - main (included at top level)
+   <!-- **********************************************************************
+			recordInfo-without-recordChangeDate - all the elements that do not
+   			differ in their binding between top-level and withint relatedItem
+		***************************************************************************-->
+   <fb:class id="recordInfo-without-recordChangeDate">
+      <fb:repeater id="recordContentSources" row-path="mods_recordContentSource" parent-path="." direction="both">
+         <fb:value id="recordContentSources_value" path="."/>
+         <fb:value id="recordContentSources_authority" path="@authority"/>
+      </fb:repeater>
+      <fb:repeater id="recordCreationDates" row-path="mods_recordCreationDate" parent-path="." direction="both">
+         <fb:new id="common-subject-date-elements-class"/>
+         <fb:new id="common-date-elements-class"/>
+      </fb:repeater>
+      <fb:repeater id="recordIdentifiers" row-path="mods_recordIdentifier" parent-path="." direction="both">
+         <fb:value id="recordIdentifiers_recordIdentifier" path="."/>
+         <fb:value id="recordIdentifiers_recordIdentifierSource" path="@source"/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:repeater>
+     
+      <fb:repeater id="recordOrigins" row-path="mods_recordOrigin" parent-path="." direction="both">
+         <fb:value id="recordOrigins_recordOrigin" path="."/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:repeater>
+      <fb:repeater id="languageofCatalogings" row-path="mods_languageofCataloging" parent-path="." direction="both">
+         <fb:value id="objectPart" path="@objectPart"/>
+         <fb:value id="altRepGroup" path="@altRepGroup"/>
+         <fb:value id="usage" path="@usage"/>
+         <fb:value id="displayLabel" path="@displayLabel"/>
+         <fb:repeater id="languageOfCatalogings_languageTerms">
+            <fb:value id="languageTerm" path="@languageTerm"/>
+            <fb:value id="modsID" path="@modsID"/>
+            <fb:new id="common-termType-elements-class"/>
+            <fb:new id="common-languageAuthority-elements-class"/>
+            <fb:new id="common-language-elements-class"/>
+         </fb:repeater>
+         <fb:repeater id="languageOfCatalogings_scriptTerms">
+            <fb:value id="scriptTerm" path="@scriptTerm"/>
+            <fb:new id="common-termType-elements-class"/>
+            <fb:new id="common-languageAuthority-elements-class"/>
+            <fb:new id="common-language-elements-class"/>
+         </fb:repeater>
+         <fb:new id="common-language-elements-class"/>
+      </fb:repeater>
+      <fb:repeater id="descriptionStandards" row-path="mods_descriptionStandards" parent-path="." direction="both">
+         <fb:field id="descriptionStandards_descriptionStandard" path="."/>
+         <fb:new id="common-authority-elements-class"/>
+         <fb:new id="common-language-elements-class"/>
+         <!-- TODO check whether other common classes are needed here - there were three copies of common-language-elements-class - pbinkley -->
+      </fb:repeater>
+      
+      <fb:field id="lastModifiedBy" path="@lastModifiedBy"/>
+      <fb:field id="lastModified" path="@lastModified"/>
+      <fb:field id="displayLabel" path="@displayLabel"/>
+      <fb:field id="altRepGroup" path="@altRepGroup"/>
+      <fb:new id="common-language-elements-class"/>
+   </fb:class>
+   <!-- **********************************************************************
+			recordInfo-main (included at top level; differs only in binding)
+			   - create new value for recordChangeDate on save
+			   - TODO deal with repeater: currently all instances will be changed
 		***************************************************************************-->
 	<fb:class id="recordInfo-main-class">
-		<fb:repeater id="recordInfos" row-path="mods_recordInfo" parent-path=".">
-			<fb:repeater id="recordContentSources" row-path="mods_recordContentSource" parent-path="." direction="both">
-				<fb:value id="recordContentSources_value" path="."/>
-				<fb:value id="recordContentSources_authority" path="@authority"/>
-			</fb:repeater>
-			<fb:repeater id="recordCreationDates" row-path="mods_recordCreationDate" parent-path="." direction="both">
-				<fb:new id="common-subject-date-elements-class"/>
-				<fb:new id="common-date-elements-class"/>
-			</fb:repeater>
-			<fb:repeater id="recordIdentifiers" row-path="mods_recordIdentifier" parent-path="." direction="both">
-				<fb:value id="recordIdentifiers_recordIdentifier" path="."/>
-				<fb:value id="recordIdentifiers_recordIdentifierSource" path="@source"/>
-			</fb:repeater>
-			<!-- recordChangeDate is loaded from record but not saved; instead, new timestamp is created -->
-			<fb:repeater id="recordChangeDates" row-path="mods_recordChangeDate" parent-path="." direction="load">
-				<fb:new id="common-subject-date-elements-class"/>
-				<fb:new id="common-date-elements-class"/>
-			</fb:repeater>
-			<!-- at save time, populate recordChangeDate with current timestamp 
+      <fb:repeater id="recordInfos" row-path="mods_recordInfo" parent-path=".">
+         <!-- recordChangeDate is loaded from record but not saved; instead, new timestamp is created -->
+         <fb:repeater id="recordChangeDates" row-path="mods_recordChangeDate" parent-path="." direction="load">
+            <fb:new id="common-subject-date-elements-class"/>
+            <fb:new id="common-date-elements-class"/>
+         </fb:repeater>
+         <!-- at save time, populate recordChangeDate with current timestamp 
 				TODO: handle attributes
 			-->
-			<fb:javascript id="lastModified" path="mods_recordChangeDate" direction="save">
-				<fb:save-form>
-				var d = new java.util.Date();
-				var pat = "yyyy-MM-dd'T'HH:mm:ssZ";
-				var formatter = java.text.SimpleDateFormat(pat);
-				var datestring = formatter.format(d);
-				//cocoon.log.info("&gt;&gt; datestring = " + datestring);
-				jxpathPointer.setValue(datestring );
-				</fb:save-form>
-			</fb:javascript>
-			<fb:new id="common-language-elements-class"/>
-		</fb:repeater>
+         <fb:javascript id="lastModified" path="mods_recordChangeDate" direction="save">
+            <fb:save-form xml:space="preserve"> 
+               var d = new java.util.Date(); 
+               var pat = "yyyy-MM-dd'T'HH:mm:ssZ"; 
+               var formatter = java.text.SimpleDateFormat(pat); 
+               var datestring = formatter.format(d); 
+               //cocoon.log.info("&gt;&gt; datestring = " + datestring); jxpathPointer.setValue(datestring );
+            </fb:save-form>
+         </fb:javascript>
+         <fb:new id="recordInfo-without-recordChangeDate"/>
+      </fb:repeater>
 	</fb:class>
 	<!-- **********************************************************************
-			recordInfo-relatedItem - included in relatedItems
+			recordInfo-relatedItem  (included in relatedItems; differs only in binding)
+			   - bind original value of recordChangeDate normally
 		***************************************************************************-->
-	<fb:class id="recordInfo-relatedItem-class">
-		<fb:repeater id="recordInfos" row-path="mods_recordInfo" parent-path=".">
-			<fb:repeater id="recordContentSources" row-path="mods_recordContentSource" parent-path="." direction="both">
-				<fb:value id="recordContentSources_value" path="."/>
-				<fb:value id="recordContentSources_authority" path="@authority"/>
-			</fb:repeater>
-			<fb:repeater id="recordCreationDates" row-path="mods_recordCreationDate" parent-path="." direction="both">
-				<fb:new id="common-subject-date-elements-class"/>
-				<fb:new id="common-date-elements-class"/>
-			</fb:repeater>
-			<fb:repeater id="recordIdentifiers" row-path="mods_recordIdentifier" parent-path="." direction="both">
-				<fb:value id="recordIdentifiers_recordIdentifier" path="."/>
-				<fb:value id="recordIdentifiers_recordIdentifierSource" path="@source"/>
-			</fb:repeater>
-			<!-- recordChangeDate is loaded from record but not saved; instead, new timestamp is created -->
-			<fb:repeater id="recordChangeDates" row-path="mods_recordChangeDate" parent-path="." direction="both">
-				<fb:new id="common-subject-date-elements-class"/>
-				<fb:new id="common-date-elements-class"/>
-			</fb:repeater>
-			<fb:new id="common-language-elements-class"/>
-		</fb:repeater>
-	</fb:class>
+   <fb:class id="recordInfo-relatedItem-class">
+      <fb:repeater id="recordInfos" row-path="mods_recordInfo" parent-path=".">
+         <fb:repeater id="recordChangeDates" row-path="mods_recordChangeDate" parent-path="." direction="both">
+            <fb:new id="common-subject-date-elements-class"/>
+            <fb:new id="common-date-elements-class"/>
+         </fb:repeater>
+         <fb:new id="recordInfo-without-recordChangeDate"/>
+      </fb:repeater>
+   </fb:class>
 	<!-- **********************************************************************
 			Core elements - those that can be top-level or contained in relatedItem
 		***************************************************************************-->

@@ -1923,12 +1923,133 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                                              <jx:out value="${divider}"></jx:out>
                                              <ft:widget-label id="recordIdentifiers_recordIdentifierSource"></ft:widget-label>
                                              <ft:widget id="recordIdentifiers_recordIdentifierSource"></ft:widget>
+                                             <ft:new id="common-language-elements-class"/>
                                              <ft:new id="common-controls-class"></ft:new>
                                           </div>
                                        </ft:repeater-rows>
                                     </div>
                                  </ft:repeater>
                                  <ft:widget id="add-to-recordIdentifiers"></ft:widget>
+                                 
+                                 <div class="block">
+                                    <ft:repeater id="recordOrigins">
+                                       <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                          <ft:repeater-rows>
+                                             <div class="row subrepeater recordOrigins">
+                                                <h6>
+                                                   <ft:widget-label id="../../recordOrigins"></ft:widget-label>
+                                                   <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                </h6>
+                                                <ft:widget-label id="recordOrigins_recordOrigin"></ft:widget-label>
+                                                <ft:widget id="recordOrigins_recordOrigin"></ft:widget>
+                                                <ft:new id="common-language-elements-class"/>
+                                             </div>
+                                          </ft:repeater-rows>
+                                       </div>
+                                    </ft:repeater>
+                                    <ft:widget id="add-to-recordOrigins"></ft:widget>
+                                    <ft:new id="common-controls-class"></ft:new>
+                                 </div>
+                                 <div class="block">
+                                    <ft:repeater id="languageOfCatalogings">
+                                       <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                          <ft:repeater-rows>
+                                             <div class="row subrepeater languageOfCatalogings">
+                                                <h6>
+                                                   <ft:widget-label id="../../languageOfCatalogings"></ft:widget-label>
+                                                   <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                </h6>
+                                                <ft:widget-label id="objectPart"></ft:widget-label>
+                                                <ft:widget id="objectPart"></ft:widget>
+                                                <ft:widget-label id="altRepGroup"></ft:widget-label>
+                                                <ft:widget id="altRepGroup"></ft:widget>
+                                                <ft:widget-label id="usage"></ft:widget-label>
+                                                <ft:widget id="usage"></ft:widget>
+                                                <ft:widget-label id="displayLabel"></ft:widget-label>
+                                                <ft:widget id="displayLabel"></ft:widget>
+                                                
+                                                <div class="block">
+                                                   <ft:repeater id="languageOfCatalogings_languageTerms">
+                                                      <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                                         <ft:repeater-rows>
+                                                            <div class="row subrepeater languageOfCatalogings_languageTerms">
+                                                               <h6>
+                                                                  <ft:widget-label id="../../languageOfCatalogings_languageTerms"></ft:widget-label>
+                                                                  <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                               </h6>
+                                                               <ft:widget-label id="languageTerm"></ft:widget-label>
+                                                               <ft:widget id="languageTerm"></ft:widget>
+                                                               <ft:widget-label id="modsID"></ft:widget-label>
+                                                               <ft:widget id="modsID"></ft:widget>
+                                                               <ft:new id="common-termType-elements-class"/>
+                                                               <ft:new id="common-languageAuthority-elements-class"/>
+                                                               <ft:new id="common-language-elements-class"/>
+                                                            </div>
+                                                         </ft:repeater-rows>
+                                                      </div>
+                                                   </ft:repeater>
+                                                   <ft:widget id="add-to-languageOfCatalogings_languageTerms"></ft:widget>
+                                                   <ft:new id="common-controls-class"></ft:new>
+                                                </div>
+                                                <div class="block">
+                                                   <ft:repeater id="languageOfCatalogings_scriptTerms">
+                                                      <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                                         <ft:repeater-rows>
+                                                            <div class="row subrepeater languageOfCatalogings_scriptTerms">
+                                                               <h6>
+                                                                  <ft:widget-label id="../../languageOfCatalogings_scriptTerms"></ft:widget-label>
+                                                                  <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                               </h6>
+                                                               <ft:widget-label id="scriptTerm"></ft:widget-label>
+                                                               <ft:widget id="scriptTerm"></ft:widget>
+                                                               <ft:new id="common-termType-elements-class"/>
+                                                               <ft:new id="common-languageAuthority-elements-class"/>
+                                                               <ft:new id="common-language-elements-class"/>
+                                                            </div>
+                                                         </ft:repeater-rows>
+                                                      </div>
+                                                   </ft:repeater>
+                                                   <ft:widget id="add-to-languageOfCatalogings_scriptTerms"></ft:widget>
+                                                   <ft:new id="common-controls-class"></ft:new>
+                                                </div>
+                                                
+                                                <ft:new id="common-language-elements-class"/>
+                                             </div>
+                                          </ft:repeater-rows>
+                                       </div>
+                                    </ft:repeater>
+                                    <ft:widget id="add-to-languageOfCatalogings"></ft:widget>
+                                    <ft:new id="common-controls-class"></ft:new>
+                                 </div>
+                                 
+                                 <div class="block">
+                                    <ft:repeater id="descriptionStandards">
+                                       <div class="block empty-repeater-${repeater.getSize() == 0}">
+                                          <ft:repeater-rows>
+                                             <div class="row subrepeater descriptionStandards">
+                                                <h6>
+                                                   <ft:widget-label id="../../descriptionStandards"></ft:widget-label>
+                                                   <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                </h6>
+                                                <ft:widget-label id="descriptionStandards_descriptionStandard"></ft:widget-label>
+                                                <ft:widget id="descriptionStandards_descriptionStandard"></ft:widget>
+                                                <ft:new id="common-authority-elements-class"/>
+                                                <ft:new id="common-language-elements-class"/>
+                                             </div>
+                                          </ft:repeater-rows>
+                                       </div>
+                                    </ft:repeater>
+                                    <ft:widget id="add-to-descriptionStandards"></ft:widget>
+                                    <ft:new id="common-controls-class"></ft:new>
+                                 </div>
+                                 <ft:widget-label id="lastModifiedBy"></ft:widget-label>
+                                 <ft:widget id="lastModifiedBy"></ft:widget>
+                                 <ft:widget-label id="lastModified"></ft:widget-label>
+                                 <ft:widget id="lastModified"></ft:widget>
+                                 <ft:widget-label id="displayLabel"></ft:widget-label>
+                                 <ft:widget id="displayLabel"></ft:widget>
+                                 <ft:widget-label id="altRepGroup"></ft:widget-label>
+                                 <ft:widget id="altRepGroup"></ft:widget>
                               </div>
                               <!-- recordIdentifier repeater -->
                               <ft:new id="common-language-elements-class"></ft:new>
