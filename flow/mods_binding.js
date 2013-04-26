@@ -1,125 +1,145 @@
+/*
+Copyright 2005, 2007, 2008 University of Alberta Libraries  
+    
+This file is part of MODS Editor.
+
+MODS Editor is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+MODS Editor is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
+*/
 cocoon.load("resource://org/apache/cocoon/forms/flow/javascript/Form.js");
 
-function modsxml(form) {
-    // get the documentURI parameter from the sitemap which contains the
-    // location of the file to be edited
-    var documentURI = cocoon.parameters["documentURI"];
-//		cocoon.log.info('dapisam: documentURI: ' + documentURI);
+function form2xml(form) {
 
-   	var document = loadDocument(documentURI); 
-	 // note: this is a Java Document (http://java.sun.com/j2se/1.4.2/docs/api/org/w3c/dom/Document.html)
+	/*
+	Get the documentURI parameter from the sitemap which contains the location of the file to be
+	edited.
+	*/
+	var documentURI = cocoon.parameters["documentURI"];
 
-
-	  form.load(document);
-
-    form.showForm("mods-display-pipeline", {document: document});
-	cocoon.log.info('Starting saving document');
-    form.save(document);
-	cocoon.log.info('Finished saving document');
-		cocoon.sendPage("mods-success-pipeline", {document: document});
-}
-
-function saveLastSubmitter(event) {
-	element = event.source;
-	form = element.getForm();
-	lastSubmitter = element.id;
-	//cocoon.log.info("lastSubmitter 0: lastSubmitter=" + lastSubmitter);
-	// determine action type from name of lastSubmitter:
-	//   might be insertWidget, deleteWidget, addWidget, moveUp, moveDown
-	if (lastSubmitter == 'moveUp')
-		{ action = 'moveUp'; }
-	else if (lastSubmitter == 'moveDown')
-		{ action = 'moveDown'; }
-	else if (lastSubmitter.substring(0, 6) == 'insert')
-		{ action = 'insert'; }
-	else if (lastSubmitter.substring(0, 3) == 'add')
-		{ action = 'add'; }
-	else if (lastSubmitter.substring(0, 6) == 'delete')
-		{ action = 'delete'; }
-	else { action = 'unknown'; }
-
-	// track whether we've picked up the number of the parent element
-	// e.g. if the final id is originInfos.0.places.0.placeterms.0.authority,
-	// the first number is the 0 before 'authority'
-	gotFirstNumber = false;
+	// Parse the document to a DOM-tree
 	
-	while (element.getParent().id != '') {
-		//cocoon.log.info("lastSubmitter 1: id=" + element.getParent().id);
-		element = element.getParent();
-		if (!(gotFirstNumber)) {
-			// we should have the number of the parent of the submitter
-			eid = element.id * 1;
-			//cocoon.log.info("eid: " + eid.toString());
-			if (eid == -1) {
-				// the action must be delete, so let's go for the ancestor of 
-				// of the lastSubmitte
-				lastSubmitter = "";
-			}
-			else if (action == 'insert') {
-				// we want to get the new element, not the old one from which the
-				// insertion was triggered
-				eid++;
-				lastSubmitter = eid.toString() + "." + lastSubmitter;
-			}
-			else {
-				lastSubmitter = eid + "." + lastSubmitter;
-			}
-			gotFirstNumber = true;
-		}
-		else {
-			lastSubmitter = element.id + "." + lastSubmitter;
-		}
-		// might end with period, if we had a -1
-		//cocoon.log.info("lastSubmitter final period? [" + lastSubmitter.substring(lastSubmitter.length-1) + "]");
-		if (lastSubmitter.substring(lastSubmitter.length-1) == ".") {
-			//cocoon.log.info("lastSubmitter: truncating");
-			lastSubmitter = lastSubmitter.substring(0, lastSubmitter.length-2);
-		}
-		
-		// but for now, for deletions, we'll just go with the top-level element
-		if (action == 'delete') {
-			p = lastSubmitter.indexOf('.');
-			//cocoon.log.info("lastSubmitter=" + lastSubmitter + " indexOf(.): " + p);
-			if (p != -1) {			
-				lastSubmitter = lastSubmitter.substring(0, p-1);
-			}
-			// we now have the first element of the id
-			// FIXME: make it get the appropriate nested repeater, not the 
-			// top-level element repeater.	the problem is that in the HTML, we
-			// don't have ids like originInfos.0.blah.3.blah for divs, unless we write
-			// logic in the template to produce them.
-		}
-		
-		
-		cocoon.log.info("lastSubmitter 2: lastSubmitter=" + lastSubmitter);
+	var document = loadDocument(documentURI);
+
+	// Bind the document data to the form
+	
+	var lastSlash = documentURI.lastIndexOf('/')+1;
+	var lastDot = documentURI.lastIndexOf('.');
+	var fileName = documentURI.substring(lastSlash,lastDot);
+
+	var directory = fileName.substring(2,5);
+
+	form.load(document);
+
+	// Show the form to the user until it is validated successfully
+	form.showForm("mods-display-pipeline", {document: document});
+
+	// Bind the form's data to the document
+	form.save(document);
+
+	cocoon.sendPage("mods-success-pipeline", {document: document, documentURI: fileName, directory: directory});
+}
+
+function form2simpleXML(form) {
+
+	/*
+	Get the documentURI parameter from the sitemap which contains the location of the file
+	to be edited.
+	*/
+	var documentURI = cocoon.parameters["documentURI"];
+
+	// populate the form
+	form.loadXML(documentURI);
+
+	// show the form to the user until it is validated successfully
+	form.showForm("form2-display-pipeline");
+
+	// save the content of the form to a file
+	form.saveXML(makeTargetURI(documentURI));
+
+	// show the XML generated from the form
+	cocoon.sendPage("form2simpleXML-success-pipeline", form.getXML());
+}
+
+
+function loadDocument(uri){
+
+	var parser = null;
+	var source = null;
+	var resolver = null;
+	try
+	{
+		parser = cocoon.getComponent(Packages.org.apache.excalibur.xml.dom.DOMParser.ROLE);
+		resolver = cocoon.getComponent(Packages.org.apache.cocoon.environment.SourceResolver.ROLE);
+		source = resolver.resolveURI(uri);
+		var is = new Packages.org.xml.sax.InputSource(source.getInputStream());
+		is.setSystemId(source.getURI());
+		return parser.parseDocument(is);
 	}
-	// we now have the element id in a form like this:
-	// originInfos.0.dates.-1.deleteWidget
-	// note that if we just deleted something, we get a -1
-	// so truncate before this
+	finally {
+		if (source != null)
+			resolver.release(source);
+		cocoon.releaseComponent(parser);
+		cocoon.releaseComponent(resolver);
 		
-	form.getChild("lastSubmitter").value = lastSubmitter;
-	cocoon.log.info("dapisam test " + lastSubmitter);
+	}
 }
 
-function loadDocument(uri) {
-    var parser = null;
-    var source = null;
-    var resolver = null;
-    try {
-        parser = cocoon.getComponent(Packages.org.apache.excalibur.xml.dom.DOMParser.ROLE);
-        resolver = cocoon.getComponent(Packages.org.apache.cocoon.environment.SourceResolver.ROLE);
-        source = resolver.resolveURI(uri);
-        var is = new Packages.org.xml.sax.InputSource(source.getInputStream());
-        is.setSystemId(source.getURI());
-        return parser.parseDocument(is);
-    } finally {
-        if (source != null)
-            resolver.release(source);
-        cocoon.releaseComponent(parser);
-        cocoon.releaseComponent(resolver);
-    }
-}
+function saveDocument(document, uri) {
 
+	var source = null;
+	var resolver = null;
+	var outputStream = null;
 
+	try
+	{
+		resolver = cocoon.getComponent(Packages.org.apache.cocoon.environment.SourceResolver.ROLE);
+		source = resolver.resolveURI(uri);
 
+		var tf = Packages.javax.xml.transform.TransformerFactory.newInstance();
+
+		if (source instanceof Packages.org.apache.excalibur.source.ModifiableSource && tf.getFeature(Packages.javax.xml.transform.sax.SAXTransformerFactory.FEATURE))
+		{
+			outputStream = source.getOutputStream();
+			var transformerHandler = tf.newTransformerHandler();
+			var transformer = transformerHandler.getTransformer();
+			transformer.setOutputProperty(Packages.javax.xml.transform.OutputKeys.INDENT,"true");
+			transformer.setOutputProperty(Packages.javax.xml.transform.OutputKeys.METHOD,"xml");
+			transformerHandler.setResult(new Packages.javax.xml.transform.stream.StreamResult(outputStream));
+
+			var streamer = new Packages.org.apache.cocoon.xml.dom.DOMStreamer(transformerHandler);
+			streamer.stream(document);
+		}
+		else 
+		{
+			throw new Packages.org.apache.cocoon.ProcessingException("Cannot write to source " + uri);
+		}
+	}
+	finally
+	{
+		if (source != null)
+			resolver.release(source);
+		cocoon.releaseComponent(resolver);
+		if (outputStream != null)
+		{
+			try
+			{
+				outputStream.flush();
+				outputStream.close();
+			} 
+			catch (error) {
+				cocoon.log.error("Could not flush/close outputstream: " + error);
+				
+				}
+			}
+		}
+	}

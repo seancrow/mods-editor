@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2005, 2007, 2008 University of Alberta Libraries  
+    
+This file is part of MODS Editor.
+
+MODS Editor is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+MODS Editor is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<localize>
+	<!--
+		- generate a stylesheet on the fly based on config here
+	-->
+	<suppress>
+			<class>common-linking-elements</class>
+			<class>name</class>
+			<field class="common-language-elements">transliteration</field>
+			<!-- nested field -->
+			<field class="originInfo">places_placeterms_authority</field>
+	</suppress>
+	<selectionlist class="common-language-elements">
+		<field id="lang">
+			<item value="">(no language)</item>
+			<item value="eng">English</item>
+			<item value="fre">French</item>
+			<styling/>
+		</field>
+	</selectionlist>
+	<!-- note: userclasses can be a space-delimited list of class names -->
+	<subclass class="common-textfield" userclasses="note">
+		<suppress>
+			<field>xlink</field>
+		</suppress>
+		<selectionlist>
+			<field id="type">
+				<item value="">(no type)</item>
+				<item value="type1">type 1</item>
+				<item value="type2">type 2</item>
+				<styling/>
+			</field>
+		</selectionlist>
+	</subclass>
+</localize>

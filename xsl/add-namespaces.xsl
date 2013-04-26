@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2005, 2007, 2008 University of Alberta Libraries  
+    
+This file is part of MODS Editor.
+
+MODS Editor is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+MODS Editor is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mods="http://www.loc.gov/mods/v3" exclude-result-prefixes="mods">
 	<xsl:output method="xml" indent="yes"/>
-	<!-- get rid of the wrapper element "upload" -->
-	<xsl:template match="upload">
-		<xsl:apply-templates select="*"/>
+	<xsl:template match="/wrapper">
+		<xsl:copy>
+			<xsl:apply-templates select="*"/>
+		</xsl:copy>
 	</xsl:template>
 	<!-- normalize order of top-level elements -->
 	<xsl:template match="mods_mods">
-		<mods:mods>
+		<mods>
 			<xsl:apply-templates select="@*"/>
 			<xsl:apply-templates select="mods_titleInfo"/>
 			<xsl:apply-templates select="mods_name"/>
@@ -28,7 +47,7 @@
 			<xsl:apply-templates select="mods_accessCondition"/>
 			<xsl:apply-templates select="mods_extension"/>
 			<xsl:apply-templates select="mods_recordInfo"/>
-		</mods:mods>
+		</mods>
 	</xsl:template>
 	<xsl:template match="*">
 		<xsl:variable name="name">
@@ -46,19 +65,22 @@
 				<xsl:when test="contains(name(), '_')">
 					<xsl:value-of select="substring-before(name(), '_')"/>
 				</xsl:when>
-				<xsl:otherwise>
-					<xsl:value-of select="name()"/>
-				</xsl:otherwise>
+				<xsl:otherwise/>
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:choose>
-			<xsl:when test="$namespace!=''">
-				<xsl:element name="mods:{$name}">
+			<xsl:when test="$namespace = 'mods'">
+				<xsl:element name="{$name}">
+					<xsl:apply-templates select="@* | * | text()"/>
+				</xsl:element>
+			</xsl:when>
+			<xsl:when test="$namespace = ''">
+				<xsl:element name="nil:{$name}">
 					<xsl:apply-templates select="@* | * | text()"/>
 				</xsl:element>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:element name="{$name}">
+				<xsl:element name="{$namespace}:{$name}">
 					<xsl:apply-templates select="@* | * | text()"/>
 				</xsl:element>
 			</xsl:otherwise>
@@ -66,11 +88,5 @@
 	</xsl:template>
 	<xsl:template match="@*">
 		<xsl:copy-of select="."/>
-	</xsl:template>
-<!--	<xsl:template match="@temp_id"/>-->
-	<xsl:template match="mods_typeOfResource/@collection | mods_typeOfResource/@manuscript">
-		<xsl:if test=". = 'true'">
-			<xsl:attribute name="{name()}">yes</xsl:attribute>
-		</xsl:if>
 	</xsl:template>
 </xsl:stylesheet>

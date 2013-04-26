@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <mods xmlns="http://www.loc.gov/mods/v3" version="3.2">
+<titleInfo lang="english">
+<title>[Alexander, Manitoba churches]</title>
+</titleInfo>
+<titleInfo lang="english">
+<title>Methodist church</title>
+</titleInfo>
+<titleInfo lang="english">
+<title>St. Matthews Church, Alexander, Man.</title>
+</titleInfo>
+<name type="personal">
+<namePart>Touchburn</namePart>
+<namePart>C.S.</namePart>
+<role>
+<roleTerm type="text">Publisher</roleTerm>
+</role>
+</name>
+<typeOfResource>still image</typeOfResource>
+<genre authority="gmgpc">postcards</genre>
+<originInfo>
+<issuance>monographic</issuance>
+<publisher>Published by C.S. Touchburn</publisher>
+<dateIssued qualifier="approximate">1925</dateIssued>
+
+<place>
+<placeTerm type="text">Alexander</placeTerm>
+</place>
+</originInfo>
+<language>
+<languageTerm type="text">English</languageTerm>
+</language>
+<physicalDescription>
+<extent>1 postcard : sepia ; 14 x 9 cm.</extent>
+</physicalDescription>
+<note type="price">25</note>
+<note type="notable">false</note>
+<note type="imgprobs">true</note>
+<note type="public_to">Miss Blackman</note>
+<note type="public_from">Kate</note>
+<note type="public_address">Blackhurst, Pembury Road, Tunbridge Wells, Kent, England</note>
+<note type="public_message">This is the sort of church one sees out here. Somewhat different to England. We are quite enjoying our stay, everything is very interesting, and new to us. Hope to reach Uncle's next week. Trust you are well. Fondest love, Kate.</note>
+<note type="public_postmark_date">Alexander, Man. 1925-06-26</note>
+<note type="public_on_back">C.S. Co., Winnipeg, 489.</note>
+<note type="public_on_back">Printed in Saxony.</note>
+<note type="public_description">Two churches with a different caption under each.</note>
+<note type="private">Cropped at the top.</note>
+<subject>
+<geographic>Alexander, MB</geographic>
+</subject>
+<subject>
+<hierarchicalGeographic>
+<country>Canada</country>
+<province>Manitoba</province>
+<city>Alexander</city>
+</hierarchicalGeographic>
+</subject>
+<subject>
+<genre>Postcards</genre>
+</subject>
+<subject>
+<topic>Churches</topic>
+</subject>
+<subject>
+<topic>Methodist churches</topic>
+</subject>
+<subject>
+<name>
+<namePart>St. Matthews Church (Alexander, Man.)</namePart>
+</name>
+</subject>
+<identifier type="local">PC000001</identifier>
+<location>
+<physicalLocation>University of Alberta, Bruce Peel Special Collections Library, Prairie Postcards Collection, Manitoba Box 1</physicalLocation>
+<url>http://peel.library.ualberta.ca/postcards/PC000001.html</url>
+<url access="raw object" note="width='538' height='800' ">http://peel.library.ualberta.ca/pcimages/PC/000/web/PC000001.jpg</url>
+<url access="preview" note="width='135' height='200'">http://peel.library.ualberta.ca/pcimages/PC/000/thumbs/PC000001.jpg</url>
+</location>
+<recordInfo>
+<recordCreationDate>2007-06-20T16:05:12-0600</recordCreationDate>
+<recordIdentifier>PC000001</recordIdentifier>
+<recordContentSource>sdahl</recordContentSource>
+<recordChangeDate>2007-11-01T11:23:32-0700</recordChangeDate>
+</recordInfo>
+</mods>

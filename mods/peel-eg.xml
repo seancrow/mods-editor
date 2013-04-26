@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mods:mods xmlns:mods="http://www.loc.gov/mods/v3" xmlns:peel="http://peel.library.ualberta.ca/mods-extensions">
+	<titleInfo xmlns="http://www.loc.gov/mods/v3">
+		<title>Evergreen and gold</title>
+		<subTitle>the annual publication of the students of the University of Alberta</subTitle>
+	</titleInfo>
+	<name xmlns="http://www.loc.gov/mods/v3" type="corporate">
+		<namePart>University of Alberta</namePart>
+		<role>
+			<roleTerm authority="marcrelator" type="text">creator</roleTerm>
+		</role>
+	</name>
+	<typeOfResource xmlns="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink">text</typeOfResource>
+	<language xmlns="http://www.loc.gov/mods/v3">
+		<languageTerm>English</languageTerm>
+	</language>
+	<classification xmlns="http://www.loc.gov/mods/v3" authority="lcc">LE 3 A65E</classification>
+	<mods:originInfo>
+		<mods:dateIssued>1942</mods:dateIssued>
+	</mods:originInfo>
+	<mods:relatedItem type="host">
+	<part xmlns="http://www.loc.gov/mods/v3">
+		<detail type="volume">
+			<number>22</number>
+		</detail>
+		<date>1942</date>
+	</part>
+		<mods:identifier type="local">9022</mods:identifier>
+	</mods:relatedItem>
+	<genre xmlns="http://www.loc.gov/mods/v3">journal issue</genre>
+	<recordInfo xmlns="http://www.loc.gov/mods/v3">
+		<recordIdentifier>P009022.22</recordIdentifier>
+		<recordOrigin>
+			<peel:peel3>9022.22</peel:peel3>
+			<peel:peelnew>6792</peel:peelnew>
+		</recordOrigin>
+	</recordInfo>
+</mods:mods>
