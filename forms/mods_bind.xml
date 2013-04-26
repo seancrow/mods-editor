@@ -39,14 +39,34 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 	</fb:class>
 	<fb:class id="common-linking-elements-class">
 		<fb:value id="modsID" path="@ID" lenient="true"/>
-		<fb:value id="xlink" path="@xlink:href" lenient="true"/>
+		<fb:value id="xlink" path="@xlink_href" lenient="true"/>
 	</fb:class>
-	<fb:class id="common-textfield-class">
+	<fb:class id="common-textfield-elements-class">
 		<fb:value id="value" path="."/>
 		<fb:value id="type" path="@type"/>
 		<fb:value id="displaylabel" path="@displayLabel"/>
-		<fb:value id="xlink" path="@xlink:href" lenient="true"/>
+		<fb:value id="xlink" path="@xlink_href" lenient="true"/>
 	</fb:class>
+   <!-- 3.4 -->
+   <fb:class id="common-authorityURIAndValueURI-elements-class">
+      <fb:value id="authorityURI" path="@authorityURI"/>
+      <fb:value id="valueURI" path="@valueURI"/>
+   </fb:class>
+   <fb:class id="common-authority-elements-class">
+      <fb:value id="authority" path="@authority"/>
+      <fb:new id="common-authorityURIAndValueURI-elements-class"/>
+   </fb:class>
+   <fb:class id="common-placeAuthority-elements-class">
+      <fb:new id="common-authority-elements-class"/>
+   </fb:class>
+   <fb:class id="common-languageAuthority-elements-class">
+      <fb:new id="common-authority-elements-class"/>
+   </fb:class>
+   <fb:class id="common-termType-elements-class">
+      <fb:value id="termType" path="@termType"/>
+   </fb:class>      
+   
+   
 	<!-- note: this structure is copied from form_model_gui_binding.xml in the samples -->
 	<fb:class id="subject-widgets-class">
 		<fb:temp-repeater id="subject-widgets" parent-path="." row-path="*" row-path-insert="." virtual-rows="true">
@@ -212,21 +232,44 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			<fb:repeater id="texts" row-path="mods_text" parent-path=".">
 				<fb:new id="common-textfield-class"/>
 			</fb:repeater>
+			<fb:new id="common-language-elements-class"/>
+			<fb:new id="common-linking-elements-class"/>
 		</fb:repeater>
 	</fb:class>
 	<!-- **********************************************************************
 		mods:titleInfo
 	***************************************************************************-->
-	<fb:class id="single-titleInfo-class">
-		<fb:value id="title" path="mods_title" lenient="true"/>
-		<fb:value id="subtitle" path="mods_subTitle" lenient="true"/>
-		<fb:value id="partnumber" path="mods_partNumber" lenient="true"/>
-		<fb:value id="partname" path="mods_partName" lenient="true"/>
-		<fb:value id="nonsort" path="mods_nonSort" lenient="true"/>
-		<fb:value id="type" path="@type" lenient="true"/>
-		<fb:new id="common-language-elements-class"/>
-		<fb:new id="common-linking-elements-class"/>
-	</fb:class>
+   <fb:class id="single-titleInfo-class">
+      <fb:group id="title-group">
+         <fb:value id="title" path="mods_title" lenient="true"/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:group>
+      <fb:group id="subTitle-group">
+         <fb:value id="subtitle" path="mods_subTitle" lenient="true"/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:group>
+      <fb:repeater id="partNumbers" row-path="mods_partNumber" parent-path=".">
+         <fb:value id="partnumber" path="mods_partNumber" lenient="true"/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:repeater>
+      <fb:repeater id="partNames" row-path="mods_partName" parent-path=".">
+         <fb:value id="partname" path="mods_partName" lenient="true"/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:repeater>
+      <fb:group id="nonSort-group">
+         <fb:value id="nonsort" path="mods_nonSort" lenient="true"/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:group>
+      <fb:value id="type" path="@type" lenient="true"/>
+      <fb:new id="common-authority-elements-class"/>
+      <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+      <fb:value id="supplied" path="@supplied" lenient="true"/>
+      <fb:value id="usage" path="@usage" lenient="true"/>
+      <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+      <fb:value id="nameTitleGroup" path="@nameTitleGroup" lenient="true"/>
+      <fb:new id="common-language-elements-class"/>
+      <fb:new id="common-linking-elements-class"/>
+   </fb:class>
 	<fb:class id="titleInfo-class">
 		<fb:repeater id="titleInfos" row-path="mods_titleInfo" parent-path=".">
 			<fb:new id="single-titleInfo-class"/>
@@ -241,12 +284,36 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		</fb:repeater>
 	</fb:class>
 	<fb:class id="single-name-class">
-		<fb:repeater id="nameparts" row-path="mods_namePart" parent-path=".">
+	   <fb:value id="type" path="@type"/>
+	   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+	   <fb:value id="usage" path="@usage" lenient="true"/>
+	   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+	   <fb:value id="nameTitleGroup" path="@nameTitleGroup" lenient="true"/>
+	   
+	   <fb:repeater id="nameparts" row-path="mods_namePart" parent-path=".">
 			<fb:value id="value" path="."/>
 			<fb:value id="type" path="@type"/>
 		</fb:repeater>
-		<fb:value id="role" path="mods_role/mods_roleTerm" lenient="true"/>
+	   
+	   <fb:repeater id="displayforms" row-path="mods_displayForm" parent-path=".">
+	      <fb:value id="value" path="."/>
+	      <fb:new id="common-language-elements-class"/>
+	   </fb:repeater>
+	   <fb:repeater id="affiliations" row-path="mods_affiliation" parent-path=".">
+	      <fb:value id="value" path="."/>
+	      <fb:new id="common-language-elements-class"/>
+	   </fb:repeater>
+	   
+	   <fb:repeater id="roles" row-path="mods_role" parent-path=".">
+	      <fb:repeater id="roleterms" row-path="mods_roleTerm" parent-path=".">
+	         <fb:value id="roles_roleterms_value" path="."/>
+	         <fb:value id="roles_roleterms_type" path="@type"/>
+	         <fb:value id="roles_roleterms_authority" path="@authority"/>
+	      </fb:repeater>
+	   </fb:repeater>
 		<fb:value id="description" path="mods_description" lenient="true"/>
+	   <fb:new id="common-authority-elements-class"/>
+	   
 		<fb:new id="common-language-elements-class"/>
 		<fb:new id="common-linking-elements-class"/>
 	</fb:class>
@@ -261,6 +328,9 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			<fb:value id="manuscript" path="@manuscript" lenient="true">
 				<fd:convertor datatype="boolean"/>
 			</fb:value>
+		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+		   <fb:value id="usage" path="@usage" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
 			<fb:value id="type" path="." lenient="true"/>
 		</fb:repeater>
 	</fb:class>
@@ -271,7 +341,11 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		<fb:repeater id="genres" row-path="mods_genre" parent-path=".">
 			<fb:value id="genre" path="."/>
 			<fb:value id="authority" path="@authority"/>
-			<fb:new id="common-language-elements-class"/>
+		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+		   <fb:value id="usage" path="@usage" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+		   <fb:new id="common-authority-elements-class"/>
+		   <fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
 	<!-- **********************************************************************
@@ -279,22 +353,39 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************************************-->
 	<fb:class id="originInfo-class">
 		<fb:repeater id="originInfos" row-path="mods_originInfo" parent-path=".">
+		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
 			<fb:repeater id="places" row-path="mods_place" parent-path=".">
+			   <fb:value id="supplied" path="@supplied" lenient="true"/>
 				<fb:repeater id="placeterms" row-path="mods_placeTerm" parent-path=".">
 					<fb:value id="places_placeterms_pubplace" path="."/>
-					<fb:value id="places_placeterms_type" path="@type"/>
-					<fb:value id="places_placeterms_authority" path="@authority"/>
+               <fb:new id="common-termType-elements-class"/>
+               <fb:new id="common-placeAuthority-elements-class"/>
+               <fb:new id="common-language-elements-class"/>
 				</fb:repeater>
 			</fb:repeater>
-			<fb:value id="publisher" path="mods_publisher"/>
-			<fb:repeater id="dates" row-path="temp_date" parent-path=".">
+         <fb:repeater id="publishers">
+            <fb:value id="publisher" path="mods_publisher"/>
+            <fb:value id="supplied" path="@supplied" lenient="true"/>
+            <fb:new id="common-language-elements-class"/>
+         </fb:repeater>
+		   <fb:repeater id="dates" row-path="temp_date" parent-path=".">
 				<fb:value id="dates_temp_type" path="@temp_type"/>
-				<fb:new id="common-subject-date-elements-class"/>
+				<!-- <fb:new id="common-subject-date-elements-class"/> removed by jh -->
 				<fb:new id="common-date-elements-class"/>
-			</fb:repeater>
-			<fb:value id="edition" path="mods_edition"/>
+		      <fb:new id="common-language-elements-class"/>
+		   </fb:repeater>
+		   <fb:repeater id="editions">
+		      <fb:value id="supplied" path="@supplied" lenient="true"/>
+		      <fb:value id="edition" path="mods_edition"/>
+		      <fb:new id="common-language-elements-class"/>
+		   </fb:repeater>
 			<fb:value id="issuance" path="mods_issuance"/>
-			<fb:value id="frequency" path="mods_frequency"/>
+		   <fb:repeater id="frequencys">
+		      <fb:value id="frequency" path="mods_frequency"/>
+		      <fb:new id="common-authority-elements-class"/>
+		      <fb:new id="common-language-elements-class"/>
+		   </fb:repeater>
 			<fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
@@ -303,11 +394,23 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 	***************************************************************************-->
 	<fb:class id="language-class">
 		<fb:repeater id="languages" row-path="mods_language" parent-path=".">
-			<fb:repeater id="languageterms" row-path="mods_languageTerm" parent-path=".">
-				<fb:value id="languageterms_language" path="."/>
-				<fb:value id="languageterms_type" path="@type"/>
-				<fb:value id="languageterms_authority" path="@authority"/>
-			</fb:repeater>
+		   <fb:value id="objectPart" path="@objectPart" lenient="true"/>
+		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+		   <fb:value id="usage" path="@usage" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+         <fb:repeater id="languageterms" row-path="mods_languageTerm" parent-path=".">
+            <fb:value id="languageterms_language" path="."/>
+            <fb:new id="common-termType-elements-class"/>
+            <fb:new id="common-languageAuthority-elements-class"/>
+            <fb:new id="common-language-elements-class"/>
+         </fb:repeater>
+		   <fb:repeater id="scriptterms" row-path="mods_scriptTerm" parent-path=".">
+		      <fb:value id="scriptterms_script" path="."/>
+		      <fb:new id="common-termType-elements-class"/>
+		      <fb:new id="common-authority-elements-class"/>
+		      <fb:new id="common-language-elements-class"/>
+		   </fb:repeater>
+		   <fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
 	<!-- ****************************************************
@@ -315,16 +418,29 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		********************************************************-->
 	<fb:class id="physicalDescription-class">
 		<fb:repeater id="physicalDescriptions" row-path="mods_physicalDescription" parent-path=".">
-			<fb:context path="mods_form">
+		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+			<fb:repeater id="forms" row-path="mods_form" parent-path=".">
 				<fb:value id="form" path="."/>
-				<fb:value id="formauthority" path="@authority"/>
-			</fb:context>
+				<fb:value id="type" path="@type"/>
+			   <fb:new id="common-authority-elements-class"/>
+			   <fb:new id="common-language-elements-class"/>
+			</fb:repeater>
 			<fb:value id="reformattingquality" path="mods_reformattingQuality"/>
-			<fb:value id="internetmediatype" path="mods_internetMediaType"/>
-			<fb:value id="extent" path="mods_extent"/>
+			<fb:repeater id="internetmediatypes" row-path="mods_internetMediaType" parent-path=".">
+			   <fb:value id="internetMediatype" path="."/>
+			   <fb:new id="common-language-elements-class"/>
+			</fb:repeater>
+		   <fb:repeater id="extents" orderable="true" parent-path=".">
+   			<fb:value id="extent" path="."/>
+		      <fb:value id="supplied" path="@supplied"/>
+		      <fb:new id="common-language-elements-class"/>
+		   </fb:repeater>
 			<fb:value id="digitalorigin" path="mods_digitalOrigin"/>
 			<fb:repeater id="notes" row-path="mods_note" parent-path=".">
-				<fb:new id="common-textfield-class"/>
+			   <fb:value name="modsID" path="@modsID"/>
+			   <fb:new id="common-textfield-elements-class"/>
+			   <fb:new id="common-language-elements-class"/>
 			</fb:repeater>
 			<fb:new id="common-language-elements-class"/>
 		</fb:repeater>
@@ -334,8 +450,10 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************-->
 	<fb:class id="abstract-class">
 		<fb:repeater id="abstracts" row-path="mods_abstract" parent-path=".">
-			<fb:new id="common-textfield-class"/>
-			<fb:new id="common-language-elements-class"/>
+		   <fb:value id="shareable" path="@shareable" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+		   <fd:new id="common-textfield-elements-class"/>
+		   <fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
 	<!-- ************************************************
@@ -343,8 +461,10 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************-->
 	<fb:class id="tableOfContents-class">
 		<fb:repeater id="tableOfContentss" row-path="mods_tableOfContents" parent-path=".">
-			<fb:new id="common-textfield-class"/>
-			<fb:new id="common-language-elements-class"/>
+		   <fb:value id="shareable" path="@shareable" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+		   <fd:new id="common-textfield-elements-class"/>
+		   <fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
 	<!-- ************************************************
@@ -353,8 +473,10 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 	<fb:class id="targetAudience-class">
 		<fb:repeater id="targetAudiences" row-path="mods_targetAudience" parent-path=".">
 			<fb:value id="value" path="." lenient="true"/>
-			<fb:value id="authority" path="@authority"/>
-			<fb:new id="common-language-elements-class"/>
+		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+		   <fb:new id="common-authority-elements-class"/>
+		   <fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
 	<!-- ************************************************
@@ -362,7 +484,9 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************-->
 	<fb:class id="note-class">
 		<fb:repeater id="notes" row-path="mods_note" parent-path=".">
-			<fb:new id="common-textfield-class"/>
+		   <fb:value name="modsID" path="@modsID"/>
+		   <fb:value name="altRepGroup" path="@altRepGroup"/>
+			<fb:new id="common-textfield-elements-class"/>
 			<fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
@@ -371,9 +495,12 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************-->
 	<fb:class id="subject-class">
 		<fb:repeater id="subjects" row-path="mods_subject" parent-path=".">
+		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+		   <fb:value id="usage" path="@usage" lenient="true"/>
 			<fb:new id="subject-widgets-class"/>
-			<fb:value id="authority" path="@authority"/>
-			<fb:new id="common-language-elements-class"/>
+		   <fb:new id="common-authority-elements-class"/>
+		   <fb:new id="common-language-elements-class"/>
 			<fb:new id="common-linking-elements-class"/>
 		</fb:repeater>
 	</fb:class>
@@ -384,8 +511,11 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		<fb:repeater id="classifications" row-path="mods_classification" parent-path=".">
 			<fb:value id="value" path="."/>
 			<fb:value id="edition" path="@edition"/>
-			<fb:value id="authority" path="@authority"/>
-			<fb:new id="common-language-elements-class"/>
+		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+		   <fb:value id="usage" path="@usage" lenient="true"/>
+		   <fb:new id="common-authority-elements-class"/>
+		   <fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
 	<!-- **********************************************************************
@@ -398,6 +528,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			<fb:value id="type" path="@type"/>
 			<fb:value id="displayLabel" path="@displayLabel"/>
 			<fb:value id="invalid" path="@invalid"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
 			<fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
@@ -406,17 +537,67 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************************************-->
 	<fb:class id="location-class">
 		<fb:repeater id="locations" row-path="mods_location" parent-path=".">
-			<fb:context path="mods_physicalLocation">
+		   <fb:value id="displayLabel" path="@displayLabel"/>
+		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
+			<fb:repeater id="physicalLocations" row-path="mods_physicalLocation" parent-path=".">
 				<fb:value id="physicalLocation" path="."/>
-				<fb:value id="authority" path="@authority"/>
-				<fb:value id="phys-displayLabel" path="@displayLabel"/>
-				<fb:new id="common-language-elements-class"/>
-			</fb:context>
-			<fb:context path="mods_url">
+			   <fb:value id="physicalLocation-type" path="@type"/>
+				<fb:value id="physicalLocation-displayLabel" path="@displayLabel"/>
+			   <fb:new id="common-authority-elements-class"/>
+			   <fb:new id="common-language-elements-class"/>
+			</fb:repeater>
+		   <fb:repeater id="shelfLocators" row-path="mods_shelfLocator" parent-path=".">
+		      <fb:value id="shelfLocator" path="."/>
+		      <fb:new id="common-language-elements-class"/>
+		   </fb:repeater>
+			<fb:repeater id="urls" row-path="mods_url" parent-path=".">
 				<fb:value id="url" path="."/>
+				<fb:value id="access" path="@access"/>
+				<fb:value id="usage" path="@usage"/>
+				<fb:value id="url-note" path="@note"/>
 				<fb:value id="url-displayLabel" path="@displayLabel"/>
 				<fb:value id="dateLastAccessed" path="@dateLastAccessed"/>
-			</fb:context>
+			</fb:repeater>
+		   <!-- read-only, to display images -->
+			<fb:value id="fullsize" path="mods_url[@access='raw object']" direction="load"/>
+			<fb:value id="thumbnail" path="mods_url[@access='preview']" direction="load"/>
+		   <fb:context id="holdingSimples" path="mods_holdingSimples">
+		      <fb:repeater id="copyInformations">
+		         <fb:context id="form">
+		            <!-- TODO figure out path for context -->
+		            <fb:value id="form" path="."/>
+		            <fb:value id="form-type" path="@type"/>
+		            <fb:new id="common-authority-elements-class"/>
+		            <fb:new id="common-linking-elements-class"/>
+		            <fb:new id="common-language-elements-class"/>
+		         </fb:context>
+		         <fb:repeater id="subLocations" orderable="true" parent-path=".">
+		            <fb:value id="subLocation" path="."/>
+		            <fb:new id="common-language-elements-class"/>
+		         </fb:repeater>
+		         <fb:repeater id="copyInformation-shelfLocators" orderable="true" parent-path=".">
+		            <fb:value id="selfLocator" path="."/>
+		            <fb:new id="common-language-elements-class"/>
+		         </fb:repeater>
+		         <fb:repeater id="electronicLocators" orderable="true" parent-path=".">
+		            <fb:value id="electronicLocator" path="."/>
+		         </fb:repeater>
+		         <fb:repeater id="notes" orderable="true" parent-path=".">
+		            <fb:value id="note" path="."/>
+		            <fb:value id="displayLabel" path="@displayLabel"/>
+		            <fb:value id="type" path="@type"/>
+		            <fb:new id="common-linking-elements-class"/>
+		            <fb:new id="common-language-elements-class"/>
+		         </fb:repeater>
+               <fb:repeater id="enumerationAndChronologys" orderable="true" parent-path=".">
+                  <fb:value id="enumerationAndChronology" path="."/>
+                  <fb:value id="unitType" path="@unitType"/>
+                  <fb:new id="common-language-elements-class"/>
+               </fb:repeater>
+		      </fb:repeater>
+		   </fb:context>
+		   <!-- holdingExternal not implemented - jh -->
+		   <fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
 	<!-- **********************************************************************
@@ -427,57 +608,110 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			<fb:value id="value" path="."/>
 			<fb:value id="type" path="@type"/>
 			<fb:value id="displayLabel" path="@displayLabel"/>
-			<fb:value id="xlink" path="@xlink:href" lenient="true"/>
+		   <fb:value id="altRepGroup" path="@altRegGroup"/>
+		   <fb:value id="xlink" path="@xlink_href" lenient="true"/>
 			<fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
-	<!-- **********************************************************************
-			recordInfo
+   <!-- **********************************************************************
+			recordInfo-without-recordChangeDate - all the elements that do not
+   			differ in their binding between top-level and withint relatedItem
 		***************************************************************************-->
-	<fb:class id="recordInfo-class">
-		<fb:repeater id="recordInfos" row-path="mods_recordInfo" parent-path=".">
-			<fb:repeater id="recordContentSources" row-path="mods_recordContentSource" parent-path="." direction="load">
-				<fb:value id="recordContentSources_value" path="."/>
-				<fb:value id="recordContentSources_authority" path="@authority"/>
-			</fb:repeater>
-			<fb:repeater id="recordCreationDates" row-path="mods_recordCreationDate" parent-path="." direction="both">
-				<fb:new id="common-subject-date-elements-class"/>
-				<fb:new id="common-date-elements-class"/>
-			</fb:repeater>
-			<fb:repeater id="recordIdentifiers" row-path="mods_recordIdentifier" parent-path="." direction="both">
-				<fb:value id="recordIdentifiers_recordIdentifier" path="."/>
-				<fb:value id="recordIdentifiers_recordIdentifierSource" path="@source"/>
-			</fb:repeater>
-			<!-- recordChangeDate is loaded from record but not saved; instead, new timestamp is created -->
-			<fb:repeater id="recordChangeDates" row-path="mods_recordChangeDate" parent-path="." direction="load">
-				<fb:new id="common-subject-date-elements-class"/>
-				<fb:new id="common-date-elements-class"/>
-			</fb:repeater>
-			<!-- at save time, populate recordChangeDate with current timestamp 
+   <fb:class id="recordInfo-without-recordChangeDate">
+      <fb:repeater id="recordContentSources" row-path="mods_recordContentSource" parent-path="." direction="both">
+         <fb:value id="recordContentSources_value" path="."/>
+         <fb:value id="recordContentSources_authority" path="@authority"/>
+      </fb:repeater>
+      <fb:repeater id="recordCreationDates" row-path="mods_recordCreationDate" parent-path="." direction="both">
+         <fb:new id="common-subject-date-elements-class"/>
+         <fb:new id="common-date-elements-class"/>
+      </fb:repeater>
+      <fb:repeater id="recordIdentifiers" row-path="mods_recordIdentifier" parent-path="." direction="both">
+         <fb:value id="recordIdentifiers_recordIdentifier" path="."/>
+         <fb:value id="recordIdentifiers_recordIdentifierSource" path="@source"/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:repeater>
+     
+      <fb:repeater id="recordOrigins" row-path="mods_recordOrigin" parent-path="." direction="both">
+         <fb:value id="recordOrigins_recordOrigin" path="."/>
+         <fb:new id="common-language-elements-class"/>
+      </fb:repeater>
+      <fb:repeater id="languageofCatalogings" row-path="mods_languageofCataloging" parent-path="." direction="both">
+         <fb:value id="objectPart" path="@objectPart"/>
+         <fb:value id="altRepGroup" path="@altRepGroup"/>
+         <fb:value id="usage" path="@usage"/>
+         <fb:value id="displayLabel" path="@displayLabel"/>
+         <fb:repeater id="languageOfCatalogings_languageTerms">
+            <fb:value id="languageTerm" path="@languageTerm"/>
+            <fb:value id="modsID" path="@modsID"/>
+            <fb:new id="common-termType-elements-class"/>
+            <fb:new id="common-languageAuthority-elements-class"/>
+            <fb:new id="common-language-elements-class"/>
+         </fb:repeater>
+         <fb:repeater id="languageOfCatalogings_scriptTerms">
+            <fb:value id="scriptTerm" path="@scriptTerm"/>
+            <fb:new id="common-termType-elements-class"/>
+            <fb:new id="common-languageAuthority-elements-class"/>
+            <fb:new id="common-language-elements-class"/>
+         </fb:repeater>
+         <fb:new id="common-language-elements-class"/>
+      </fb:repeater>
+      <fb:repeater id="descriptionStandards" row-path="mods_descriptionStandards" parent-path="." direction="both">
+         <fb:value id="descriptionStandards_descriptionStandard" path="."/>
+         <fb:new id="common-authority-elements-class"/>
+         <fb:new id="common-language-elements-class"/>
+         <!-- TODO check whether other common classes are needed here - there were three copies of common-language-elements-class - pbinkley -->
+      </fb:repeater>
+      
+      <fb:value id="lastModifiedBy" path="@lastModifiedBy"/>
+      <fb:value id="lastModified" path="@lastModified"/>
+      <fb:value id="displayLabel" path="@displayLabel"/>
+      <fb:value id="altRepGroup" path="@altRepGroup"/>
+      <fb:new id="common-language-elements-class"/>
+   </fb:class>
+   <!-- **********************************************************************
+			recordInfo-main (included at top level; differs only in binding)
+			   - create new value for recordChangeDate on save
+			   - TODO deal with repeater: currently all instances will be changed
+		***************************************************************************-->
+	<fb:class id="recordInfo-main-class">
+      <fb:repeater id="recordInfos" row-path="mods_recordInfo" parent-path=".">
+         <!-- recordChangeDate is loaded from record but not saved; instead, new timestamp is created -->
+         <fb:repeater id="recordChangeDates" row-path="mods_recordChangeDate" parent-path="." direction="load">
+            <fb:new id="common-subject-date-elements-class"/>
+            <fb:new id="common-date-elements-class"/>
+         </fb:repeater>
+         <!-- at save time, populate recordChangeDate with current timestamp 
 				TODO: handle attributes
 			-->
-			<fb:javascript id="lastModified" path="mods_recordChangeDate" direction="save">
-				<fb:save-form>
-				var d = new java.util.Date();
-				var pat = "yyyy-MM-dd'T'HH:mm:ssZ";
-				var formatter = java.text.SimpleDateFormat(pat);
-				var datestring = formatter.format(d);
-				//cocoon.log.info("&gt;&gt; datestring = " + datestring);
-				jxpathPointer.setValue(datestring );
-				</fb:save-form>
-			</fb:javascript>
-			<!-- at save time, populate recordContentSource with current user id, fetched from session -->
-			<fb:javascript id="lastModifiedBy" path="mods_recordContentSource" direction="save">
-				<fb:save-form>
-					var authhandler = "modshandler";
-					var userStatus = cocoon.session.getAttribute('org.apache.cocoon.webapps.authentication.components.DefaultAuthenticationManager/UserStatus');
-					var user = userStatus.getHandler(authhandler).getUserId();
-					jxpathPointer.setValue(user);
-				</fb:save-form>
-			</fb:javascript>
-			<fb:new id="common-language-elements-class"/>
-		</fb:repeater>
+         <fb:javascript id="lastModified" path="mods_recordChangeDate" direction="save">
+            <fb:save-form xml:space="preserve"> 
+               var d = new java.util.Date(); 
+               var pat = "yyyy-MM-dd'T'HH:mm:ssZ"; 
+               var formatter = java.text.SimpleDateFormat(pat); 
+               var datestring = formatter.format(d); 
+               //cocoon.log.info("&gt;&gt; datestring = " + datestring); jxpathPointer.setValue(datestring );
+            </fb:save-form>
+         </fb:javascript>
+         <fb:new id="recordInfo-without-recordChangeDate"/>
+      </fb:repeater>
 	</fb:class>
+	<!-- **********************************************************************
+			recordInfo-relatedItem  (included in relatedItems; differs only in binding)
+			   - bind original value of recordChangeDate normally
+		***************************************************************************-->
+   <fb:class id="recordInfo-relatedItem-class">
+      <fb:repeater id="recordInfos" row-path="mods_recordInfo" parent-path=".">
+         <fb:repeater id="recordChangeDates" row-path="mods_recordChangeDate" parent-path="." direction="both">
+            <fb:new id="common-subject-date-elements-class"/>
+            <fb:new id="common-date-elements-class"/>
+         </fb:repeater>
+         <fb:new id="recordInfo-without-recordChangeDate"/>
+      </fb:repeater>
+   </fb:class>
+	<!-- **********************************************************************
+			Core elements - those that can be top-level or contained in relatedItem
+		***************************************************************************-->
 	<fb:class id="core-elements">
 		<fb:new id="titleInfo-class"/>
 		<fb:new id="name-class"/>
@@ -492,29 +726,70 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		<fb:new id="note-class"/>
 		<fb:new id="subject-class"/>
 		<fb:new id="classification-class"/>
+		<fb:new id="part-class"/>
 		<fb:new id="xidentifier-class"/>
 		<fb:new id="location-class"/>
 		<fb:new id="accessCondition-class"/>
-		<fb:new id="recordInfo-class"/>
 	</fb:class>
 	<!-- **********************************************************************
 			relatedItem
 		***************************************************************************-->
 	<fb:class id="relatedItem-class">
+		<!-- PATCH: added path -->
 		<fb:repeater id="relatedItems" row-path="mods_relatedItem" parent-path=".">
+			<fb:new id="common-linking-elements-class"/>
 			<fb:value id="type" path="@type"/>
 			<fb:value id="displayLabel" path="@displayLabel"/>
-			<fb:value id="xlink" path="@xlink:href" lenient="true"/>
-			<fb:value id="relatedItem_ID" path="@ID" lenient="true"/>
+<!--  			<fb:value id="xlink" path="@xlink_href" lenient="true"/>
+			<fb:value id="relatedItem_ID" path="@ID" lenient="true"/>-->
 			<fb:new id="common-language-elements-class"/>
-			<fb:new id="part-class"/>
+<!-- 			<fb:new id="part-class"/>-->
 			<fb:new id="core-elements"/>
+		   <fb:new id="sub-relatedItem-class"/>
+			<fb:new id="recordInfo-relatedItem-class"/>
 		</fb:repeater>
 	</fb:class>
+   <fb:class id="sub-relatedItem-class">
+      <!-- PATCH: added path -->
+      <fb:repeater id="relatedItems" row-path="mods_relatedItem" parent-path=".">
+         <fb:new id="common-linking-elements-class"/>
+         <fb:value id="type" path="@type"/>
+         <fb:value id="displayLabel" path="@displayLabel"/>
+         <!--  			<fb:value id="xlink" path="@xlink_href" lenient="true"/>
+			<fb:value id="relatedItem_ID" path="@ID" lenient="true"/>-->
+         <fb:new id="common-language-elements-class"/>
+         <!-- 			<fb:new id="part-class"/>-->
+         <fb:new id="core-elements"/>
+         <fb:new id="recordInfo-relatedItem-class"/>
+      </fb:repeater>
+   </fb:class>
+   <!-- START PATCH -->
+	<!-- **********************************************************************
+		relatedItemConstituent
+		***************************************************************************-->
+	<fb:class id="relatedItemConstituent-class">
+		<fb:repeater id="relatedItemConstituents" row-path="mods_relatedItemConstituent" parent-path=".">
+			<fb:new id="common-linking-elements-class"/>
+			<fb:value id="type" path="@type"/>
+			<fb:value id="displayLabel" path="@displayLabel"/>
+			<!--  			<fb:value id="xlink" path="@xlink_href" lenient="true"/>
+				<fb:value id="relatedItem_ID" path="@ID" lenient="true"/>-->
+			<fb:new id="common-language-elements-class"/>
+			<!-- 			<fb:new id="part-class"/>-->
+			<fb:new id="core-elements"/>
+		   <fb:new id="sub-relatedItem-class"/>
+			<fb:new id="recordInfo-relatedItem-class"/>
+		</fb:repeater>
+	</fb:class>
+	<!-- END PATCH -->
 	<!-- **********************************************************************
 		Top-Level Elements
 	***********************************************************************-->
 	<fb:value id="id" path="mods_recordInfo/mods_recordIdentifier" direction="load"/>
 	<fb:new id="core-elements"/>
 	<fb:new id="relatedItem-class"/>
+	<!-- START PATCH -->
+	<fb:new id="relatedItemConstituent-class"/>
+	<!-- END PATCH -->
+	<fb:new id="recordInfo-main-class"/>
 </fb:context>
