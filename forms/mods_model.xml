@@ -1,4 +1,4 @@
-jh<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 	Copyright 2005, 2007, 2008 University of Alberta Libraries  
 	
@@ -1002,28 +1002,6 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 							<fd:label>Genre</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
-						<fd:field id="authority">
-							<fd:label>authority</fd:label>
-							<fd:datatype base="string"/>
-							<!-- this list should probably be deleted, because it is only a selection
-								from the complete set of allowable values found at:
-								http://www.loc.gov/standards/sourcelist/genre-form.html. It was
-								commented out in case there is some reason it should be here - jh
-							<fd:selection-list>
-								<fd:item value="">
-									<fd:label>(none)</fd:label>
-								</fd:item>
-								<fd:item value="rbgenr">
-									<fd:label>rbgenr</fd:label>
-								</fd:item>
-								<fd:item value="marcgt">
-									<fd:label>marcgt</fd:label>
-								</fd:item>
-								<fd:item value="gmgpc">
-									<fd:label>gmgpc</fd:label>
-								</fd:item>
-							</fd:selection-list> -->
-						</fd:field>
 						<fd:field id="type">
 							<fd:label>Type</fd:label>
 							<fd:datatype base="string"/>
@@ -1836,14 +1814,14 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 							<fd:label>full-size</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
-						<fd:context id="holdingSimple">
+						<fd:group id="holdingSimple">
 							<fd:label>holdingSimples</fd:label>
 							<fd:widgets>
 								<fd:repeater id="copyInformations" orderable="true">
 									<fd:label>copyInformations</fd:label>
 									<fd:widgets>
 										<!-- form is not repeatable - jh -->
-                              <fd:context id="form">
+                              <fd:group id="form">
                                  <fd:field id="form">
                                     <fd:label>form</fd:label>
                                  </fd:field>
@@ -1854,12 +1832,13 @@ jh<?xml version="1.0" encoding="UTF-8"?>
                                  <fd:new id="common-authority-elements-class"/>
                                  <fd:new id="common-linking-elements-class"/>
                                  <fd:new id="common-language-elements-class"/>
-                              </fd:context>
+                              </fd:group>
 										<fd:repeater id="subLocations" orderable="true">
 											<fd:label>subLocations</fd:label>
 											<fd:widgets>
 												<fd:field id="subLocation">
 													<fd:label>subLocation</fd:label>
+												   <fd:datatype base="string"/>
 												</fd:field>
 												<fd:new id="common-language-elements-class"/>									
 												<fd:new id="common-controls-class"/>
@@ -1874,6 +1853,7 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 											<fd:widgets>
 												<fd:field id="copyInformation-shelfLocator">
 													<fd:label>shelfLocator</fd:label>
+												   <fd:datatype base="string"/>
 												</fd:field>
 												<fd:new id="common-language-elements-class"/>									
 												<fd:new id="common-controls-class"/>
@@ -1888,6 +1868,7 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 											<fd:widgets>
 												<fd:field id="electronicLocator">
 													<fd:label>electronicLocator</fd:label>
+												   <fd:datatype base="string"/>
 												</fd:field>									
 												<fd:new id="common-controls-class"/>
 											</fd:widgets>
@@ -1901,12 +1882,15 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 											<fd:widgets>
 												<fd:field id="note-displayLabel">
 													<fd:label>displayLabel</fd:label>
+												   <fd:datatype base="string"/>
 												</fd:field>
 												<fd:field id="note-type">
 													<fd:label>type</fd:label>
+												   <fd:datatype base="string"/>
 												</fd:field>
 												<fd:field id="note">
 													<fd:label>note</fd:label>
+												   <fd:datatype base="string"/>
 												</fd:field>
 												<fd:new id="common-linking-elements-class"/>
 												<fd:new id="common-language-elements-class"/>									
@@ -1922,6 +1906,7 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 											<fd:widgets>
 												<fd:field id="unitType">
 													<fd:label>unitType</fd:label>
+												   <fd:datatype base="string"/>
 													<fd:selection-list>
 														<fd:item value="">
 															<fd:label>(none)</fd:label>
@@ -1939,6 +1924,7 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 												</fd:field>
 												<fd:field id="enumerationAndChronology">
 													<fd:label>enumerationAndChronology</fd:label>
+												   <fd:datatype base="string"/>
 												</fd:field>
 												<fd:new id="common-language-elements-class"/>									
 												<fd:new id="common-controls-class"/>
@@ -1957,7 +1943,7 @@ jh<?xml version="1.0" encoding="UTF-8"?>
 								</fd:repeater-action>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
-						</fd:context>
+						</fd:group>
 						<!-- holdingSimple is not repeatable. Not sure if this is the best way to
 							implement, but repeater-action has been commented out. - jh
 						<fd:repeater-action id="add-to-holdingSimples"
