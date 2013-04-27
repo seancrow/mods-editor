@@ -619,8 +619,9 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************************************-->
    <fb:class id="recordInfo-without-recordChangeDate">
       <fb:repeater id="recordContentSources" row-path="mods_recordContentSource" parent-path="." direction="both">
-         <fb:value id="recordContentSources_value" path="."/>
-         <fb:value id="recordContentSources_authority" path="@authority"/>
+         <fb:value id="value" path="."/>
+         <fb:new id="common-authority-elements-class"/>
+         <fb:new id="common-language-elements-class"/>
       </fb:repeater>
       <fb:repeater id="recordCreationDates" row-path="mods_recordCreationDate" parent-path="." direction="both">
          <fb:new id="common-subject-date-elements-class"/>
@@ -633,7 +634,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
       </fb:repeater>
      
       <fb:repeater id="recordOrigins" row-path="mods_recordOrigin" parent-path="." direction="both">
-         <fb:value id="recordOrigins_recordOrigin" path="."/>
+         <fb:value id="value" path="."/>
          <fb:new id="common-language-elements-class"/>
       </fb:repeater>
       <fb:repeater id="languageOfCatalogings" row-path="mods_languageOfCataloging" parent-path="." direction="both">

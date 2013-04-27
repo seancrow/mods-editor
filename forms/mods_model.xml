@@ -105,19 +105,19 @@
 		<fd:class id="common-language-elements-class">
 			<fd:widgets>
 				<fd:field id="lang">
-					<fd:label>lang</fd:label>
+					<fd:label>lang:</fd:label>
 					<fd:datatype base="string"/>
 				</fd:field>
 				<fd:field id="xml-lang">
-					<fd:label>xml-lang</fd:label>
+					<fd:label>xml-lang:</fd:label>
 					<fd:datatype base="string"/>
 				</fd:field>
 				<fd:field id="script">
-					<fd:label>script</fd:label>
+					<fd:label>script:</fd:label>
 					<fd:datatype base="string"/>
 				</fd:field>
 				<fd:field id="transliteration">
-					<fd:label>transliteration</fd:label>
+					<fd:label>transliteration:</fd:label>
 					<fd:datatype base="string"/>
 				</fd:field>
 			</fd:widgets>
@@ -179,11 +179,11 @@
 		<fd:class id="common-authorityURIAndValueURI-elements-class">
 			<fd:widgets>
 				<fd:field id="authorityURI">
-					<fd:label>authorityURI</fd:label>
+					<fd:label>authorityURI:</fd:label>
 					<fd:datatype base="string"/>
 				</fd:field>
 				<fd:field id="valueURI">
-					<fd:label>valueURI</fd:label>
+					<fd:label>valueURI:</fd:label>
 					<fd:datatype base="string"/>
 				</fd:field>
 			</fd:widgets>
@@ -193,7 +193,7 @@
 		<fd:class id="common-authority-elements-class">
 			<fd:widgets>
 				<fd:field id="authority">
-					<fd:label>authority</fd:label>
+					<fd:label>authority:</fd:label>
 					<fd:datatype base="string"/>
 				</fd:field>
 				<fd:new id="common-authorityURIAndValueURI-elements-class"/>
@@ -2219,14 +2219,10 @@
 						<fd:repeater id="recordContentSources" orderable="true">
 							<fd:label>recordContentSource</fd:label>
 							<fd:widgets>
-								<fd:field id="recordContentSources_value"
+								<fd:field id="value"
 									required="true">
 									<fd:datatype base="string"/>
 									<fd:label>Value</fd:label>
-								</fd:field>
-								<fd:field id="recordContentSources_authority">
-									<fd:label>authority</fd:label>
-									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:new id="common-authority-elements-class"/>
 								<fd:new id="common-language-elements-class"/>
@@ -2290,8 +2286,7 @@
 						<fd:repeater id="recordOrigins">
 							<fd:label>recordOrigin</fd:label>
 							<fd:widgets>
-								<fd:field id="recordOrigins_recordOrigin">
-									<fd:label>recordOrigin</fd:label>
+								<fd:field id="value">
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:new id="common-language-elements-class"/>
