@@ -636,7 +636,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
          <fb:value id="recordOrigins_recordOrigin" path="."/>
          <fb:new id="common-language-elements-class"/>
       </fb:repeater>
-      <fb:repeater id="languageofCatalogings" row-path="mods_languageofCataloging" parent-path="." direction="both">
+      <fb:repeater id="languageOfCatalogings" row-path="mods_languageOfCataloging" parent-path="." direction="both">
          <fb:value id="objectPart" path="@objectPart"/>
          <fb:value id="altRepGroup" path="@altRepGroup"/>
          <fb:value id="usage" path="@usage"/>
