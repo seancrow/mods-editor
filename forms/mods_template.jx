@@ -36,8 +36,8 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		<!-- change isDebug to true to enable Dojo debugging -->
 		<script>djConfig = { bindEncoding: "utf-8", isDebug: false };</script>
 		</fi:init>
-<!--		<link href="../mods.css" type="text/css" rel="stylesheet"/>-->
-		<link href="${cocoon.parameters.base}/mods.css" type="text/css" rel="stylesheet"/>
+      <link href="../mods.css" type="text/css" rel="stylesheet"/>
+<!--		<link href="${cocoon.parameters.base}/mods.css" type="text/css" rel="stylesheet"/> -->
 		<title>MODS GUI</title>
 		<script type="text/javascript">
       function upCount(id) {
@@ -365,9 +365,9 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
             <br />
             <ft:group id="nonSort-group">
                <span class="setwidth">
-                  <ft:widget-label id="nonsort"></ft:widget-label>
+                  <ft:widget-label id="nonSort"></ft:widget-label>
                </span>
-               <ft:widget id="nonsort">
+               <ft:widget id="nonSort">
                   <fi:styling size="10"></fi:styling>
                </ft:widget>
                <span class="hint">Use "+" to represent a space (otherwise final spaces will be trimmed)</span>
@@ -386,9 +386,9 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
             <br />
             <ft:group id="subTitle-group">
                <span class="setwidth">
-                  <ft:widget-label id="subtitle"></ft:widget-label>
+                  <ft:widget-label id="subTitle"></ft:widget-label>
                </span>
-               <ft:widget id="subtitle">
+               <ft:widget id="subTitle">
                   <fi:styling size="80"></fi:styling>
                </ft:widget>
                <ft:new id="common-language-elements-class"></ft:new>
@@ -409,17 +409,19 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                                  <jx:out value="${repeaterLoop.index + 1}"></jx:out>
                               </h5>
                               <span class="setwidth">
-                                 <ft:widget-label id="partnumber"></ft:widget-label>
+                                 <ft:widget-label id="partNumber"></ft:widget-label>
                               </span>
-                              <ft:widget id="partnumber">
+                              <ft:widget id="partNumber">
                                  <fi:styling size="80"></fi:styling>
                               </ft:widget>
                               <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                              
                            </div>
                         </ft:repeater-rows>
                      </div>
                   </jx:if>
-                  <ft:widget id="../add-to-names"></ft:widget>
+                  <ft:widget id="../add-to-partNumbers"></ft:widget>
                </div>
             </ft:repeater>
 
@@ -437,17 +439,19 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                                  <jx:out value="${repeaterLoop.index + 1}"></jx:out>
                               </h5>
                               <span class="setwidth">
-                                 <ft:widget-label id="partname"></ft:widget-label>
+                                 <ft:widget-label id="partName"></ft:widget-label>
                               </span>
-                              <ft:widget id="partname">
+                              <ft:widget id="partName">
                                  <fi:styling size="80"></fi:styling>
                               </ft:widget>
                               <ft:new id="common-language-elements-class"></ft:new>
+                              <ft:new id="common-controls-class"></ft:new>
+                              
                            </div>
                         </ft:repeater-rows>
                      </div>
                   </jx:if>
-                  <ft:widget id="../add-to-names"></ft:widget>
+                  <ft:widget id="../add-to-partNames"></ft:widget>
                </div>
             </ft:repeater>
 
@@ -462,15 +466,11 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
             <span class="setwidth">
                <ft:widget-label id="supplied"></ft:widget-label>
             </span>
-            <ft:widget id="supplied">
-               <fi:styling size="80"></fi:styling>
-            </ft:widget>
+            <ft:widget id="supplied"/>            
             <span class="setwidth">
                <ft:widget-label id="usage"></ft:widget-label>
             </span>
-            <ft:widget id="usage">
-               <fi:styling size="80"></fi:styling>
-            </ft:widget>
+            <ft:widget id="usage"/>            
             <span class="setwidth">
                <ft:widget-label id="altRepGroup"></ft:widget-label>
             </span>
