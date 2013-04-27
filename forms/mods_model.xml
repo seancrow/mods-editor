@@ -1160,7 +1160,7 @@
 							action-command="add-row" repeater="dates">
 							<fd:label>New date</fd:label>
 						</fd:repeater-action>
-						<fd:field id="datecreated">
+				<!--		<fd:field id="datecreated">
 							<fd:label>created</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
@@ -1183,7 +1183,7 @@
 						<fd:field id="dateother">
 							<fd:label>other</fd:label>
 							<fd:datatype base="string"/>
-						</fd:field>
+						</fd:field> -->
 						<fd:repeater id="editions" orderable="true">
 							<fd:label>edition</fd:label>
 							<fd:widgets>

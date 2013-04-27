@@ -982,7 +982,6 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                                  </ft:repeater>
                                  <ft:widget id="add-to-frequencys"></ft:widget>
                               </div>
-                              <br />
                               <ft:new id="common-language-elements-class"></ft:new>
                               <ft:new id="common-controls-class"></ft:new>
                            </div>
@@ -991,7 +990,6 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                   </jx:if>
                   <ft:widget id="../add-to-originInfos"></ft:widget>
                </div>
-               <ft:new id="common-language-elements-class"></ft:new>
             </ft:repeater>
          </ft:class>
          <ft:class id="language-class">
