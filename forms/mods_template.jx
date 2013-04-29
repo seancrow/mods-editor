@@ -776,6 +776,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                               <ft:widget id="manuscript">
                                  <fi:styling type="checkbox"></fi:styling>
                               </ft:widget>
+                              <br />
                               <span>
                                  <ft:widget-label id="displayLabel"></ft:widget-label>
                               </span>
@@ -785,7 +786,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                               <span>
                                  <ft:widget-label id="usage"></ft:widget-label>
                               </span>
-<ft:widget id="usage"/>
+                              <ft:widget id="usage"></ft:widget>
                               <span>
                                  <ft:widget-label id="altRepGroup"></ft:widget-label>
                               </span>
@@ -821,9 +822,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                               <ft:widget id="genre">
                                  <fi:styling size="80"></fi:styling>
                               </ft:widget>
-                              <jx:out value="${divider}"></jx:out>
-                              <ft:widget-label id="authority"></ft:widget-label>
-                              <ft:widget id="authority"></ft:widget>
+                              <br />
                               <span>
                                  <ft:widget-label id="displayLabel"></ft:widget-label>
                               </span>
@@ -833,7 +832,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                               <span>
                                  <ft:widget-label id="usage"></ft:widget-label>
                               </span>
-<ft:widget id="usage"/>
+                              <ft:widget id="usage"></ft:widget>
                               <span>
                                  <ft:widget-label id="altRepGroup"></ft:widget-label>
                               </span>

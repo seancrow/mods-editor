@@ -345,7 +345,6 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 	<fb:class id="genre-class">
 		<fb:repeater id="genres" row-path="mods_genre" parent-path=".">
 			<fb:value id="genre" path="."/>
-			<fb:value id="authority" path="@authority"/>
 		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
 		   <fb:value id="usage" path="@usage" lenient="true"/>
 		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
