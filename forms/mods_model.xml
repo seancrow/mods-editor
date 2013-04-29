@@ -798,7 +798,7 @@
 					<fd:label>nameTitleGroup</fd:label>
 					<fd:datatype base="string"/>
 				</fd:field>
-				<fd:repeater id="nameparts" orderable="true">
+				<fd:repeater id="nameParts" orderable="true">
 					<fd:label>nameParts</fd:label>
 					<fd:widgets>
 						<fd:field id="type">
@@ -831,17 +831,18 @@
 					</fd:widgets>
 				</fd:repeater>
 				<fd:repeater-action id="add-to-nameParts"
-					action-command="add-row" repeater="nameparts">
+					action-command="add-row" repeater="nameParts">
 					<fd:label>New namePart</fd:label>
 				</fd:repeater-action>
 				<fd:repeater id="displayForms" orderable="true">
 					<fd:label>displayForms</fd:label>
 					<fd:widgets>
-						<fd:field id="displayForm">
+						<fd:field id="value">
 							<fd:label>displayForm</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:new id="common-language-elements-class"/>
+					   <fd:new id="common-controls-class"/>
 					</fd:widgets>
 				</fd:repeater>
 				<fd:repeater-action id="add-to-displayForms"
@@ -850,13 +851,14 @@
 				</fd:repeater-action>
 				<fd:repeater id="affiliations" orderable="true">
 					<fd:label>affiliations</fd:label>
-					<fd:widgets>
-						<fd:field id="affiliation">
-							<fd:label>affiliation</fd:label>
-							<fd:datatype base="string"/>
-						</fd:field>
-						<fd:new id="common-language-elements-class"/>
-					</fd:widgets>
+               <fd:widgets>
+                  <fd:field id="value">
+                     <fd:label>affiliation</fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
 				</fd:repeater>
 				<fd:repeater-action id="add-to-affiliations"
 					action-command="add-row" repeater="affiliations">
@@ -865,10 +867,10 @@
 				<fd:repeater id="roles" orderable="true">
 					<fd:label>Roles</fd:label>
 					<fd:widgets>
-						<fd:repeater id="roleterms" orderable="true">
+						<fd:repeater id="roleTerms" orderable="true">
 							<fd:label>RoleTerms</fd:label>
 							<fd:widgets>
-								<fd:field id="roles_roleterms_value">
+								<fd:field id="value">
 									<fd:label>roleTerm</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
@@ -879,7 +881,7 @@
 							</fd:widgets>
 						</fd:repeater>
 						<fd:repeater-action id="roles_add-to-roleTerms"
-							action-command="add-row" repeater="roleterms">
+							action-command="add-row" repeater="roleTerms">
 							<fd:label>New roleTerm</fd:label>
 						</fd:repeater-action>
 						<fd:new id="common-controls-class"/>
@@ -889,15 +891,15 @@
 					repeater="roles">
 					<fd:label>New role</fd:label>
 				</fd:repeater-action>
-
 				<fd:repeater id="descriptions" orderable="true">
 					<fd:label>descriptions</fd:label>
 					<fd:widgets>
-						<fd:field id="description">
+						<fd:field id="value">
 							<fd:label>description</fd:label>
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:new id="common-language-elements-class"/>
+					   <fd:new id="common-controls-class"/>
 					</fd:widgets>
 				</fd:repeater>
 				<fd:repeater-action id="add-to-descriptions"

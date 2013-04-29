@@ -290,12 +290,12 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 	   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
 	   <fb:value id="nameTitleGroup" path="@nameTitleGroup" lenient="true"/>
 	   
-	   <fb:repeater id="nameparts" row-path="mods_namePart" parent-path=".">
+	   <fb:repeater id="nameParts" row-path="mods_namePart" parent-path=".">
 			<fb:value id="value" path="."/>
 			<fb:value id="type" path="@type"/>
 		</fb:repeater>
 	   
-	   <fb:repeater id="displayforms" row-path="mods_displayForm" parent-path=".">
+	   <fb:repeater id="displayForms" row-path="mods_displayForm" parent-path=".">
 	      <fb:value id="value" path="."/>
 	      <fb:new id="common-language-elements-class"/>
 	   </fb:repeater>
@@ -305,13 +305,18 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 	   </fb:repeater>
 	   
 	   <fb:repeater id="roles" row-path="mods_role" parent-path=".">
-	      <fb:repeater id="roleterms" row-path="mods_roleTerm" parent-path=".">
-	         <fb:value id="roles_roleterms_value" path="."/>
-	         <fb:value id="roles_roleterms_type" path="@type"/>
-	         <fb:value id="roles_roleterms_authority" path="@authority"/>
+	      <fb:repeater id="roleTerms" row-path="mods_roleTerm" parent-path=".">
+	         <fb:value id="value" path="."/>
+	         <fb:value id="type" path="@type"/>
+	         <fb:new id="common-termType-elements-class"/>
+	         <fb:new id="common-authority-elements-class"/>
+	         <fb:new id="common-language-elements-class"/>
 	      </fb:repeater>
 	   </fb:repeater>
-		<fb:value id="description" path="mods_description" lenient="true"/>
+	   <fb:repeater id="descriptions" row-path="mods_description" parent-path=".">
+	      <fb:value id="value" path="."/>
+	      <fb:new id="common-language-elements-class"/>
+	   </fb:repeater>
 	   <fb:new id="common-authority-elements-class"/>
 	   
 		<fb:new id="common-language-elements-class"/>
