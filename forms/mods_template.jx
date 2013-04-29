@@ -1397,9 +1397,10 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                                  <jx:out value="${repeaterLoop.index + 1}"></jx:out>
                               </h5>
                               <span class="setwidth-wide"><ft:widget-label id="shareable"></ft:widget-label></span>
-                              <ft:widget id="shareable"><fi:styling size="40"></fi:styling></ft:widget>
-                              <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+                              <ft:widget id="shareable"></ft:widget>
+                              <span><ft:widget-label id="altRepGroup"></ft:widget-label></span>
                               <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+                              <br/>
                               <ft:new id="common-textfield-elements-class"></ft:new>
                               <ft:new id="common-language-elements-class"></ft:new>
                               <ft:new id="common-controls-class"></ft:new>
