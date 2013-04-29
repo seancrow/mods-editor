@@ -1094,17 +1094,18 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                                  <ft:widget-label id="objectPart"></ft:widget-label>
                               </span>
                               <ft:widget id="objectPart">
-                                 <fi:styling size="80"></fi:styling>
+                                 <fi:styling size="20"></fi:styling>
                               </ft:widget>
-                              <span class="setwidth">
-                                 <ft:widget-label id="displayLabel"></ft:widget-label>
-                              </span>
-<ft:widget id="usage"/>
-                              <span class="setwidth">
+                              <br/>
+                              <span>
                                  <ft:widget-label id="usage"></ft:widget-label>
                               </span>
+                              <ft:widget id="usage"></ft:widget>
+                              <span>
+                                 <ft:widget-label id="displayLabel"></ft:widget-label>
+                              </span>
                               <ft:widget id="displayLabel">
-                                 <fi:styling size="80"></fi:styling>
+                                 <fi:styling size="20"></fi:styling>
                               </ft:widget>
                               <span>
                                  <ft:widget-label id="altRepGroup"></ft:widget-label>
@@ -1112,76 +1113,90 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                               <ft:widget id="altRepGroup">
                                  <fi:styling size="20"></fi:styling>
                               </ft:widget>
-                              <!-- languageterms repeater -->
-                              <div class="block">
-                                 <ft:repeater id="languageterms">
-                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
-                                       <ft:repeater-rows>
-                                          <div class="row subrepeater language-languageTerm">
-                                             <h6>
-                                                <ft:widget-label id="../../languageterms"></ft:widget-label>
-                                                <jx:out value="${repaterLoop.index + 1}"></jx:out>
-                                             </h6>
-                                             <span class="setwidth">
-                                                <ft:widget-label id="languageterms_language"></ft:widget-label>
+                              <div class="clear"/>
+                              
+                              <!-- languageTerms repeater -->
+                              <ft:repeater id="languageTerms">
+                                 <div class="block empty-block-${repeater.getSize() == 0}">
+                                    <h4>
+                                       <ft:widget-label id="../languageTerms"></ft:widget-label>
+                                    </h4>
+                                    <jx:if test="${repeater.getSize() &gt; 0}">
+                                       <div class="repeater">
+                                          <ft:repeater-rows>
+                                             <div class="row toplevel languageTerm">
+                                                <h5>
+                                                   <ft:widget-label id="../../languageTerms"></ft:widget-label>
+                                                   <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                </h5>
+                                                <span class="setwidth">
+                                                <ft:widget-label id="languageTerms_language"></ft:widget-label>
                                              </span>
-                                             <ft:widget id="languageterms_language">
+                                             <ft:widget id="languageTerms_language">
                                                 <fi:styling size="40"></fi:styling>
                                              </ft:widget>
                                              <br />
-                                             <ft:widget-label id="languageterms_type"></ft:widget-label>
-                                             <ft:widget id="languageterms_type"></ft:widget>
+                                             <ft:widget-label id="languageTerms_type"></ft:widget-label>
+                                             <ft:widget id="languageTerms_type"></ft:widget>
                                              <jx:out value="${divider}"></jx:out>
-                                             <ft:widget-label id="languageterms_authority"></ft:widget-label>
-                                             <ft:widget id="languageterms_authority"></ft:widget>
+                                             <ft:widget-label id="languageTerms_authority"></ft:widget-label>
+                                             <ft:widget id="languageTerms_authority"></ft:widget>
                                              <ft:new id="common-termType-elements-class"></ft:new>
                                              <ft:new id="common-languageAuthority-elements-class"></ft:new>
                                              <ft:new id="common-language-elements-class"></ft:new>
                                              <ft:new id="common-controls-class"></ft:new>
-                                          </div>
-                                       </ft:repeater-rows>
-                                    </div>
-                                 </ft:repeater>
-                                 <jx:if test="${repeater.getSize() == 0}">
-                                    <ft:widget id="add-to-languageTerms"></ft:widget>
-                                 </jx:if>
-                              </div>
-                              <!-- end of languageterms repeater -->
-                              <!-- scriptterms repeater -->
-                              <div class="block">
-                                 <ft:repeater id="scriptterms">
-                                    <div class="block empty-repeater-${repeater.getSize() == 0}">
-                                       <ft:repeater-rows>
-                                          <div class="row subrepeater script-scriptTerm">
-                                             <h6>
-                                                <ft:widget-label id="../../scriptterms"></ft:widget-label>
-                                                <jx:out value="${repeaterLoop.index + 1}"></jx:out>
-                                             </h6>
-                                             <span class="setwidth">
-                                                <ft:widget-label id="scriptterms_script"></ft:widget-label>
+                                             </div>
+                                          </ft:repeater-rows>
+                                       </div>
+                                    </jx:if>
+                                    <jx:if test="${repeater.getSize() == 0}">
+                                       <ft:widget id="../add-to-languageTerms"></ft:widget>
+                                    </jx:if>
+                                 </div>
+                              </ft:repeater>
+                              <!-- end of languageTerms repeater -->
+                              <!-- scriptTerms repeater -->
+                              <ft:repeater id="scriptTerms">
+                                 <div class="block empty-block-${repeater.getSize() == 0}">
+                                    <h4>
+                                       <ft:widget-label id="../scriptTerms"></ft:widget-label>
+                                    </h4>
+                                    <jx:if test="${repeater.getSize() &gt; 0}">
+                                       <div class="repeater">
+                                          <ft:repeater-rows>
+                                             <div class="row toplevel scriptTerm">
+                                                <h5>
+                                                   <ft:widget-label id="../../scriptTerms"></ft:widget-label>
+                                                   <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                                                </h5>
+                                                <span class="setwidth">
+                                                <ft:widget-label id="scriptTerms_script"></ft:widget-label>
                                              </span>
-                                             <ft:widget id="scriptterms_script">
+                                             <ft:widget id="scriptTerms_script">
                                                 <fi:styling size="40"></fi:styling>
                                              </ft:widget>
                                              <br />
-                                             <ft:widget-label id="scriptterms_type"></ft:widget-label>
-                                             <ft:widget id="scriptterms_type"></ft:widget>
+                                             <ft:widget-label id="scriptTerms_type"></ft:widget-label>
+                                             <ft:widget id="scriptTerms_type"></ft:widget>
                                              <jx:out value="${divider}"></jx:out>
-                                             <ft:widget-label id="scriptterms_authority"></ft:widget-label>
-                                             <ft:widget id="scriptterms_authority"></ft:widget>
+                                             <ft:widget-label id="scriptTerms_authority"></ft:widget-label>
+                                             <ft:widget id="scriptTerms_authority"></ft:widget>
                                              <ft:new id="common-termType-elements-class"></ft:new>
                                              <ft:new id="common-Authority-elements-class"></ft:new>
                                              <ft:new id="common-script-elements-class"></ft:new>
                                              <ft:new id="common-controls-class"></ft:new>
-                                          </div>
-                                       </ft:repeater-rows>
-                                    </div>
-                                 </ft:repeater>
-                                 <jx:if test="${repeater.getSize() == 0}">
-                                    <ft:widget id="add-to-scriptTerms"></ft:widget>
-                                 </jx:if>
-                              </div>
-                              <!-- end of scriptterms repeater -->
+                                             </div>
+                                          </ft:repeater-rows>
+                                       </div>
+                                    </jx:if>
+                                    <jx:if test="${repeater.getSize() == 0}">
+                                       <ft:widget id="../add-to-scriptTerms"></ft:widget>
+                                    </jx:if>
+                                 </div>
+                              </ft:repeater>
+                              <!-- end of scriptTerms repeater -->
+                              <div class="clear"/>
+                              
                               <ft:new id="common-language-elements-class"></ft:new>
                               <ft:new id="common-controls-class"></ft:new>
                            </div>

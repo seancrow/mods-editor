@@ -402,14 +402,14 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
 		   <fb:value id="usage" path="@usage" lenient="true"/>
 		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
-         <fb:repeater id="languageterms" row-path="mods_languageTerm" parent-path=".">
-            <fb:value id="languageterms_language" path="."/>
+         <fb:repeater id="languageTerms" row-path="mods_languageTerm" parent-path=".">
+            <fb:value id="languageTerms_language" path="."/>
             <fb:new id="common-termType-elements-class"/>
             <fb:new id="common-languageAuthority-elements-class"/>
             <fb:new id="common-language-elements-class"/>
          </fb:repeater>
-		   <fb:repeater id="scriptterms" row-path="mods_scriptTerm" parent-path=".">
-		      <fb:value id="scriptterms_script" path="."/>
+		   <fb:repeater id="scriptTerms" row-path="mods_scriptTerm" parent-path=".">
+		      <fb:value id="scriptTerms_script" path="."/>
 		      <fb:new id="common-termType-elements-class"/>
 		      <fb:new id="common-authority-elements-class"/>
 		      <fb:new id="common-language-elements-class"/>
