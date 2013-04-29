@@ -361,8 +361,8 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
 			<fb:repeater id="places" row-path="mods_place" parent-path=".">
 			   <fb:value id="supplied" path="@supplied" lenient="true"/>
-				<fb:repeater id="placeterms" row-path="mods_placeTerm" parent-path=".">
-					<fb:value id="places_placeterms_pubplace" path="."/>
+				<fb:repeater id="placeTerms" row-path="mods_placeTerm" parent-path=".">
+					<fb:value id="pubplace" path="."/>
                <fb:new id="common-termType-elements-class"/>
                <fb:new id="common-placeAuthority-elements-class"/>
                <fb:new id="common-language-elements-class"/>
@@ -386,7 +386,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		   </fb:repeater>
 			<fb:value id="issuance" path="mods_issuance"/>
 		   <fb:repeater id="frequencys">
-		      <fb:value id="frequency" path="mods_frequency"/>
+		      <fb:value id="value" path="mods_frequency"/>
 		      <fb:new id="common-authority-elements-class"/>
 		      <fb:new id="common-language-elements-class"/>
 		   </fb:repeater>

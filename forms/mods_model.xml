@@ -1072,11 +1072,11 @@
 										</fd:item>
 									</fd:selection-list>
 								</fd:field>
-								<fd:repeater id="placeterms" orderable="true">
+								<fd:repeater id="placeTerms" orderable="true">
 									<fd:label>PlaceTerms</fd:label>
 									<fd:widgets>
 										<fd:field
-										id="places_placeterms_pubplace">
+										id="pubplace">
 										<fd:label>Publication Place</fd:label>
 										<fd:datatype base="string"/>
 										</fd:field>
@@ -1090,9 +1090,9 @@
 									</fd:widgets>
 								</fd:repeater>
 								<fd:repeater-action
-									id="places_add-to-placeTerms"
+									id="add-to-placeTerms"
 									action-command="add-row"
-									repeater="placeterms">
+									repeater="placeTerms">
 									<fd:label>New placeTerm</fd:label>
 								</fd:repeater-action>
 								<fd:new id="common-controls-class"/>
@@ -1122,6 +1122,7 @@
 									<fd:datatype base="string"/>
 								</fd:field>
 								<fd:new id="common-language-elements-class"/>
+							   <fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:repeater>
 						<fd:repeater-action id="add-to-publishers"
@@ -1251,7 +1252,7 @@
 						<fd:repeater id="frequencys" orderable="true">
 							<fd:label>frequency</fd:label>
 							<fd:widgets>
-							   <fd:field id="frequency">
+							   <fd:field id="value">
 							      <fd:label>frequency</fd:label>
 							      <fd:datatype base="string"/>
 							   </fd:field>
