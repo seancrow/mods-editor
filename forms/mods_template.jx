@@ -3,7 +3,7 @@
 Copyright 2005, 2007, 2008 University of Alberta Libraries  
     
 This file is part of MODS Editor.
-
+cla
 MODS Editor is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
@@ -457,33 +457,35 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                </div>
             </ft:repeater>
 
+            <div class="clear"></div>
             <ft:new id="common-authority-elements-class"></ft:new>
-
-            <span class="setwidth">
+            
+            <span>
                <ft:widget-label id="displayLabel"></ft:widget-label>
             </span>
             <ft:widget id="displayLabel">
-               <fi:styling size="80"></fi:styling>
+               <fi:styling size="20"></fi:styling>
             </ft:widget>
-            <span class="setwidth">
+            <span>
                <ft:widget-label id="supplied"></ft:widget-label>
             </span>
             <ft:widget id="supplied"/>            
-            <span class="setwidth">
+            <span>
                <ft:widget-label id="usage"></ft:widget-label>
             </span>
-            <ft:widget id="usage"/>            
-            <span class="setwidth">
+            <ft:widget id="usage"/>   
+            <br/>
+            <span>
                <ft:widget-label id="altRepGroup"></ft:widget-label>
             </span>
             <ft:widget id="altRepGroup">
-               <fi:styling size="80"></fi:styling>
+               <fi:styling size="20"></fi:styling>
             </ft:widget>
-            <span class="setwidth">
+            <span>
                <ft:widget-label id="nameTitleGroup"></ft:widget-label>
             </span>
             <ft:widget id="nameTitleGroup">
-               <fi:styling size="80"></fi:styling>
+               <fi:styling size="20"></fi:styling>
             </ft:widget>
 
 

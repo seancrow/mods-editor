@@ -95,7 +95,9 @@ div.clear {
 .forms-tabContent {
   background: #ddf; background-image: url('images/mods.gif'); background-repeat: repeat-y; padding-left: 70px;
 }
-
+.common-language-elements {
+   margin-left: 120px;
+}
 /* ************************************************************************
 *
 *      Top level elements 
