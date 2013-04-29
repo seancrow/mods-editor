@@ -1357,7 +1357,7 @@
 						<fd:repeater id="forms" orderable="true">
 							<fd:label>Forms</fd:label>
 							<fd:widgets>
-								<fd:field id="form">
+								<fd:field id="value">
 									<fd:label>Form</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
@@ -1465,7 +1465,7 @@
 									<fd:label>ID</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
-								<fd:new id="common-textfield-elements-class"/>
+							   <fd:new id="common-textfield-elements-class"/>
 								<fd:new id="common-language-elements-class"/>
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>

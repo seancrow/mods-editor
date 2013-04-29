@@ -44,7 +44,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 	<fb:class id="common-textfield-elements-class">
 		<fb:value id="value" path="."/>
 		<fb:value id="type" path="@type"/>
-		<fb:value id="displaylabel" path="@displayLabel"/>
+		<fb:value id="displayLabel" path="@displayLabel"/>
 		<fb:value id="xlink" path="@xlink_href" lenient="true"/>
 	</fb:class>
    <!-- 3.4 -->
@@ -425,13 +425,13 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		   <fb:value id="displayLabel" path="@displayLabel" lenient="true"/>
 		   <fb:value id="altRepGroup" path="@altRepGroup" lenient="true"/>
 			<fb:repeater id="forms" row-path="mods_form" parent-path=".">
-				<fb:value id="form" path="."/>
+				<fb:value id="value" path="."/>
 				<fb:value id="type" path="@type"/>
 			   <fb:new id="common-authority-elements-class"/>
 			   <fb:new id="common-language-elements-class"/>
 			</fb:repeater>
-			<fb:value id="reformattingquality" path="mods_reformattingQuality"/>
-			<fb:repeater id="internetmediatypes" row-path="mods_internetMediaType" parent-path=".">
+			<fb:value id="reformattingQuality" path="mods_reformattingQuality"/>
+			<fb:repeater id="internetMediaTypes" row-path="mods_internetMediaType" parent-path=".">
 			   <fb:value id="internetMediatype" path="."/>
 			   <fb:new id="common-language-elements-class"/>
 			</fb:repeater>
@@ -440,7 +440,7 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		      <fb:value id="supplied" path="@supplied"/>
 		      <fb:new id="common-language-elements-class"/>
 		   </fb:repeater>
-			<fb:value id="digitalorigin" path="mods_digitalOrigin"/>
+			<fb:value id="digitalOrigin" path="mods_digitalOrigin"/>
 			<fb:repeater id="notes" row-path="mods_note" parent-path=".">
 			   <fb:value name="modsID" path="@modsID"/>
 			   <fb:new id="common-textfield-elements-class"/>
