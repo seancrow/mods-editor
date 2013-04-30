@@ -1840,19 +1840,19 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                               </h5>
                               <ft:widget-label id="type"></ft:widget-label>
                               <ft:widget id="type"></ft:widget>
-                              <jx:out value="${divider}"></jx:out>
                               <ft:widget-label id="displayLabel"></ft:widget-label>
                               <ft:widget id="displayLabel"></ft:widget>
-                              <jx:out value="${divider}"></jx:out>
-                              <span class="setwidth-wide"><ft:widget-label id="invalid"></ft:widget-label></span>
-                              <ft:widget id="invalid"><fi:styling size="40"></fi:styling></ft:widget>
-                              <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
-                              <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
+                              <span><ft:widget-label id="altRepGroup"></ft:widget-label></span>
+                              <ft:widget id="altRepGroup"></ft:widget>
                               <br />
-                              <ft:widget-label id="value"></ft:widget-label>
+                              <span class="setwidth"><ft:widget-label id="value"></ft:widget-label></span>
                               <ft:widget id="value">
                                  <fi:styling size="80"></fi:styling>
                               </ft:widget>
+                              <br/>
+                              <span class="setwidth-wide"><ft:widget-label id="invalid"></ft:widget-label></span>
+                              <ft:widget id="invalid"><fi:styling size="40"></fi:styling></ft:widget>
+                              <br/>
                               <ft:new id="common-language-elements-class"></ft:new>
                               <ft:new id="common-controls-class"></ft:new>
                            </div>
