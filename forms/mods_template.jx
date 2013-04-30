@@ -177,23 +177,30 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
             <ft:widget-label id="termType"></ft:widget-label>
             <ft:widget id="termType"/>
          </ft:class>
-
-
-
          <ft:class id="subject-widgets-class">
             <ft:repeater id="subject-widgets">
-               <jx:if test="${repeater.getSize() &gt; 0}">
-                  <div class="repeater">
-                     <ft:repeater-rows>
-                        <ft:new id="subject-widget-row-class"></ft:new>
-                     </ft:repeater-rows>
-                  </div>
-               </jx:if>
+               <div class="block empty-block-${repeater.getSize() == 0}">
+                  <h4>
+                     <ft:widget-label id="../subject-widgets"></ft:widget-label>
+                  </h4>
+                  <jx:if test="${repeater.getSize() &gt; 0}">
+                     <div class="repeater">
+                        <ft:repeater-rows>
+                           <div class="row toplevel subject-widget">
+                              <h5>
+                                 <ft:widget-label id="../../subject-widgets"></ft:widget-label>
+                                 <jx:out value="${repeaterLoop.index + 1}"></jx:out>
+                              </h5>
+                              <ft:new id="subject-widget-row-class"></ft:new>
+                           </div>
+                        </ft:repeater-rows>
+                     </div>
+                  </jx:if>
+                  <jx:if test="${repeater.getSize() == 0}">
+                     <ft:widget id="../add-to-subject-widgets"></ft:widget>
+                  </jx:if>
+               </div>
             </ft:repeater>
-            <!--				<jx:if test="${repeater.getSize() == 0}">
-					<ft:widget id="add-to-subjects"/>
-				</jx:if>-->
-            <ft:widget id="add-to-subject-widgets"></ft:widget>
          </ft:class>
          <ft:class id="subject-widget-row-class">
             <!-- note: when the user changes the subject type, only the part within the fd:group element gets rewritten
@@ -1543,14 +1550,14 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                               </h5>
                               <span class="setwidth-wide"><ft:widget-label id="displayLabel"></ft:widget-label></span>
                               <ft:widget id="displayLabel"><fi:styling size="40"></fi:styling></ft:widget>
+                              <br/>
                               <span class="setwidth-wide"><ft:widget-label id="altRepGroup"></ft:widget-label></span>
                               <ft:widget id="altRepGroup"><fi:styling size="40"></fi:styling></ft:widget>
-                              <span class="setwidth-wide"><ft:widget-label id="usage"></ft:widget-label></span>
-                              <ft:widget id="usage"/>
+                              <span><ft:widget-label id="usage"></ft:widget-label></span>
+                              <ft:widget id="usage"></ft:widget>
                               <br />
-                              <div class="block">
-                                 <ft:new id="subject-widgets-class"></ft:new>
-                              </div>
+                              <ft:new id="subject-widgets-class"></ft:new>
+                              <div class="clear"/>
                               <ft:new id="common-authority-elements-class"></ft:new>
                               <ft:new id="common-language-elements-class"></ft:new>
                               <ft:new id="common-linking-elements-class"></ft:new>
