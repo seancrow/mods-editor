@@ -585,28 +585,28 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 				<fb:value id="url" path="."/>
 				<fb:value id="access" path="@access"/>
 				<fb:value id="usage" path="@usage"/>
-				<fb:value id="url-note" path="@note"/>
-				<fb:value id="url-displayLabel" path="@displayLabel"/>
+				<fb:value id="note" path="@note"/>
+				<fb:value id="displayLabel" path="@displayLabel"/>
 				<fb:value id="dateLastAccessed" path="@dateLastAccessed"/>
 			</fb:repeater>
 		   <!-- read-only, to display images -->
 			<fb:value id="fullsize" path="mods_url[@access='raw object']" direction="load"/>
 			<fb:value id="thumbnail" path="mods_url[@access='preview']" direction="load"/>
-		   <fb:context id="holdingSimples" path="mods_holdingSimples">
+		   <fb:group id="holdingSimple" path="mods_holdingSimple">
 		      <fb:repeater id="copyInformations">
-		         <fb:context id="form">
+		         <fb:group id="form">
 		            <!-- TODO figure out path for context -->
 		            <fb:value id="form" path="."/>
 		            <fb:value id="form-type" path="@type"/>
 		            <fb:new id="common-authority-elements-class"/>
 		            <fb:new id="common-linking-elements-class"/>
 		            <fb:new id="common-language-elements-class"/>
-		         </fb:context>
+		         </fb:group>
 		         <fb:repeater id="subLocations" orderable="true" parent-path=".">
 		            <fb:value id="subLocation" path="."/>
 		            <fb:new id="common-language-elements-class"/>
 		         </fb:repeater>
-		         <fb:repeater id="copyInformation-shelfLocators" orderable="true" parent-path=".">
+		         <fb:repeater id="shelfLocators" orderable="true" parent-path=".">
 		            <fb:value id="selfLocator" path="."/>
 		            <fb:new id="common-language-elements-class"/>
 		         </fb:repeater>
@@ -626,9 +626,8 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
                   <fb:new id="common-language-elements-class"/>
                </fb:repeater>
 		      </fb:repeater>
-		   </fb:context>
+		   </fb:group>
 		   <!-- holdingExternal not implemented - jh -->
-		   <fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
 	<!-- **********************************************************************

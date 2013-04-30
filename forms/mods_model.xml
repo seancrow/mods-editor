@@ -1985,11 +1985,11 @@
 									<fd:label>dateLastAccessed</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
-								<fd:field id="url-displayLabel">
+								<fd:field id="displayLabel">
 									<fd:label>displayLabel</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
-								<fd:field id="url-note">
+								<fd:field id="note">
 									<fd:label>Note</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
@@ -2025,7 +2025,7 @@
 										</fd:item>
 									</fd:selection-list>
 								</fd:field>								
-								<fd:field id="url">
+								<fd:field id="value">
 									<fd:label>URL</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
@@ -2046,7 +2046,7 @@
 							<fd:datatype base="string"/>
 						</fd:field>
 						<fd:group id="holdingSimple">
-							<fd:label>holdingSimples</fd:label>
+							<fd:label>holdingSimple</fd:label>
 							<fd:widgets>
 								<fd:repeater id="copyInformations" orderable="true">
 									<fd:label>copyInformations</fd:label>
@@ -2083,10 +2083,10 @@
 											action-command="add-row" repeater="subLocations">
 											<fd:label>New subLocation</fd:label>
 										</fd:repeater-action>
-										<fd:repeater id="copyInformation-shelfLocators" orderable="true">
+										<fd:repeater id="shelfLocators" orderable="true">
 											<fd:label>shelfLocators</fd:label>
 											<fd:widgets>
-												<fd:field id="copyInformation-shelfLocator">
+												<fd:field id="shelfLocator">
 													<fd:label>shelfLocator</fd:label>
 												   <fd:datatype base="string"/>
 												</fd:field>
@@ -2094,8 +2094,8 @@
 												<fd:new id="common-controls-class"/>
 											</fd:widgets>
 										</fd:repeater>
-										<fd:repeater-action id="add-to-copyInformation-shelfLocators"
-											action-command="add-row" repeater="copyInformation-shelfLocators">
+										<fd:repeater-action id="add-to-shelfLocators"
+											action-command="add-row" repeater="shelfLocators">
 											<fd:label>New shelfLocator</fd:label>
 										</fd:repeater-action>
 										<fd:repeater id="electronicLocators" orderable="true">
@@ -2115,11 +2115,11 @@
 										<fd:repeater id="notes" orderable="true">
 											<fd:label>notes</fd:label>
 											<fd:widgets>
-												<fd:field id="note-displayLabel">
+												<fd:field id="displayLabel">
 													<fd:label>displayLabel</fd:label>
 												   <fd:datatype base="string"/>
 												</fd:field>
-												<fd:field id="note-type">
+												<fd:field id="type">
 													<fd:label>type</fd:label>
 												   <fd:datatype base="string"/>
 												</fd:field>
@@ -2132,8 +2132,8 @@
 												<fd:new id="common-controls-class"/>
 											</fd:widgets>
 										</fd:repeater>
-										<fd:repeater-action id="add-to-holdingSimple-notes"
-											action-command="add-row" repeater="holdingSimple-notes">
+										<fd:repeater-action id="add-to-notes"
+											action-command="add-row" repeater="notes">
 											<fd:label>New note</fd:label>
 										</fd:repeater-action>
 										<fd:repeater id="enumerationAndChronologys" orderable="true">
@@ -2179,13 +2179,6 @@
 								<fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:group>
-						<!-- holdingSimple is not repeatable. Not sure if this is the best way to
-							implement, but repeater-action has been commented out. - jh
-						<fd:repeater-action id="add-to-holdingSimples"
-							action-command="add-row" repeater="holdingSimples">
-							<fd:label>New holdingSimple</fd:label>
-						</fd:repeater-action>
-						 -->
 						<!-- holdingExternal not implemented - jh -->
 						<fd:new id="common-language-elements-class"/>
 						<fd:new id="common-controls-class"/>
