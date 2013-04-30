@@ -209,33 +209,6 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			</fb:group>
 		</fb:case>
 	</fb:class>
-	<fb:class id="part-class">
-		<fb:repeater id="parts" row-path="mods_part" parent-path=".">
-			<fb:repeater id="details" row-path="mods_detail" parent-path=".">
-				<fb:value id="details_number" path="mods_number" lenient="true"/>
-				<fb:value id="details_caption" path="mods_caption" lenient="true"/>
-				<fb:value id="details_title" path="mods_title" lenient="true"/>
-				<fb:value id="details_type" path="@type" lenient="true"/>
-				<fb:value id="details_level" path="@level" lenient="true"/>
-			</fb:repeater>
-			<fb:context path="mods_extent">
-				<fb:value id="extent-start" path="mods_start" lenient="true"/>
-				<fb:value id="extent-end" path="mods_end" lenient="true"/>
-				<fb:value id="extent-total" path="mods_total" lenient="true"/>
-				<fb:value id="extent-list" path="mods_list" lenient="true"/>
-				<fb:value id="extent-unit" path="@unit" lenient="true"/>
-			</fb:context>
-			<fb:repeater id="dates" row-path="mods_date" parent-path=".">
-				<fb:new id="common-subject-date-elements-class"/>
-				<fb:new id="common-date-elements-class"/>
-			</fb:repeater>
-			<fb:repeater id="texts" row-path="mods_text" parent-path=".">
-				<fb:new id="common-textfield-class"/>
-			</fb:repeater>
-			<fb:new id="common-language-elements-class"/>
-			<fb:new id="common-linking-elements-class"/>
-		</fb:repeater>
-	</fb:class>
 	<!-- **********************************************************************
 		mods:titleInfo
 	***************************************************************************-->
@@ -522,7 +495,61 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		   <fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
-	<!-- **********************************************************************
+   <!-- **********************************************************************
+			relatedItem
+		***************************************************************************-->
+   <fb:class id="relatedItem-class">
+      <!-- PATCH: added path -->
+      <fb:repeater id="relatedItems" row-path="mods_relatedItem" parent-path=".">
+         <fb:new id="common-linking-elements-class"/>
+         <fb:value id="type" path="@type"/>
+         <fb:value id="displayLabel" path="@displayLabel"/>
+         <!--  			<fb:value id="xlink" path="@xlink_href" lenient="true"/>
+			<fb:value id="relatedItem_ID" path="@ID" lenient="true"/>-->
+         <fb:new id="common-language-elements-class"/>
+         <!-- 			<fb:new id="part-class"/>-->
+         <fb:new id="core-elements"/>
+         <fb:new id="sub-relatedItem-class"/>
+         <fb:new id="recordInfo-relatedItem-class"/>
+      </fb:repeater>
+   </fb:class>
+   <!-- **********************************************************************
+			sub-relateItem
+		***************************************************************************-->
+   <fb:class id="sub-relatedItem-class">
+      <!-- PATCH: added path -->
+      <fb:repeater id="relatedItems" row-path="mods_relatedItem" parent-path=".">
+         <fb:new id="common-linking-elements-class"/>
+         <fb:value id="type" path="@type"/>
+         <fb:value id="displayLabel" path="@displayLabel"/>
+         <!--  			<fb:value id="xlink" path="@xlink_href" lenient="true"/>
+			<fb:value id="relatedItem_ID" path="@ID" lenient="true"/>-->
+         <fb:new id="common-language-elements-class"/>
+         <!-- 			<fb:new id="part-class"/>-->
+         <fb:new id="core-elements"/>
+         <fb:new id="recordInfo-relatedItem-class"/>
+      </fb:repeater>
+   </fb:class>
+   <!-- START PATCH -->
+   <!-- **********************************************************************
+		relatedItemConstituent
+		***************************************************************************-->
+   <fb:class id="relatedItemConstituent-class">
+      <fb:repeater id="relatedItemConstituents" row-path="mods_relatedItemConstituent" parent-path=".">
+         <fb:new id="common-linking-elements-class"/>
+         <fb:value id="type" path="@type"/>
+         <fb:value id="displayLabel" path="@displayLabel"/>
+         <!--  			<fb:value id="xlink" path="@xlink_href" lenient="true"/>
+				<fb:value id="relatedItem_ID" path="@ID" lenient="true"/>-->
+         <fb:new id="common-language-elements-class"/>
+         <!-- 			<fb:new id="part-class"/>-->
+         <fb:new id="core-elements"/>
+         <fb:new id="sub-relatedItem-class"/>
+         <fb:new id="recordInfo-relatedItem-class"/>
+      </fb:repeater>
+   </fb:class>
+   <!-- END PATCH -->
+   <!-- **********************************************************************
 			identifier
 		***************************************************************************-->
 	<!-- note: id="identifiers" doesn't work, seems to be reserved word -->
@@ -617,6 +644,36 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 			<fb:new id="common-language-elements-class"/>
 		</fb:repeater>
 	</fb:class>
+   <!-- **********************************************************************
+			Part
+		***************************************************************************-->
+   <fb:class id="part-class">
+      <fb:repeater id="parts" row-path="mods_part" parent-path=".">
+         <fb:repeater id="details" row-path="mods_detail" parent-path=".">
+            <fb:value id="details_number" path="mods_number" lenient="true"/>
+            <fb:value id="details_caption" path="mods_caption" lenient="true"/>
+            <fb:value id="details_title" path="mods_title" lenient="true"/>
+            <fb:value id="details_type" path="@type" lenient="true"/>
+            <fb:value id="details_level" path="@level" lenient="true"/>
+         </fb:repeater>
+         <fb:context path="mods_extent">
+            <fb:value id="extent-start" path="mods_start" lenient="true"/>
+            <fb:value id="extent-end" path="mods_end" lenient="true"/>
+            <fb:value id="extent-total" path="mods_total" lenient="true"/>
+            <fb:value id="extent-list" path="mods_list" lenient="true"/>
+            <fb:value id="extent-unit" path="@unit" lenient="true"/>
+         </fb:context>
+         <fb:repeater id="dates" row-path="mods_date" parent-path=".">
+            <fb:new id="common-subject-date-elements-class"/>
+            <fb:new id="common-date-elements-class"/>
+         </fb:repeater>
+         <fb:repeater id="texts" row-path="mods_text" parent-path=".">
+            <fb:new id="common-textfield-class"/>
+         </fb:repeater>
+         <fb:new id="common-language-elements-class"/>
+         <fb:new id="common-linking-elements-class"/>
+      </fb:repeater>
+   </fb:class>
    <!-- **********************************************************************
 			recordInfo-without-recordChangeDate - all the elements that do not
    			differ in their binding between top-level and withint relatedItem
@@ -736,57 +793,6 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		<fb:new id="location-class"/>
 		<fb:new id="accessCondition-class"/>
 	</fb:class>
-	<!-- **********************************************************************
-			relatedItem
-		***************************************************************************-->
-	<fb:class id="relatedItem-class">
-		<!-- PATCH: added path -->
-		<fb:repeater id="relatedItems" row-path="mods_relatedItem" parent-path=".">
-			<fb:new id="common-linking-elements-class"/>
-			<fb:value id="type" path="@type"/>
-			<fb:value id="displayLabel" path="@displayLabel"/>
-<!--  			<fb:value id="xlink" path="@xlink_href" lenient="true"/>
-			<fb:value id="relatedItem_ID" path="@ID" lenient="true"/>-->
-			<fb:new id="common-language-elements-class"/>
-<!-- 			<fb:new id="part-class"/>-->
-			<fb:new id="core-elements"/>
-		   <fb:new id="sub-relatedItem-class"/>
-			<fb:new id="recordInfo-relatedItem-class"/>
-		</fb:repeater>
-	</fb:class>
-   <fb:class id="sub-relatedItem-class">
-      <!-- PATCH: added path -->
-      <fb:repeater id="relatedItems" row-path="mods_relatedItem" parent-path=".">
-         <fb:new id="common-linking-elements-class"/>
-         <fb:value id="type" path="@type"/>
-         <fb:value id="displayLabel" path="@displayLabel"/>
-         <!--  			<fb:value id="xlink" path="@xlink_href" lenient="true"/>
-			<fb:value id="relatedItem_ID" path="@ID" lenient="true"/>-->
-         <fb:new id="common-language-elements-class"/>
-         <!-- 			<fb:new id="part-class"/>-->
-         <fb:new id="core-elements"/>
-         <fb:new id="recordInfo-relatedItem-class"/>
-      </fb:repeater>
-   </fb:class>
-   <!-- START PATCH -->
-	<!-- **********************************************************************
-		relatedItemConstituent
-		***************************************************************************-->
-	<fb:class id="relatedItemConstituent-class">
-		<fb:repeater id="relatedItemConstituents" row-path="mods_relatedItemConstituent" parent-path=".">
-			<fb:new id="common-linking-elements-class"/>
-			<fb:value id="type" path="@type"/>
-			<fb:value id="displayLabel" path="@displayLabel"/>
-			<!--  			<fb:value id="xlink" path="@xlink_href" lenient="true"/>
-				<fb:value id="relatedItem_ID" path="@ID" lenient="true"/>-->
-			<fb:new id="common-language-elements-class"/>
-			<!-- 			<fb:new id="part-class"/>-->
-			<fb:new id="core-elements"/>
-		   <fb:new id="sub-relatedItem-class"/>
-			<fb:new id="recordInfo-relatedItem-class"/>
-		</fb:repeater>
-	</fb:class>
-	<!-- END PATCH -->
 	<!-- **********************************************************************
 		Top-Level Elements
 	***********************************************************************-->

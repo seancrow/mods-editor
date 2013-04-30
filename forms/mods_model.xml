@@ -614,6 +614,9 @@
 				</fd:union>
 			</fd:widgets>
 		</fd:class>
+	   <!-- **********************************************************************
+			titleInfo
+		***************************************************************************-->
       <fd:class id="single-titleInfo-class">
          <fd:widgets>
             <!-- It is presumed that title, subTitle, partNumber, partName and nonSort
@@ -754,7 +757,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="single-name-class">
+	   <!-- **********************************************************************
+			name
+		***************************************************************************-->
+	   <fd:class id="single-name-class">
 			<fd:widgets>
 				<fd:field id="type">
 					<fd:label>Type</fd:label>
@@ -922,7 +928,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="typeOfResource-class">
+	   <!-- **********************************************************************
+			typeOfResource
+		***************************************************************************-->
+	   <fd:class id="typeOfResource-class">
 			<fd:widgets>
 				<fd:repeater id="typeOfResources" initial-size="0"
 					orderable="true">
@@ -1003,7 +1012,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="genre-class">
+	   <!-- **********************************************************************
+			genre
+		***************************************************************************-->
+	   <fd:class id="genre-class">
 			<fd:widgets>
 				<fd:repeater id="genres" orderable="true">
 					<fd:label>mods:genre</fd:label>
@@ -1043,8 +1055,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-
-		<fd:class id="originInfo-class">
+	   <!-- **********************************************************************
+			originInfo
+		***************************************************************************-->
+	   <fd:class id="originInfo-class">
 			<fd:widgets>
 				<fd:repeater id="originInfos" orderable="true">
 					<fd:label>mods:originInfo</fd:label>
@@ -1271,7 +1285,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="language-class">
+	   <!-- **********************************************************************
+			language
+		***************************************************************************-->
+	   <fd:class id="language-class">
 			<fd:widgets>
 				<fd:repeater id="languages" orderable="true">
 					<fd:label>mods:language</fd:label>
@@ -1341,7 +1358,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="physicalDescription-class">
+	   <!-- **********************************************************************
+			physicalDescription
+		***************************************************************************-->
+	   <fd:class id="physicalDescription-class">
 			<fd:widgets>
 				<fd:repeater id="physicalDescriptions" orderable="true">
 					<fd:label>mods:physicalDescription</fd:label>
@@ -1480,7 +1500,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="abstract-class">
+	   <!-- **********************************************************************
+			abstract
+		***************************************************************************-->
+	   <fd:class id="abstract-class">
 			<fd:widgets>
 				<fd:repeater id="abstracts" orderable="true">
 					<fd:label>mods:abstract</fd:label>
@@ -1508,7 +1531,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="tableOfContents-class">
+	   <!-- **********************************************************************
+			tableOfContents
+		***************************************************************************-->
+	   <fd:class id="tableOfContents-class">
 			<fd:widgets>
 				<fd:repeater id="tableOfContentss" orderable="true">
 					<fd:label>mods:tableOfContents</fd:label>
@@ -1536,7 +1562,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="targetAudience-class">
+	   <!-- **********************************************************************
+			targetAudience
+		***************************************************************************-->
+	   <fd:class id="targetAudience-class">
 			<fd:widgets>
 				<fd:repeater id="targetAudiences" orderable="true">
 					<fd:label>mods:targetAudience</fd:label>
@@ -1560,7 +1589,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="note-class">
+	   <!-- **********************************************************************
+			note
+		***************************************************************************-->
+	   <fd:class id="note-class">
 			<fd:widgets>
 				<fd:repeater id="notes" orderable="true">
 					<fd:label>mods:note</fd:label>
@@ -1580,7 +1612,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="subject-class">
+	   <!-- **********************************************************************
+			subject
+		***************************************************************************-->
+	   <fd:class id="subject-class">
 			<doc:doc>
 				<p> This class uses a structured copied from
 					form_model_gui_binding.xml in samples provided with the
@@ -1627,7 +1662,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="classification-class">
+	   <!-- **********************************************************************
+			classification
+		***************************************************************************-->
+	   <fd:class id="classification-class">
 			<fd:widgets>
 				<fd:repeater id="classifications" orderable="true">
 					<fd:label>mods:classification</fd:label>
@@ -1667,7 +1705,189 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="xidentifier-class">
+	   <!-- **********************************************************************
+			relatedItem
+		***************************************************************************-->
+	   <fd:class id="relatedItem-class">
+	      <fd:widgets>
+	         <fd:repeater id="relatedItems" orderable="true">
+	            <fd:label>mods:relatedItem</fd:label>
+	            <fd:widgets>
+	               <fd:new id="common-linking-elements-class"/>
+	               <fd:field id="type">
+	                  <fd:label>Type</fd:label>
+	                  <fd:datatype base="string"/>
+	                  <fd:selection-list>
+	                     <fd:item value="preceding">
+	                        <fd:label>preceding</fd:label>
+	                     </fd:item>
+	                     <fd:item value="succeeding">
+	                        <fd:label>succeeding</fd:label>
+	                     </fd:item>
+	                     <fd:item value="original">
+	                        <fd:label>original</fd:label>
+	                     </fd:item>
+	                     <fd:item value="host">
+	                        <fd:label>host</fd:label>
+	                     </fd:item>
+	                     <!-- START PATCH -->
+	                     <!--
+								<fd:item value="constituent">
+									<fd:label>constituent</fd:label>
+								</fd:item>
+								-->
+	                     <!-- END PATCH -->
+	                     <fd:item value="series">
+	                        <fd:label>series</fd:label>
+	                     </fd:item>
+	                     <fd:item value="otherVersion">
+	                        <fd:label>otherVersion</fd:label>
+	                     </fd:item>
+	                     <fd:item value="otherFormat">
+	                        <fd:label>otherFormat</fd:label>
+	                     </fd:item>
+	                     <fd:item value="isReferencedBy">
+	                        <fd:label>isReferencedBy</fd:label>
+	                     </fd:item>
+	                     <fd:item value="references">
+	                        <fd:label>references</fd:label>
+	                     </fd:item>
+	                     <fd:item value="reviewOf">
+	                        <fd:label>reviewOf</fd:label>
+	                     </fd:item>
+	                  </fd:selection-list>
+	               </fd:field>
+	               <fd:field id="displayLabel">
+	                  <fd:label>displayLabel</fd:label>
+	                  <fd:datatype base="string"/>
+	               </fd:field>
+	               <!-- 		<fd:field id="xlink">
+							<fd:label>xlink</fd:label>
+							<fd:datatype base="string" />
+							</fd:field>
+							<fd:field id="relatedItem_ID">
+							<fd:label>ID</fd:label>
+							<fd:datatype base="string" />
+							</fd:field>-->
+	               <!-- 						<fd:repeater id="parts" orderable="true">
+							<fd:label>mods:part</fd:label>
+							<fd:widgets>
+							<fd:new id="part-class" />
+							</fd:widgets>
+							</fd:repeater>
+							<fd:repeater-action id="add-to-parts"
+							action-command="add-row" repeater="parts">
+							<fd:label>New part</fd:label>
+							</fd:repeater-action> -->
+	               <fd:new id="core-elements"/>
+	               <!-- **********************************************************************
+							recordInfo
+							***************************************************************************-->
+	               <fd:new id="recordInfo-class"/>
+	               <fd:repeater-action id="add-to-recordInfos"
+	                  action-command="add-row" repeater="recordInfos">
+	                  <fd:label>New recordInfo</fd:label>
+	               </fd:repeater-action>
+	               <fd:repeater-action id="add-to-relatedItems" action-command="add-row"
+	                  repeater="relatedItems">
+	                  <fd:label>New relatedItem</fd:label>
+	               </fd:repeater-action>
+	               <fd:new id="common-language-elements-class"/>
+	               <fd:new id="common-controls-class"/>
+	            </fd:widgets>
+	         </fd:repeater>
+	      </fd:widgets>
+	   </fd:class>
+	   
+	   <!-- START PATCH -->
+	   <fd:class id="relatedItemConstituent-class">
+	      <fd:widgets>
+	         <fd:repeater id="relatedItemConstituents" orderable="true">
+	            <fd:label>mods:relatedItem</fd:label>
+	            <fd:widgets>
+	               <fd:new id="common-linking-elements-class"/>
+	               <fd:field id="type">
+	                  <fd:label>Type</fd:label>
+	                  <fd:datatype base="string"/>
+	                  <fd:selection-list>
+	                     <!--
+								<fd:item value="preceding">
+									<fd:label>preceding</fd:label>
+								</fd:item>
+								<fd:item value="succeeding">
+									<fd:label>succeeding</fd:label>
+								</fd:item>
+								<fd:item value="original">
+									<fd:label>original</fd:label>
+								</fd:item>
+								<fd:item value="host">
+									<fd:label>host</fd:label>
+								</fd:item>-->
+	                     <fd:item value="constituent">
+	                        <fd:label>constituent</fd:label>
+	                     </fd:item>
+	                     <!--<fd:item value="series">
+									<fd:label>series</fd:label>
+								</fd:item>
+								<fd:item value="otherVersion">
+									<fd:label>otherVersion</fd:label>
+								</fd:item>
+								<fd:item value="otherFormat">
+									<fd:label>otherFormat</fd:label>
+								</fd:item>
+								<fd:item value="isReferencedBy">
+									<fd:label>isReferencedBy</fd:label>
+								</fd:item>
+								<fd:item value="references">
+									<fd:label>references</fd:label>
+								</fd:item>
+								<fd:item value="reviewOf">
+									<fd:label>reviewOf</fd:label>
+								</fd:item>-->
+	                  </fd:selection-list>
+	               </fd:field>
+	               <fd:field id="displayLabel">
+	                  <fd:label>displayLabel</fd:label>
+	                  <fd:datatype base="string"/>
+	               </fd:field>
+	               <!-- 		<fd:field id="xlink">
+							<fd:label>xlink</fd:label>
+							<fd:datatype base="string" />
+							</fd:field>
+							<fd:field id="relatedItem_ID">
+							<fd:label>ID</fd:label>
+							<fd:datatype base="string" />
+							</fd:field>-->
+	               <!-- 						<fd:repeater id="parts" orderable="true">
+							<fd:label>mods:part</fd:label>
+							<fd:widgets>
+							<fd:new id="part-class" />
+							</fd:widgets>
+							</fd:repeater>
+							<fd:repeater-action id="add-to-parts"
+							action-command="add-row" repeater="parts">
+							<fd:label>New part</fd:label>
+							</fd:repeater-action> -->
+	               <fd:new id="core-elements"/>
+	               <!-- **********************************************************************
+							recordInfo
+							***************************************************************************-->
+	               <fd:new id="recordInfo-class"/>
+	               <fd:repeater-action id="add-to-recordInfos"
+	                  action-command="add-row" repeater="recordInfos">
+	                  <fd:label>New recordInfo</fd:label>
+	               </fd:repeater-action>
+	               <fd:new id="common-language-elements-class"/>
+	               <fd:new id="common-controls-class"/>
+	            </fd:widgets>
+	         </fd:repeater>
+	      </fd:widgets>
+	   </fd:class>
+	   <!-- END PATCH -->
+	   <!-- **********************************************************************
+			identifier
+		***************************************************************************-->
+	   <fd:class id="xidentifier-class">
 			<doc:doc>
 				<p> Note: this class uses "xidentifier" as its id instead of
 					"identifier", because the latter appears to be a reserved
@@ -1973,7 +2193,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="accessCondition-class">
+	   <!-- **********************************************************************
+			accessCondition
+		***************************************************************************-->
+	   <fd:class id="accessCondition-class">
 			<fd:widgets>
 				<fd:repeater id="accessConditions" orderable="true">
 					<fd:label>mods:accessCondition</fd:label>
@@ -2004,7 +2227,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="part-class">
+	   <!-- **********************************************************************
+			part
+		***************************************************************************-->
+	   <fd:class id="part-class">
 			<fd:widgets>
 				<fd:repeater id="parts" orderable="true">
 					<fd:label>mods:part</fd:label>
@@ -2206,7 +2432,10 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="recordInfo-class">
+	   <!-- **********************************************************************
+			recordInfo
+		***************************************************************************-->
+	   <fd:class id="recordInfo-class">
 			<doc:doc>
 				<p> Note: at save time, the first recordContentSource element
 					will be populated with the current user id (from the Cocoon
@@ -2425,184 +2654,6 @@
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="relatedItem-class">
-			<fd:widgets>
-				<fd:repeater id="relatedItems" orderable="true">
-					<fd:label>mods:relatedItem</fd:label>
-					<fd:widgets>
-						<fd:new id="common-linking-elements-class"/>
-						<fd:field id="type">
-							<fd:label>Type</fd:label>
-							<fd:datatype base="string"/>
-							<fd:selection-list>
-								<fd:item value="preceding">
-									<fd:label>preceding</fd:label>
-								</fd:item>
-								<fd:item value="succeeding">
-									<fd:label>succeeding</fd:label>
-								</fd:item>
-								<fd:item value="original">
-									<fd:label>original</fd:label>
-								</fd:item>
-								<fd:item value="host">
-									<fd:label>host</fd:label>
-								</fd:item>
-								<!-- START PATCH -->
-								<!--
-								<fd:item value="constituent">
-									<fd:label>constituent</fd:label>
-								</fd:item>
-								-->
-								<!-- END PATCH -->
-								<fd:item value="series">
-									<fd:label>series</fd:label>
-								</fd:item>
-								<fd:item value="otherVersion">
-									<fd:label>otherVersion</fd:label>
-								</fd:item>
-								<fd:item value="otherFormat">
-									<fd:label>otherFormat</fd:label>
-								</fd:item>
-								<fd:item value="isReferencedBy">
-									<fd:label>isReferencedBy</fd:label>
-								</fd:item>
-								<fd:item value="references">
-									<fd:label>references</fd:label>
-								</fd:item>
-								<fd:item value="reviewOf">
-									<fd:label>reviewOf</fd:label>
-								</fd:item>
-							</fd:selection-list>
-						</fd:field>
-						<fd:field id="displayLabel">
-							<fd:label>displayLabel</fd:label>
-							<fd:datatype base="string"/>
-						</fd:field>
-						<!-- 		<fd:field id="xlink">
-							<fd:label>xlink</fd:label>
-							<fd:datatype base="string" />
-							</fd:field>
-							<fd:field id="relatedItem_ID">
-							<fd:label>ID</fd:label>
-							<fd:datatype base="string" />
-							</fd:field>-->
-						<!-- 						<fd:repeater id="parts" orderable="true">
-							<fd:label>mods:part</fd:label>
-							<fd:widgets>
-							<fd:new id="part-class" />
-							</fd:widgets>
-							</fd:repeater>
-							<fd:repeater-action id="add-to-parts"
-							action-command="add-row" repeater="parts">
-							<fd:label>New part</fd:label>
-							</fd:repeater-action> -->
-						<fd:new id="core-elements"/>
-						<!-- **********************************************************************
-							recordInfo
-							***************************************************************************-->
-						<fd:new id="recordInfo-class"/>
-						<fd:repeater-action id="add-to-recordInfos"
-							action-command="add-row" repeater="recordInfos">
-							<fd:label>New recordInfo</fd:label>
-						</fd:repeater-action>
-					   <fd:repeater-action id="add-to-relatedItems" action-command="add-row"
-					      repeater="relatedItems">
-					      <fd:label>New relatedItem</fd:label>
-					   </fd:repeater-action>
-						<fd:new id="common-language-elements-class"/>
-						<fd:new id="common-controls-class"/>
-					</fd:widgets>
-				</fd:repeater>
-			</fd:widgets>
-		</fd:class>
-
-		<!-- START PATCH -->
-		<fd:class id="relatedItemConstituent-class">
-			<fd:widgets>
-				<fd:repeater id="relatedItemConstituents" orderable="true">
-					<fd:label>mods:relatedItem</fd:label>
-					<fd:widgets>
-						<fd:new id="common-linking-elements-class"/>
-						<fd:field id="type">
-							<fd:label>Type</fd:label>
-							<fd:datatype base="string"/>
-							<fd:selection-list>
-								<!--
-								<fd:item value="preceding">
-									<fd:label>preceding</fd:label>
-								</fd:item>
-								<fd:item value="succeeding">
-									<fd:label>succeeding</fd:label>
-								</fd:item>
-								<fd:item value="original">
-									<fd:label>original</fd:label>
-								</fd:item>
-								<fd:item value="host">
-									<fd:label>host</fd:label>
-								</fd:item>-->
-								<fd:item value="constituent">
-									<fd:label>constituent</fd:label>
-								</fd:item>
-								<!--<fd:item value="series">
-									<fd:label>series</fd:label>
-								</fd:item>
-								<fd:item value="otherVersion">
-									<fd:label>otherVersion</fd:label>
-								</fd:item>
-								<fd:item value="otherFormat">
-									<fd:label>otherFormat</fd:label>
-								</fd:item>
-								<fd:item value="isReferencedBy">
-									<fd:label>isReferencedBy</fd:label>
-								</fd:item>
-								<fd:item value="references">
-									<fd:label>references</fd:label>
-								</fd:item>
-								<fd:item value="reviewOf">
-									<fd:label>reviewOf</fd:label>
-								</fd:item>-->
-							</fd:selection-list>
-						</fd:field>
-						<fd:field id="displayLabel">
-							<fd:label>displayLabel</fd:label>
-							<fd:datatype base="string"/>
-						</fd:field>
-						<!-- 		<fd:field id="xlink">
-							<fd:label>xlink</fd:label>
-							<fd:datatype base="string" />
-							</fd:field>
-							<fd:field id="relatedItem_ID">
-							<fd:label>ID</fd:label>
-							<fd:datatype base="string" />
-							</fd:field>-->
-						<!-- 						<fd:repeater id="parts" orderable="true">
-							<fd:label>mods:part</fd:label>
-							<fd:widgets>
-							<fd:new id="part-class" />
-							</fd:widgets>
-							</fd:repeater>
-							<fd:repeater-action id="add-to-parts"
-							action-command="add-row" repeater="parts">
-							<fd:label>New part</fd:label>
-							</fd:repeater-action> -->
-						<fd:new id="core-elements"/>
-						<!-- **********************************************************************
-							recordInfo
-							***************************************************************************-->
-						<fd:new id="recordInfo-class"/>
-						<fd:repeater-action id="add-to-recordInfos"
-							action-command="add-row" repeater="recordInfos">
-							<fd:label>New recordInfo</fd:label>
-						</fd:repeater-action>
-						<fd:new id="common-language-elements-class"/>
-						<fd:new id="common-controls-class"/>
-					</fd:widgets>
-				</fd:repeater>
-			</fd:widgets>
-		</fd:class>
-		<!-- END PATCH -->
-
-
 
 		<fd:class id="core-elements">
 			<fd:widgets>
