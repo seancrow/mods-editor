@@ -53,6 +53,7 @@ href="http://www.loc.gov/standards/mods/v3/mods-3-2.xsd">MODS 3.2</a> spec (exce
 			</ul>
 		</description>
 	</localizer>
+   <item type="Empty record" file="empty"/>
 	<item type="Book" file="mods99042030"/>
 	<item type="Book chapter" file="modsbook-chapter"/>
 	<item type="Serial" file="mods86646620"/>
