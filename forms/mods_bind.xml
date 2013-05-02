@@ -648,29 +648,37 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
 		***************************************************************************-->
    <fb:class id="part-class">
       <fb:repeater id="parts" row-path="mods_part" parent-path=".">
-         <fb:repeater id="details" row-path="mods_detail" parent-path=".">
-            <fb:value id="details_number" path="mods_number" lenient="true"/>
-            <fb:value id="details_caption" path="mods_caption" lenient="true"/>
-            <fb:value id="details_title" path="mods_title" lenient="true"/>
-            <fb:value id="details_type" path="@type" lenient="true"/>
-            <fb:value id="details_level" path="@level" lenient="true"/>
+         <fb:repeater id="detail" row-path="mods_detail" parent-path=".">
+            <fb:repeater id="numbers" row-path="mods_number" lenient="true">
+               <fb:value id="value" path="." lenient="true"/>
+               <fb:new class="common-language-elements-class"/>
+            </fb:repeater>
+            <fb:repeater id="captions" row-path="mods_caption" lenient="true">
+               <fb:value id="value" path="." lenient="true"/>
+               <fb:new class="common-language-elements-class"/>
+            </fb:repeater>
+            <fb:repeater id="titles" row-path="mods_title" lenient="true">
+               <fb:value id="value" path="." lenient="true"/>
+               <fb:new class="common-language-elements-class"/>
+            </fb:repeater>
+            <fb:value id="type" path="@type" lenient="true"/>
+            <fb:value id="level" path="@level" lenient="true"/>
          </fb:repeater>
-         <fb:context path="mods_extent">
-            <fb:value id="extent-start" path="mods_start" lenient="true"/>
-            <fb:value id="extent-end" path="mods_end" lenient="true"/>
-            <fb:value id="extent-total" path="mods_total" lenient="true"/>
-            <fb:value id="extent-list" path="mods_list" lenient="true"/>
-            <fb:value id="extent-unit" path="@unit" lenient="true"/>
-         </fb:context>
+         <fb:repeater id="extent" row-path="mods_extent" parent-path=".">
+            <fb:value id="start" path="mods_start" lenient="true"/>
+            <fb:value id="end" path="mods_end" lenient="true"/>
+            <fb:value id="total" path="mods_total" lenient="true"/>
+            <fb:value id="list" path="mods_list" lenient="true"/>
+            <fb:value id="unit" path="@unit" lenient="true"/>
+         </fb:repeater>
          <fb:repeater id="dates" row-path="mods_date" parent-path=".">
             <fb:new id="common-subject-date-elements-class"/>
             <fb:new id="common-date-elements-class"/>
          </fb:repeater>
          <fb:repeater id="texts" row-path="mods_text" parent-path=".">
-            <fb:new id="common-textfield-class"/>
+            <fb:new id="common-textfield-elements-class"/>
          </fb:repeater>
          <fb:new id="common-language-elements-class"/>
-         <fb:new id="common-linking-elements-class"/>
       </fb:repeater>
    </fb:class>
    <!-- **********************************************************************
@@ -702,14 +710,14 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
          <fb:value id="altRepGroup" path="@altRepGroup"/>
          <fb:value id="usage" path="@usage"/>
          <fb:value id="displayLabel" path="@displayLabel"/>
-         <fb:repeater id="languageOfCatalogings_languageTerms">
+         <fb:repeater id="languageTerms">
             <fb:value id="languageTerm" path="@languageTerm"/>
             <fb:value id="modsID" path="@modsID"/>
             <fb:new id="common-termType-elements-class"/>
             <fb:new id="common-languageAuthority-elements-class"/>
             <fb:new id="common-language-elements-class"/>
          </fb:repeater>
-         <fb:repeater id="languageOfCatalogings_scriptTerms">
+         <fb:repeater id="scriptTerms">
             <fb:value id="scriptTerm" path="@scriptTerm"/>
             <fb:new id="common-termType-elements-class"/>
             <fb:new id="common-languageAuthority-elements-class"/>
@@ -721,7 +729,6 @@ along with MODS Editor.  If not, see <http://www.gnu.org/licenses/>.
          <fb:value id="descriptionStandards_descriptionStandard" path="."/>
          <fb:new id="common-authority-elements-class"/>
          <fb:new id="common-language-elements-class"/>
-         <!-- TODO check whether other common classes are needed here - there were three copies of common-language-elements-class - pbinkley -->
       </fb:repeater>
       
       <fb:value id="lastModifiedBy" path="@lastModifiedBy"/>

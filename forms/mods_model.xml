@@ -155,7 +155,15 @@
 				</fd:row-action>
 			</fd:widgets>
 		</fd:class>
-		<fd:class id="common-textfield-elements-class">
+      <fd:class id="common-controls-single-class">
+         <!-- for repeaters with max-size=1 - all they can do is delete -->
+         <fd:widgets>
+            <fd:row-action id="deleteWidget" action-command="delete" class="submit">
+               <!-- use en-dash to make it clearer -->
+               <fd:label>–</fd:label>
+            </fd:row-action>
+         </fd:widgets>
+      </fd:class><fd:class id="common-textfield-elements-class">
 			<fd:widgets>
 				<fd:field id="value">
 					<fd:label>Value</fd:label>
@@ -2227,201 +2235,171 @@
 			<fd:widgets>
 				<fd:repeater id="parts" orderable="true">
 					<fd:label>mods:part</fd:label>
-					<fd:widgets>
-						<fd:field id="modsID">
-							<fd:label>ID</fd:label>
-							<fd:datatype base="string"/>
-						</fd:field>
-						<fd:field id="type">
-							<fd:label>type</fd:label>
-							<fd:datatype base="string"/>
-							<fd:selection-list>
-								<fd:item value="part"/>
-								<fd:item value="volume"/>
-								<fd:item value="issue"/>
-								<fd:item value="chapter"/>
-								<fd:item value="section"/>
-								<fd:item value="paragraph"/>
-								<fd:item value="track"/>
-							</fd:selection-list>
-						</fd:field>
-						<fd:field id="order">
-							<fd:label>order</fd:label>
-							<fd:datatype base="string"/>
-						</fd:field>
-						<fd:field id="displayLabel">
-							<fd:label>displayLabel</fd:label>
-							<fd:datatype base="string"/>
-						</fd:field>
-						<fd:field id="altRepGroup">
-							<fd:label>altRepGroup</fd:label>
-							<fd:datatype base="string"/>
-						</fd:field>
-						<fd:repeater id="details" orderable="true">
-							<fd:label>detail</fd:label>
-							<fd:widgets>
-								<fd:repeater id="numbers" orderable="true">
-									<fd:label>numbers</fd:label>
-									<fd:widgets>
-										<fd:field id="number">
-											<fd:label>number</fd:label>
-											<fd:datatype base="string"/>
-										</fd:field>
-										<fd:new id="common-language-elements-class"/>
-										<fd:new id="common-controls-class"/>
-									</fd:widgets>
-								</fd:repeater>
-								<fd:repeater-action id="add-to-numbers"
-									action-command="add-row" repeater="numbers">
-									<fd:label>New number</fd:label>
-								</fd:repeater-action>
-								<fd:repeater id="captions" orderable="true">
-									<fd:label>captions</fd:label>
-									<fd:widgets>
-										<fd:field id="caption">
-											<fd:label>caption</fd:label>
-											<fd:datatype base="string"/>
-										</fd:field>
-										<fd:new id="common-language-elements-class"/>
-										<fd:new id="common-controls-class"/>
-									</fd:widgets>
-								</fd:repeater>
-								<fd:repeater-action id="add-to-captions"
-									action-command="add-row" repeater="captions">
-									<fd:label>New caption</fd:label>
-								</fd:repeater-action>								
-								<fd:repeater id="titles" orderable="true">
-									<fd:label>titles</fd:label>
-									<fd:widgets>
-										<fd:field id="details_type">
-											<fd:label>type</fd:label>
-											<fd:datatype base="string"/>
-											<fd:selection-list>
-												<fd:item value="part"/>
-												<fd:item value="volume"/>
-												<fd:item value="issue"/>
-												<fd:item value="chapter"/>
-												<fd:item value="section"/>
-												<fd:item value="paragraph"/>
-												<fd:item value="track"/>
-											</fd:selection-list>
-										</fd:field>
-										<fd:field id="level">
-											<fd:label>level</fd:label>
-											<fd:datatype base="integer"/>
-										</fd:field>
-										<fd:field id="title">
-											<fd:label>title</fd:label>
-											<fd:datatype base="string"/>
-										</fd:field>
-										<fd:new id="common-language-elements-class"/>
-										<fd:new id="common-controls-class"/>
-									</fd:widgets>
-								</fd:repeater>
-								<fd:repeater-action id="add-to-titles"
-									action-command="add-row" repeater="titles">
-									<fd:label>New title</fd:label>
-								</fd:repeater-action>
-								<fd:new id="common-controls-class"/>
-							</fd:widgets>
-						</fd:repeater>
-						<fd:repeater-action id="add-to-details"
-							action-command="add-row" repeater="details">
-							<fd:label>New detail</fd:label>
-						</fd:repeater-action>
-						<fd:repeater id="extents">
-							<fd:label>extents</fd:label>
-							<fd:widgets>
-								<fd:field id="unit">
-									<fd:label>unit</fd:label>
-									<fd:datatype base="string"/>
-									<fd:selection-list>
-										<fd:item value="pages"/>
-										<fd:item value="minutes"/>
-									</fd:selection-list>
-								</fd:field>
-								<fd:repeater id="starts">
-									<fd:label>starts</fd:label>
-									<fd:widgets>
-										<fd:field id="start">
-											<fd:label>start</fd:label>
-											<fd:datatype base="string"/>
-										</fd:field>
-										<fd:new id="common-language-elements-class"/>
-										<fd:new id="common-controls-class"/>
-									</fd:widgets>
-								</fd:repeater>
-								<fd:repeater-action id="add-to-starts"
-									action-command="add-row" repeater="starts">
-									<fd:label>New start</fd:label>
-								</fd:repeater-action>
-								<fd:repeater id="ends">
-									<fd:label>ends</fd:label>
-									<fd:widgets>
-										<fd:field id="end">
-											<fd:label>end</fd:label>
-											<fd:datatype base="string"/>
-										</fd:field>
-										<fd:new id="common-language-elements-class"/>
-										<fd:new id="common-controls-class"/>
-									</fd:widgets>
-								</fd:repeater>
-								<fd:repeater-action id="add-to-ends"
-									action-command="add-row" repeater="ends">
-									<fd:label>New end</fd:label>
-								</fd:repeater-action>								
-								<fd:field id="total">
-									<fd:label>total</fd:label>
-									<fd:datatype base="integer"/>
-								</fd:field>
-								<fd:repeater id="lists">
-									<fd:label>lists</fd:label>
-									<fd:widgets>
-										<fd:field id="list">
-											<fd:label>list</fd:label>
-											<fd:datatype base="string"/>
-										</fd:field>
-										<fd:new id="common-language-elements-class"/>
-										<fd:new id="common-controls-class"/>
-									</fd:widgets>
-								</fd:repeater>
-								<fd:repeater-action id="add-to-lists"
-									action-command="add-row" repeater="lists">
-									<fd:label>New list</fd:label>
-								</fd:repeater-action>
-								<fd:new id="common-controls-class"/>
-							</fd:widgets>
-						</fd:repeater>						
-						<fd:repeater-action id="add-to-extents"
-							action-command="add-row" repeater="extents">
-							<fd:label>New extent</fd:label>
-						</fd:repeater-action>
-						<fd:repeater id="dates">
-							<fd:label>Dates</fd:label>
-							<fd:widgets>
-								<fd:new id="common-date-elements-class"/>
-								<fd:new id="common-language-elements-class"/>
-								<fd:new id="common-controls-class"/>
-							</fd:widgets>
-						</fd:repeater>
-						<fd:repeater-action id="add-to-dates"
-							action-command="add-row" repeater="dates">
-							<fd:label>New date</fd:label>
-						</fd:repeater-action>
-						<fd:repeater id="texts" orderable="true">
-							<fd:label>Texts</fd:label>
-							<fd:widgets>
-								<fd:new id="common-textfield-elements-class"/>
-								<fd:new id="common-controls-class"/>
-							</fd:widgets>
-						</fd:repeater>
-						<fd:repeater-action id="add-to-texts"
-							action-command="add-row" repeater="texts">
-							<fd:label>New text</fd:label>
-						</fd:repeater-action>
-						<fd:new id="common-language-elements-class"/>
-						<fd:new id="common-controls-class"/>
-					</fd:widgets>
+               <fd:widgets>
+                  <fd:field id="modsID">
+                     <fd:label>ID</fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="type">
+                     <fd:label>type</fd:label>
+                     <fd:datatype base="string"/>
+                     <fd:selection-list>
+                        <fd:item value="part"/>
+                        <fd:item value="volume"/>
+                        <fd:item value="issue"/>
+                        <fd:item value="chapter"/>
+                        <fd:item value="section"/>
+                        <fd:item value="paragraph"/>
+                        <fd:item value="track"/>
+                     </fd:selection-list>
+                  </fd:field>
+                  <fd:field id="order">
+                     <fd:label>order</fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="displayLabel">
+                     <fd:label>displayLabel</fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:field id="altRepGroup">
+                     <fd:label>altRepGroup</fd:label>
+                     <fd:datatype base="string"/>
+                  </fd:field>
+                  <fd:repeater id="details" max-size="1">
+                     <fd:label>details</fd:label>
+                     <fd:widgets>
+                        <fd:field id="type">
+                           <fd:label>type</fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:field id="level">
+                           <fd:label>level</fd:label>
+                           <fd:datatype base="string"/>
+                        </fd:field>
+                        <fd:repeater id="numbers" max-size="1">
+                           <fd:label>number</fd:label>
+                           <fd:widgets>
+                              <fd:field id="value">
+                                 <fd:label>number</fd:label>
+                                 <fd:datatype base="string"/>
+                              </fd:field>
+                              <fd:new id="common-language-elements-class"/>
+                              <fd:new id="common-controls-single-class"/>
+                           </fd:widgets>
+                        </fd:repeater>
+                        <fd:repeater-action id="add-to-numbers" action-command="add-row" repeater="numbers">
+                           <fd:label>New number</fd:label>
+                        </fd:repeater-action>
+                        <fd:repeater id="captions" max-size="1">
+                           <fd:label>caption</fd:label>
+                           <fd:widgets>
+                              <fd:field id="value">
+                                 <fd:label>caption</fd:label>
+                                 <fd:datatype base="string"/>
+                              </fd:field>
+                              <fd:new id="common-language-elements-class"/>
+                              <fd:new id="common-controls-single-class"/>
+                           </fd:widgets>
+                        </fd:repeater>
+                        <fd:repeater-action id="add-to-captions" action-command="add-row" repeater="captions">
+                           <fd:label>New caption</fd:label>
+                        </fd:repeater-action>
+                        <fd:repeater id="titles" max-size="1">
+                           <fd:label>title</fd:label>
+                           <fd:widgets>
+                              <fd:field id="value">
+                                 <fd:label>title</fd:label>
+                                 <fd:datatype base="string"/>
+                              </fd:field>
+                              <fd:new id="common-language-elements-class"/>
+                              <fd:new id="common-controls-single-class"/>
+                           </fd:widgets>
+                        </fd:repeater>
+                        <fd:repeater-action id="add-to-titles" action-command="add-row" repeater="titles">
+                           <fd:label>New title</fd:label>
+                        </fd:repeater-action>
+                        <fd:new id="common-controls-single-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-details" action-command="add-row" repeater="details">
+                     <fd:label>New detail</fd:label>
+                  </fd:repeater-action>
+                  <fd:repeater id="extents" max-size="1">
+                     <fd:label>extents</fd:label>
+                     <fd:widgets>
+                        <fd:field id="unit">
+                           <fd:label>unit</fd:label>
+                           <fd:datatype base="string"/>
+                           <fd:selection-list>
+                              <fd:item value="pages"/>
+                              <fd:item value="minutes"/>
+                           </fd:selection-list>
+                        </fd:field>
+                        <fd:group id="start">
+                           <fd:label>start</fd:label>
+                           <fd:widgets>
+                              <fd:field id="start">
+                                 <fd:label>start</fd:label>
+                                 <fd:datatype base="string"/>
+                              </fd:field>
+                              <fd:new id="common-language-elements-class"/>
+                           </fd:widgets>
+                        </fd:group>
+                        <fd:group id="end">
+                           <fd:label>end</fd:label>
+                           <fd:widgets>
+                              <fd:field id="end">
+                                 <fd:label>end</fd:label>
+                                 <fd:datatype base="string"/>
+                              </fd:field>
+                              <fd:new id="common-language-elements-class"/>
+                           </fd:widgets>
+                        </fd:group>
+                        <fd:field id="total">
+                           <fd:label>total</fd:label>
+                           <fd:datatype base="integer"/>
+                        </fd:field>
+                        <fd:group id="list">
+                           <fd:label>list</fd:label>
+                           <fd:widgets>
+                              <fd:field id="list">
+                                 <fd:label>list</fd:label>
+                                 <fd:datatype base="string"/>
+                              </fd:field>
+                              <fd:new id="common-language-elements-class"/>
+                           </fd:widgets>
+                        </fd:group>
+                        <fd:new id="common-controls-single-class"/>
+
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-extents" action-command="add-row" repeater="extents">
+                     <fd:label>New extent</fd:label>
+                  </fd:repeater-action>
+                  <fd:repeater id="dates">
+                     <fd:label>Dates</fd:label>
+                     <fd:widgets>
+                        <fd:new id="common-date-elements-class"/>
+                        <fd:new id="common-language-elements-class"/>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-dates" action-command="add-row" repeater="dates">
+                     <fd:label>New date</fd:label>
+                  </fd:repeater-action>
+                  <fd:repeater id="texts" orderable="true">
+                     <fd:label>Texts</fd:label>
+                     <fd:widgets>
+                        <fd:new id="common-textfield-elements-class"/>
+                        <fd:new id="common-controls-class"/>
+                     </fd:widgets>
+                  </fd:repeater>
+                  <fd:repeater-action id="add-to-texts" action-command="add-row" repeater="texts">
+                     <fd:label>New text</fd:label>
+                  </fd:repeater-action>
+                  <fd:new id="common-language-elements-class"/>
+                  <fd:new id="common-controls-class"/>
+               </fd:widgets>
 				</fd:repeater>
 			</fd:widgets>
 		</fd:class>
@@ -2459,12 +2437,12 @@
 							repeater="recordContentSources">
 							<fd:label>New recordContentSource</fd:label>
 						</fd:repeater-action>
-						<fd:repeater id="recordCreationDates">
+						<fd:repeater id="recordCreationDates" max-size="1">
 							<fd:label>recordCreationDate</fd:label>
 							<fd:widgets>
 								<fd:new id="common-date-elements-class"/>
 								<fd:new id="common-language-elements-class"/>
-								<fd:new id="common-controls-class"/>
+								<fd:new id="common-controls-single-class"/>
 							</fd:widgets>
 						</fd:repeater>
 						<fd:repeater-action id="add-to-recordCreationDates"
@@ -2522,7 +2500,7 @@
 							action-command="add-row" repeater="recordOrigins">
 							<fd:label>New recordOrigin</fd:label>
 						</fd:repeater-action>
-						<!--Added element languageOfCataloging. Did not add field languageOfCatalogings_languageOfCataloging because _languageTerm serves this purpose - jh-->
+						<!--Added element languageOfCataloging. Did not add field languageOfCataloging because _languageTerm serves this purpose - jh-->
 						<fd:repeater id="languageOfCatalogings">
 							<fd:label>languageOfCataloging</fd:label>
 							<fd:widgets>
@@ -2550,40 +2528,35 @@
 									<fd:label>displayLabel</fd:label>
 									<fd:datatype base="string"/>
 								</fd:field>
-								<fd:repeater
-									id="languageOfCatalogings_languageTerms">
-									<fd:label>languageOfCataloging_languageTerm</fd:label>
-									<fd:widgets>
-										<fd:field
-										id="languageOfCatalogings_languageTerm">
-										<fd:label>languageTerm</fd:label>
-										<fd:datatype base="string"/>
-										</fd:field>
-										<fd:field id="modsID">
-										<fd:label>ID</fd:label>
-										<fd:datatype base="string"/>
-										</fd:field>
-										<fd:new
-										id="common-termType-elements-class"/>
-										<fd:new
-										id="common-languageAuthority-elements-class"/>
-										<fd:new
-										id="common-language-elements-class"/>
-										<fd:new id="common-controls-class"/>
-									</fd:widgets>
-								</fd:repeater>
+                        <fd:repeater id="languageTerms">
+                           <fd:label>languageTerm</fd:label>
+                           <fd:widgets>
+                              <fd:field id="languageTerm">
+                                 <fd:label>languageTerm</fd:label>
+                                 <fd:datatype base="string"/>
+                              </fd:field>
+                              <fd:field id="modsID">
+                                 <fd:label>ID</fd:label>
+                                 <fd:datatype base="string"/>
+                              </fd:field>
+                              <fd:new id="common-termType-elements-class"/>
+                              <fd:new id="common-languageAuthority-elements-class"/>
+                              <fd:new id="common-language-elements-class"/>
+                              <fd:new id="common-controls-class"/>
+                           </fd:widgets>
+                        </fd:repeater>
 								<fd:repeater-action
-									id="add-to-languageOfCatalogings_languageTerms"
+									id="add-to-languageTerms"
 									action-command="add-row"
-									repeater="languageOfCatalogings_languageTerms">
+									repeater="languageTerms">
 									<fd:label>New languageTerm</fd:label>
 								</fd:repeater-action>
 								<fd:repeater
-									id="languageOfCatalogings_scriptTerms">
-									<fd:label>languageOfCataloging_scriptTerm</fd:label>
+									id="scriptTerms">
+									<fd:label>scriptTerm</fd:label>
 									<fd:widgets>
 										<fd:field
-										id="languageOfCatalogings_scriptTerm">
+										id="scriptTerm">
 										<fd:label>scriptTerm</fd:label>
 										<fd:datatype base="string"/>
 										</fd:field>
@@ -2594,12 +2567,13 @@
 									</fd:widgets>
 								</fd:repeater>
 								<fd:repeater-action
-									id="add-to-languageOfCatalogings_scriptTerms"
+									id="add-to-scriptTerms"
 									action-command="add-row"
-									repeater="languageOfCatalogings_scriptTerms">
+									repeater="scriptTerms">
 									<fd:label>New scriptTerm</fd:label>
 								</fd:repeater-action>
-								<fd:new id="common-controls-class"/>
+							   <fd:new id="common-language-elements-class"/>
+							   <fd:new id="common-controls-class"/>
 							</fd:widgets>
 						</fd:repeater>
 						<fd:repeater-action id="add-to-languageOfCatalogings"
